@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="Preference.Wpf.Controls.Scheduler.SchedulerView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:local="clr-namespace:Preference.Wpf.Controls.Scheduler" xmlns:core="clr-namespace:Preference.Wpf.Controls.Core" x:Name="WeekDaysScheduler" MinHeight="200" MinWidth="200" MaxWidth="1300">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Resources/Icons.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <local:DateTimeWithFormatStringConverter x:Key="dateTimeWithFormatStringConverter" />
+      <local:WeekLapseStringConverter x:Key="weekLapseStringConverter" />
+      <local:NeutralConverter x:Key="neutralConverter" />
+      <local:IsMonthViewDefinitionSelectedConverter x:Key="isMonthViewDefinitionSelectedConverter" />
+      <Style x:Key="buttonCalendarArrowsStyle" TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="20" />
+        <Setter Property="Height" Value="20" />
+        <Setter Property="Margin" Value="2,2,3,2" />
+        <Style.Triggers>
+          <Trigger Property="IsEnabled" Value="False">
+            <Setter Property="UIElement.Opacity" Value="0.3" />
+          </Trigger>
+        </Style.Triggers>
+      </Style>
+      <Style x:Key="{x:Type gridview:GridViewCell}" xmlns:gridview="clr-namespace:Telerik.Windows.Controls.GridView;assembly=Telerik.Windows.Controls.GridView" TargetType="{x:Type gridview:GridViewCell}" BasedOn="{x:Null}">
+        <Setter Property="Control.Padding" Value="0" />
+        <Setter Property="FrameworkElement.Margin" Value="0" />
+        <Setter Property="Control.HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Control.VerticalContentAlignment" Value="Stretch" />
+      </Style>
+      <Style x:Key="{x:Type DatePickerTextBox}" TargetType="{x:Type DatePickerTextBox}">
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate>
+              <TextBlock Name="PART_TextBox" Margin="2" Text="{Binding Path=SelectedDate, ConverterParameter=y, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}, Converter={StaticResource dateTimeWithFormatStringConverter}}" />
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+        <Setter Property="MinWidth" Value="110" />
+        <Setter Property="TextBox.TextAlignment" Value="Center" />
+      </Style>
+      <DataTemplate x:Key="WeekFirstColumnTemplate">
+        <Grid Margin="0" MinHeight="100">
+          <Border BorderThickness="1,1,1,1" BorderBrush="#FF000000">
+            <TextBlock Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Margin="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextAlignment="Right" Text="{Binding StartingDay, Converter={StaticResource weekLapseStringConverter}}">
+              <FrameworkElement.LayoutTransform>
+                <RotateTransform Angle="-90" />
+              </FrameworkElement.LayoutTransform>
+            </TextBlock>
+          </Border>
+        </Grid>
+      </DataTemplate>
+      <ControlTemplate x:Key="DayOfWeekTemplate">
+        <StackPanel Margin="0">
+          <Border BorderThickness="0,1,1,1" BorderBrush="#FF000000">
+            <TextBlock Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Text="{Binding DayDate, ConverterParameter=dd, Converter={StaticResource dateTimeWithFormatStringConverter}}" />
+          </Border>
+          <ItemsControl Name="ListaDeItems" Margin="2" ItemsSource="{Binding ScheduledItems}" ItemTemplate="{Binding ItemDataTemplate, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SchedulerView}}}" ItemTemplateSelector="{Binding ItemDataTemplateSelector, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:SchedulerView}}}" />
+        </StackPanel>
+      </ControlTemplate>
+      <local:WeekDayDataTemplateSelector x:Key="WeekTemplateSelector">
+        <local:WeekDayDataTemplateSelector.MondayTemplate>
+          <DataTemplate>
+            <ContentControl Template="{StaticResource DayOfWeekTemplate}" DataContext="{Binding Monday}" />
+          </DataTemplate>
+        </local:WeekDayDataTemplateSelector.MondayTemplate>
+        <local:WeekDayDataTemplateSelector.TuesdayTemplate>
+          <DataTemplate>
+            <ContentControl Template="{StaticResource DayOfWeekTemplate}" DataContext="{Binding Tuesday}" />
+          </DataTemplate>
+        </local:WeekDayDataTemplateSelector.TuesdayTemplate>
+        <local:WeekDayDataTemplateSelector.WednesdayTemplate>
+          <DataTemplate>
+            <ContentControl Template="{StaticResource DayOfWeekTemplate}" DataContext="{Binding Wednesday}" />
+          </DataTemplate>
+        </local:WeekDayDataTemplateSelector.WednesdayTemplate>
+        <local:WeekDayDataTemplateSelector.ThursdayTemplate>
+          <DataTemplate>
+            <ContentControl Template="{StaticResource DayOfWeekTemplate}" DataContext="{Binding Thursday}" />
+          </DataTemplate>
+        </local:WeekDayDataTemplateSelector.ThursdayTemplate>
+        <local:WeekDayDataTemplateSelector.FridayTemplate>
+          <DataTemplate>
+            <ContentControl Template="{StaticResource DayOfWeekTemplate}" DataContext="{Binding Friday}" />
+          </DataTemplate>
+        </local:WeekDayDataTemplateSelector.FridayTemplate>
+        <local:WeekDayDataTemplateSelector.SaturdayTemplate>
+          <DataTemplate>
+            <ContentControl Template="{StaticResource DayOfWeekTemplate}" DataContext="{Binding Saturday}" />
+          </DataTemplate>
+        </local:WeekDayDataTemplateSelector.SaturdayTemplate>
+        <local:WeekDayDataTemplateSelector.SundayTemplate>
+          <DataTemplate>
+            <ContentControl Template="{StaticResource DayOfWeekTemplate}" DataContext="{Binding Sunday}" />
+          </DataTemplate>
+        </local:WeekDayDataTemplateSelector.SundayTemplate>
+      </local:WeekDayDataTemplateSelector>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <Grid DataContext="{Binding ElementName=WeekDaysScheduler, Path=SchedulerVm}">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <FrameworkElement.Resources>
+      <ResourceDictionary>
+        <core:BindingProxy x:Key="GridBindingProxy" Data="{Binding}" />
+      </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <Grid Row="0" Margin="2">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <ItemsControl Grid.Column="0" Grid.IsSharedSizeScope="True" ItemsSource="{Binding MonthViewDefinitions}">
+        <ItemsControl.ItemsPanel>
+          <ItemsPanelTemplate>
+            <StackPanel Orientation="Horizontal" />
+          </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition SharedSizeGroup="GroupingMonthViewDefinitions" />
+              </Grid.ColumnDefinitions>
+              <controls:RadRadioButton FrameworkElement.Margin="0, 2, 10, 2" xmlns:controls="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls" ContentControl.Content="{Binding Title}" ButtonBase.Command="{Binding ElementName=WeekDaysScheduler, Path=MonthViewChangedCommand}" ButtonBase.CommandParameter="{Binding Path=.}">
+                <ToggleButton.IsChecked>
+                  <MultiBinding Converter="{StaticResource isMonthViewDefinitionSelectedConverter}">
+                    <Binding Path="." Mode="OneWay" />
+                    <Binding ElementName="WeekDaysScheduler" Path="CurrentMonthViewDefinition" Mode="OneWay" />
+                  </MultiBinding>
+                </ToggleButton.IsChecked>
+              </controls:RadRadioButton>
+            </Grid>
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+      <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
+        <Button Name="buttonArrowLeft" Style="{StaticResource buttonCalendarArrowsStyle}" Command="{Binding PreviousMonthCommand}">
+          <Image Source="{StaticResource icon3060}" />
+        </Button>
+        <DatePicker HorizontalAlignment="Left" Width="Auto" SelectedDateFormat="Long" SelectedDate="{Binding Path=CurrentDate, Mode=TwoWay}" />
+        <Button Name="buttonArrowRight" Style="{StaticResource buttonCalendarArrowsStyle}" Command="{Binding NextMonthCommand}">
+          <Image Source="{StaticResource icon3061}" />
+        </Button>
+      </StackPanel>
+    </Grid>
+    <controls:RadGridView Grid.Row="1" Grid.Column="0" GridViewDataControl.IsReadOnly="True" GridViewDataControl.ShowGroupPanel="False" xmlns:gridview="clr-namespace:Telerik.Windows.Controls.GridView;assembly=Telerik.Windows.Controls.GridView" gridview:GridViewDataControl.SelectionMode="Single" gridview:GridViewDataControl.SelectionUnit="Cell" gridview:GridViewDataControl.CanUserSortColumns="False" gridview:GridViewDataControl.CanUserDeleteRows="False" gridview:GridViewDataControl.AutoGenerateColumns="False" gridview:GridViewDataControl.RowIndicatorVisibility="Collapsed" FrameworkElement.HorizontalAlignment="Left" gridview:GridViewDataControl.GridLinesVisibility="Both" FrameworkElement.Margin="0" xmlns:controls="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView" p10:DataControl.ItemsSource="{Binding WeeksCollection}" xmlns:p10="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Data">
+      <gridview:GridViewDataControl.Columns>
+        <controls:GridViewDataColumn GridViewColumn.CellTemplate="{StaticResource WeekFirstColumnTemplate}" xmlns:controls="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView" />
+        <local:WeekDayGridColumn xmlns:controls="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView" controls:GridViewColumn.MinWidth="100" controls:GridViewColumn.Width="*" controls:GridViewColumn.CellTemplateSelector="{StaticResource WeekTemplateSelector}" controls:GridViewBoundColumnBase.Header="{Binding WeekConfiguration.FirstDayName}" WeekDay="{Binding WeekConfiguration.FirstDay}" />
+        <local:WeekDayGridColumn controls:GridViewColumn.MinWidth="100" controls:GridViewColumn.Width="*" controls:GridViewColumn.CellTemplateSelector="{StaticResource WeekTemplateSelector}" controls:GridViewBoundColumnBase.Header="{Binding WeekConfiguration.SecondDayName}" WeekDay="{Binding WeekConfiguration.SecondDay}" />
+        <local:WeekDayGridColumn controls:GridViewColumn.MinWidth="100" controls:GridViewColumn.Width="*" controls:GridViewColumn.CellTemplateSelector="{StaticResource WeekTemplateSelector}" controls:GridViewBoundColumnBase.Header="{Binding WeekConfiguration.ThirdDayName}" WeekDay="{Binding WeekConfiguration.ThirdDay}" />
+        <local:WeekDayGridColumn controls:GridViewColumn.MinWidth="100" controls:GridViewColumn.Width="*" controls:GridViewColumn.CellTemplateSelector="{StaticResource WeekTemplateSelector}" controls:GridViewBoundColumnBase.Header="{Binding WeekConfiguration.FourthDayName}" WeekDay="{Binding WeekConfiguration.FourthDay}" />
+        <local:WeekDayGridColumn controls:GridViewColumn.MinWidth="100" controls:GridViewColumn.Width="*" controls:GridViewColumn.CellTemplateSelector="{StaticResource WeekTemplateSelector}" controls:GridViewBoundColumnBase.Header="{Binding WeekConfiguration.FifthDayName}" WeekDay="{Binding WeekConfiguration.FifthDay}" />
+        <local:WeekDayGridColumn controls:GridViewColumn.MinWidth="100" controls:GridViewColumn.Width="*" controls:GridViewColumn.CellTemplateSelector="{StaticResource WeekTemplateSelector}" controls:GridViewBoundColumnBase.Header="{Binding WeekConfiguration.SixthDayName}" WeekDay="{Binding WeekConfiguration.SixthDay}" />
+        <local:WeekDayGridColumn controls:GridViewColumn.MinWidth="100" controls:GridViewColumn.Width="*" controls:GridViewColumn.CellTemplateSelector="{StaticResource WeekTemplateSelector}" controls:GridViewBoundColumnBase.Header="{Binding WeekConfiguration.SeventhDayName}" WeekDay="{Binding WeekConfiguration.SeventhDay}" />
+      </gridview:GridViewDataControl.Columns>
+    </controls:RadGridView>
+  </Grid>
+</UserControl>

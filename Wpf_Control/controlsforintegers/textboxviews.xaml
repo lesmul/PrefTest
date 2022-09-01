@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:localIntegers="clr-namespace:Preference.Wpf.Controls.ControlsForIntegers" xmlns:localBehaviors="clr-namespace:Preference.Wpf.Controls.Behaviors">
+  <Style x:Key="{x:Type localIntegers:PositiveIntegerTextBox}" TargetType="{x:Type localIntegers:PositiveIntegerTextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+    <Style.Triggers>
+      <Trigger Property="TextBoxBase.IsReadOnly" Value="True">
+        <Setter Property="Background" Value="{DynamicResource ResourceKey={x:Static SystemColors.ControlBrushKey}}" />
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey={x:Static SystemColors.GrayTextBrushKey}}" />
+      </Trigger>
+    </Style.Triggers>
+    <Setter Property="localBehaviors:TextBoxBehavior.SelectedTextOnFocus" Value="True" />
+    <Setter Property="localBehaviors:TextBoxBehavior.TextTypesAllowed" Value="OnlyPositiveIntegers" />
+    <Setter Property="Text" Value="{Binding Mode=TwoWay, Path=TextValue, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource Mode=Self}}" />
+  </Style>
+</ResourceDictionary>

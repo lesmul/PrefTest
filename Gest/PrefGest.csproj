@@ -1,0 +1,102 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <AssemblyName>PrefGest</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <OutputType>WinExe</OutputType>
+    <UseWPF>True</UseWPF>
+    <TargetFramework>net40</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>Preview</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="Interop.PrefSales">
+      <HintPath>..\..\..\..\..\temp\Nowy folder (3)\Interop.PrefSales.dll</HintPath>
+    </Reference>
+    <Reference Include="Preference.AddWorks" />
+    <Reference Include="Preference.Diagnostics" />
+    <Reference Include="Preference.Intrastat" />
+    <Reference Include="Preference.Jitmv" />
+    <Reference Include="Preference.Logikal">
+      <HintPath>..\..\..\..\..\temp\Nowy folder (2)\Preference.Logikal.dll</HintPath>
+    </Reference>
+    <Reference Include="Preference.MSMQ.Client" />
+    <Reference Include="Preference.Next.ExternalConnection" />
+    <Reference Include="Preference.PDE.SyncClient" />
+    <Reference Include="Preference.Planning.Engine" />
+    <Reference Include="Preference.PrefItems" />
+    <Reference Include="Preference.Purchases">
+      <HintPath>..\..\..\..\..\temp\Nowy folder (2)\Preference.Purchases.dll</HintPath>
+    </Reference>
+    <Reference Include="Preference.Vfo.Controls" />
+    <Reference Include="Preference.Vfo" />
+    <Reference Include="Preference.Viewers" />
+    <Reference Include="Preference.Wpf.Controls">
+      <HintPath>..\..\..\..\..\temp\Nowy folder (3)\Preference.Wpf.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Preference.WPF.MaterialsSelector">
+      <HintPath>..\..\..\..\..\temp\Nowy folder (3)\Preference.WPF.MaterialsSelector.dll</HintPath>
+    </Reference>
+    <Reference Include="PrefNETLibraries" />
+    <Reference Include="PrefTechnicalSheetFilter" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="System.Collections.Concurrent" />
+    <Reference Include="System.Collections" />
+    <Reference Include="System.ComponentModel.Annotations" />
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.EventBasedAsync" />
+    <Reference Include="System.Diagnostics.Contracts" />
+    <Reference Include="System.Diagnostics.Tracing" />
+    <Reference Include="System.Dynamic.Runtime" />
+    <Reference Include="System.Globalization" />
+    <Reference Include="System.IO" />
+    <Reference Include="System.Linq" />
+    <Reference Include="System.Linq.Expressions" />
+    <Reference Include="System.Linq.Parallel" />
+    <Reference Include="System.Linq.Queryable" />
+    <Reference Include="System.Net.NetworkInformation" />
+    <Reference Include="System.Net.Primitives" />
+    <Reference Include="System.Net.Requests" />
+    <Reference Include="System.Net.WebHeaderCollection" />
+    <Reference Include="System.ObjectModel" />
+    <Reference Include="System.Reflection" />
+    <Reference Include="System.Reflection.Emit" />
+    <Reference Include="System.Reflection.Emit.ILGeneration" />
+    <Reference Include="System.Reflection.Emit.Lightweight" />
+    <Reference Include="System.Reflection.Extensions" />
+    <Reference Include="System.Reflection.Primitives" />
+    <Reference Include="System.Resources.ResourceManager" />
+    <Reference Include="System.Runtime.Handles" />
+    <Reference Include="System.Runtime.InteropServices" />
+    <Reference Include="System.Runtime.InteropServices.WindowsRuntime" />
+    <Reference Include="System.Runtime.Numerics" />
+    <Reference Include="System.Runtime.Serialization.Json" />
+    <Reference Include="System.Runtime.Serialization.Primitives" />
+    <Reference Include="System.Runtime.Serialization.Xml" />
+    <Reference Include="System.Security.Principal" />
+    <Reference Include="System.ServiceModel.Duplex" />
+    <Reference Include="System.ServiceModel.Http" />
+    <Reference Include="System.ServiceModel.NetTcp" />
+    <Reference Include="System.ServiceModel.Primitives" />
+    <Reference Include="System.ServiceModel.Security" />
+    <Reference Include="System.Text.Encoding" />
+    <Reference Include="System.Text.Encoding.Extensions" />
+    <Reference Include="System.Text.RegularExpressions" />
+    <Reference Include="System.Threading" />
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Threading.Tasks.Parallel" />
+    <Reference Include="System.Threading.Timer" />
+    <Reference Include="System.Xml.ReaderWriter" />
+    <Reference Include="System.Xml.XDocument" />
+    <Reference Include="System.Xml.XmlSerializer" />
+  </ItemGroup>
+</Project>

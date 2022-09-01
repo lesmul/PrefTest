@@ -1,0 +1,10 @@
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
+namespace _003CCppImplementationDetails_003E;
+
+[StructLayout(LayoutKind.Sequential, Size = 24)]
+[NativeCppClass]
+internal struct _0024ArrayType_0024_0024_0024BY02V_003F_0024CStringT_0040_WV_003F_0024StrTraitMFC_DLL_0040_WV_003F_0024ChTraitsCRT_0040_W_0040ATL_0040_0040_0040_0040_0040ATL_0040_0040
+{
+}

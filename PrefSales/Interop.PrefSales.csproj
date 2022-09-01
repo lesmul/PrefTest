@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>Interop.PrefSales</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <TargetFramework>net40</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>Preview</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="Interop.PrefCAD" />
+    <Reference Include="Interop.PrefPrices" />
+    <Reference Include="Interop.MSXML2" />
+    <Reference Include="Interop.PrefComponents" />
+    <Reference Include="Interop.PrefErrors" />
+  </ItemGroup>
+</Project>

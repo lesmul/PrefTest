@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="Preference.WPF.MaterialsSelector.UsersControls.GeneralPane" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:properties="clr-namespace:Preference.WPF.MaterialsSelector.Properties" xmlns:userscontrols="clr-namespace:Preference.WPF.MaterialsSelector.UsersControls">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <Style x:Key="{x:Type Label}" TargetType="{x:Type Label}">
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="VerticalContentAlignment" Value="Top" />
+        <Setter Property="Margin" Value="5" />
+      </Style>
+      <Style x:Key="{x:Type TextBox}" TargetType="{x:Type TextBox}">
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="TextBoxBase.IsReadOnly" Value="True" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="VerticalContentAlignment" Value="Top" />
+        <Setter Property="TextBox.TextWrapping" Value="Wrap" />
+      </Style>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <Label Content="{x:Static properties:Resources.Name}" />
+      <TextBox Grid.Column="1" Text="{Binding Path=Name}" />
+      <Label Grid.Row="1" Content="{x:Static properties:Resources.System}" />
+      <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=ProductSystem}" />
+      <Label Grid.Row="2" Content="{x:Static properties:Resources.Description}" />
+      <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Description}" />
+      <Label Grid.Row="3" Content="{x:Static properties:Resources.Color}" />
+      <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=Color}" />
+      <Label Grid.Row="4" Content="{x:Static properties:Resources.Family}" />
+      <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=Family}" />
+      <Label Grid.Row="5" Content="{x:Static properties:Resources.ProductType}" />
+      <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=ProductType}" />
+    </Grid>
+  </ScrollViewer>
+</UserControl>

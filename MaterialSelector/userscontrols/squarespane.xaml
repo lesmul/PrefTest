@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="Preference.WPF.MaterialsSelector.UsersControls.SquaresPane" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:properties="clr-namespace:Preference.WPF.MaterialsSelector.Properties" xmlns:converters="clr-namespace:Preference.WPF.MaterialsSelector.Core.Converters" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:userscontrols="clr-namespace:Preference.WPF.MaterialsSelector.UsersControls">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <converters:SquareRolesToImageConverter x:Key="SquareRolesToImageConverter" />
+      <converters:SquareRolesToStringConverter x:Key="SquareRolesToStringConverter" />
+      <Style x:Key="{x:Type TextBlock}" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+      </Style>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <Grid>
+    <controls:RadTreeListView xmlns:controls="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView" controls:RadTreeListView.Name="treelistview" controls:RadTreeListView.HierarchyColumnIndex="0" GridViewDataControl.AutoGenerateColumns="False" GridViewDataControl.AutoExpandGroups="True" p10:DataControl.ItemsSource="{Binding Path=Model.Squares}" p10:DataControl.SelectedItem="{Binding Path=SelectedSquare, Mode=TwoWay}" xmlns:p10="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Data">
+      <gridview:GridViewDataControl.ChildTableDefinitions xmlns:gridview="clr-namespace:Telerik.Windows.Controls.GridView;assembly=Telerik.Windows.Controls.GridView">
+        <controls:TreeListViewTableDefinition controls:TreeListViewTableDefinition.ItemsSource="{Binding Squares}" />
+      </gridview:GridViewDataControl.ChildTableDefinitions>
+      <GridViewDataControl.Columns xmlns="clr-namespace:Telerik.Windows.Controls.GridView;assembly=Telerik.Windows.Controls.GridView">
+        <controls:GridViewColumn controls:GridViewColumn.Header="" controls:GridViewColumn.Width="*">
+          <controls:GridViewColumn.CellTemplate>
+            <HierarchicalDataTemplate ItemsSource="{Binding Squares}" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+              <StackPanel Orientation="Horizontal">
+                <Image Margin="0,0,5,0" Width="16" Height="16" Source="{Binding Path=Role, Converter={StaticResource SquareRolesToImageConverter}}" />
+                <TextBlock VerticalAlignment="Center" FontSize="12" Text="{Binding Path=Role, Converter={StaticResource SquareRolesToStringConverter}}" />
+              </StackPanel>
+            </HierarchicalDataTemplate>
+          </controls:GridViewColumn.CellTemplate>
+        </controls:GridViewColumn>
+        <controls:GridViewColumn controls:GridViewColumn.UniqueName="IsIncluded" controls:GridViewColumn.Width="Auto" controls:GridViewColumn.TextAlignment="Right" controls:GridViewColumn.Header="{x:Static properties:Resources.Include}" controls:GridViewColumn.IsReadOnly="False">
+          <controls:GridViewColumn.CellTemplate>
+            <DataTemplate xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+              <CheckBox IsChecked="{Binding Path=IsIncluded}" CommandParameter="{Binding}" Command="{Binding Path=DataContext.IncludeSquareCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}">
+                <Control.Template>
+                  <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                      <Image Name="_image" Source="pack://application:,,,/Preference.WPF.MaterialsSelector;component/Resources/state0_16.png" Width="16" Height="16" />
+                      <ContentControl Content="{Binding Content}" />
+                    </StackPanel>
+                    <ControlTemplate.Triggers>
+                      <Trigger Property="ToggleButton.IsChecked" Value="True">
+                        <Setter TargetName="_image" Property="Image.Source" Value="pack://application:,,,/Preference.WPF.MaterialsSelector;component/Resources/state1_16.png" />
+                      </Trigger>
+                    </ControlTemplate.Triggers>
+                  </ControlTemplate>
+                </Control.Template>
+              </CheckBox>
+            </DataTemplate>
+          </controls:GridViewColumn.CellTemplate>
+        </controls:GridViewColumn>
+      </GridViewDataControl.Columns>
+      <!--Unknown connection ID: 1-->
+    </controls:RadTreeListView>
+  </Grid>
+</UserControl>

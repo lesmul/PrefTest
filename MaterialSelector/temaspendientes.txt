@@ -1,0 +1,37 @@
+﻿
+ok --> 20110520.1 Convertir el TreeView de Squares en un ListTreeView que solamente tiene una columna de momento.
+ok --> 20110520.2 Añadir columna "include" en el ListTreeView creado en el punto 20110520.1 que tiene la siguiente funcionalidad:
+				Si not IsChecked entonces
+					- todos los materiales que pertenezcan a dicho cuadro:
+						- IsIncluded = false
+						- desapareceran del panel de materiales.
+					- En el dibujo del modelo, no se dibujará ese cuadro.
+				sino
+					- Aparecen todos los materiales que pertenecen a dicho cuadro
+					- En el dibujo se muestra el modelo con dicho cuadro.
+
+
+20110520.3 Implementar el panel de elementos. Los elementos son los siguientes:
+
+			Modelo
+			Submodelo
+			Marco
+			Hoja
+			Herraje hoja
+			Junquillo
+			Vidrio
+			Herraje marco
+
+
+			Esta será la puta estrutura:
+
+				Modelo
+					Roller
+					Submodelo
+					Marco
+					Hoja
+
+			Cargar la estructura. Siempre se cargará el primer nodo, el modelo completo
+			Se comprueba el numero de submodelos, si es mayor que 1 contando el roller entonces se añade submodelo
+			se crean marcos y hojas.
+			se crean vidrios y junquillos

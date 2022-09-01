@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="Preference.Logikal.LogikalSettingsUserControl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Background="{StaticResource {x:Static SystemColors.ControlBrushKey}}" xmlns:logikal="clr-namespace:Preference.Logikal;assembly=Preference.Logikal" Loaded="UserControl_Loaded">
+  <Grid>
+    <StackPanel Name="ButtonsPannel" Margin="5" />
+  </Grid>
+</UserControl>

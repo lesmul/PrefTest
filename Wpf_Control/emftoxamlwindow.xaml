@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Preference.Wpf.Controls.EMFtoXAMLWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:pnl="clr-namespace:Preference.Converters;assembly=PrefNETLibraries" xmlns:System="clr-namespace:System;assembly=mscorlib" Title="Converter EMF/DXF to XAML" Height="260" Width="450" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" xmlns:controls="clr-namespace:Preference.Wpf.Controls;assembly=Preference.Wpf.Controls" DataContext="{Binding Path=Progress, RelativeSource={RelativeSource Self}}">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <FontFamily x:Key="NormalFontFamily">Arial</FontFamily>
+      <System:Double x:Key="NormalFontSize">11</System:Double>
+      <pnl:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
+      <Style x:Key="CheckBoxProgressStyle" TargetType="{x:Type CheckBox}">
+        <Setter Property="IsEnabled" Value="False" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="ToggleButton.IsThreeState" Value="True" />
+        <Setter Property="Width" Value="20" />
+        <Setter Property="Height" Value="20" />
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="{x:Type CheckBox}">
+              <FrameworkTemplate.Resources>
+                <ResourceDictionary>
+                  <Storyboard x:Key="StoryboardProgress" RepeatBehavior="Forever">
+                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Testing" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                      <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                      <SplineDoubleKeyFrame KeyTime="00:00:01" Value="360" />
+                    </DoubleAnimationUsingKeyFrames>
+                  </Storyboard>
+                  <Storyboard x:Key="StoryboardOK">
+                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Testing" Storyboard.TargetProperty="(UIElement.Opacity)">
+                      <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                      <SplineDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="OK" Storyboard.TargetProperty="(UIElement.Opacity)">
+                      <SplineDoubleKeyFrame KeyTime="00:00:00.2" Value="0" />
+                      <SplineDoubleKeyFrame KeyTime="00:00:00.6" Value="1" />
+                    </DoubleAnimationUsingKeyFrames>
+                  </Storyboard>
+                  <Storyboard x:Key="StoryboardFailure">
+                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Testing" Storyboard.TargetProperty="(UIElement.Opacity)">
+                      <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                      <SplineDoubleKeyFrame KeyTime="00:00:00.2000000" Value="0" />
+                    </DoubleAnimationUsingKeyFrames>
+                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="Failure" Storyboard.TargetProperty="(UIElement.Opacity)">
+                      <SplineDoubleKeyFrame KeyTime="00:00:00.2" Value="0" />
+                      <SplineDoubleKeyFrame KeyTime="00:00:00.6" Value="1" />
+                    </DoubleAnimationUsingKeyFrames>
+                  </Storyboard>
+                </ResourceDictionary>
+              </FrameworkTemplate.Resources>
+              <Grid Name="grid" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                <Viewbox Name="ViewboxTesting">
+                  <Canvas Name="Testing" Width="42.6667" Height="42.6667" RenderTransformOrigin="0.5,0.5" Visibility="{Binding Path=IsTestRunning, Converter={StaticResource boolToVisibilityConverter}}">
+                    <UIElement.RenderTransform>
+                      <TransformGroup>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform />
+                        <TranslateTransform />
+                      </TransformGroup>
+                    </UIElement.RenderTransform>
+                    <Path Width="42.6667" Height="42.6667" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" Fill="#00FFFFFF" Data="F1 M42.6667,21.3333 C42.6667,33.1147 33.1147,42.6667 21.3333,42.6667 C9.55067,42.6667 0,33.1147 0,21.3333 C0,9.55067 9.55067,0 21.3333,0 C33.1147,0 42.6667,9.55067 42.6667,21.3333" />
+                    <Path Width="31.784" Height="31.788" Canvas.Left="5.44133" Canvas.Top="5.4388" Stretch="Fill" Fill="#FFFF6700" Data="F1 M21.3333,9.66146 C27.78,9.66146 33.004,14.8868 33.004,21.3321 C33.004,24.9761 31.332,28.2255 28.716,30.3655 L24.7707,26.4295 L24.7707,37.2255 L35.5907,37.2268 L31.7093,33.3535 C35.084,30.4415 37.2253,26.1401 37.2253,21.3321 C37.2253,12.5548 30.112,5.4388 21.3333,5.4388 M21.3333,33.0028 C14.888,33.0028 9.66267,27.7761 9.66267,21.3321 C9.66267,17.6895 11.3333,14.4401 13.948,12.3001 L17.8947,16.2388 L17.8947,5.44013 L7.07467,5.4388 L10.9547,9.31347 C7.58133,12.2241 5.44133,16.5241 5.44133,21.3321 C5.44133,30.1068 12.556,37.2241 21.3333,37.2241 L21.3333,33.0028" />
+                  </Canvas>
+                </Viewbox>
+                <Viewbox Name="ViewboxOK" Margin="2">
+                  <Canvas Name="OK" Width="42.6667" Height="42.6667" Opacity="0">
+                    <Path Width="42.6667" Height="42.6667" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" Data="F1 M21.3333,0 C9.55333,0 0,9.55334 0,21.3333 L0,21.3333 C0,33.1133 9.55333,42.6667 21.3333,42.6667 L21.3333,42.6667 C33.1133,42.6667 42.6667,33.1133 42.6667,21.3333 L42.6667,21.3333 C42.6667,9.55334 33.1133,0 21.3333,0">
+                      <Shape.Fill>
+                        <LinearGradientBrush StartPoint="0.222519,0.111923" EndPoint="0.737416,0.832018">
+                          <GradientBrush.GradientStops>
+                            <GradientStop Color="#FF009900" Offset="0" />
+                            <GradientStop Color="#FF006500" Offset="1" />
+                          </GradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                      </Shape.Fill>
+                    </Path>
+                    <Path Width="26.8532" Height="26.9745" Canvas.Left="7.90742" Canvas.Top="7.8444" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M27.75,9.78 C27.75,9.78 22.274,19.664 19.33,24.956 C16.8607,22.6307 14.1993,20.1307 14.1993,20.1307 C12.678,18.708 10.306,18.8013 8.90467,20.3453 C7.49667,21.892 7.59267,24.2987 9.11,25.7267 L17.7207,33.8093 C18.5593,34.6013 19.7113,34.956 20.842,34.7707 C21.9727,34.5947 22.9647,33.9027 23.5273,32.8893 L34.274,13.5267 C35.294,11.6973 34.658,9.37467 32.8567,8.336 C31.054,7.304 28.7687,7.94933 27.75,9.78" />
+                  </Canvas>
+                </Viewbox>
+                <Viewbox Name="ViewboxFailure" Margin="2">
+                  <Canvas Name="Failure" Width="42.6667" Height="42.6667" Opacity="0">
+                    <Path Width="42.6667" Height="42.6667" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" Data="F1 M21.3333,0 C9.55333,0 0,9.55333 0,21.3333 L0,21.3333 C0,33.1133 9.55333,42.6667 21.3333,42.6667 L21.3333,42.6667 C33.1133,42.6667 42.6667,33.1133 42.6667,21.3333 L42.6667,21.3333 C42.6667,9.55333 33.1133,0 21.3333,0">
+                      <Shape.Fill>
+                        <LinearGradientBrush StartPoint="0.222519,0.111923" EndPoint="0.737416,0.832018">
+                          <GradientBrush.GradientStops>
+                            <GradientStop Color="#FFE00000" Offset="0" />
+                            <GradientStop Color="#FFAD0000" Offset="1" />
+                          </GradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                      </Shape.Fill>
+                    </Path>
+                    <Path Width="24" Height="24" Canvas.Left="9.33333" Canvas.Top="9.33333" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M33.3333,27.836 L26.8267,21.3333 L33.3333,14.828 L27.8387,9.33333 L21.3333,15.8387 L14.828,9.33333 L9.33333,14.828 L15.8387,21.3333 L9.33333,27.836 L14.828,33.3333 L21.3333,26.8267 L27.8387,33.3333 L33.3333,27.836" />
+                  </Canvas>
+                </Viewbox>
+              </Grid>
+              <ControlTemplate.Triggers>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                  <BeginStoryboard Name="StoryboardProgress_BeginStoryboard" Storyboard="{StaticResource StoryboardProgress}" />
+                </EventTrigger>
+                <Trigger Property="ToggleButton.IsChecked" Value="{x:Null}">
+                  <Setter TargetName="ViewboxTesting" Property="Visibility" Value="Visible" />
+                  <TriggerBase.EnterActions>
+                    <StopStoryboard BeginStoryboardName="StoryboardOK_BeginStoryboard" />
+                    <StopStoryboard BeginStoryboardName="StoryboardFailure_BeginStoryboard" />
+                  </TriggerBase.EnterActions>
+                </Trigger>
+                <Trigger Property="ToggleButton.IsChecked" Value="True">
+                  <Setter TargetName="ViewboxTesting" Property="Visibility" Value="Hidden" />
+                  <TriggerBase.EnterActions>
+                    <BeginStoryboard Name="StoryboardOK_BeginStoryboard" Storyboard="{StaticResource StoryboardOK}" />
+                  </TriggerBase.EnterActions>
+                </Trigger>
+                <Trigger Property="ToggleButton.IsChecked" Value="False">
+                  <Setter TargetName="ViewboxTesting" Property="Visibility" Value="Hidden" />
+                  <TriggerBase.EnterActions>
+                    <BeginStoryboard Name="StoryboardFailure_BeginStoryboard" Storyboard="{StaticResource StoryboardFailure}" />
+                  </TriggerBase.EnterActions>
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+      </Style>
+      <Style x:Key="ControlStyle" TargetType="{x:Type Control}">
+        <Setter Property="FontFamily" Value="{StaticResource NormalFontFamily}" />
+        <Setter Property="FontSize" Value="{StaticResource NormalFontSize}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+      </Style>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <Grid Margin="5">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="60" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid Row="0">
+      <GroupBox Name="ConversionTypeGroupBox" Header="Conversion Type" Margin="5,10,0,0" BorderBrush="#FF000000">
+        <StackPanel Orientation="Horizontal">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="200" />
+              <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            <RadioButton Name="EMFToXAML_RadioButton" Grid.Column="0" Content="Metafile to XAML" VerticalAlignment="Center" IsChecked="True" />
+            <RadioButton Name="DXFToXAML_RadioButton" Grid.Column="1" Content="DXF to XAML" VerticalAlignment="Center" />
+          </Grid>
+        </StackPanel>
+      </GroupBox>
+    </Grid>
+    <Grid Row="1">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <Grid Column="0">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <GroupBox Name="ItemsGroupBox" Header="Select the items to convert" Margin="5,10,0,0" BorderBrush="#FF000000">
+          <StackPanel>
+            <CheckBox Name="MaterialsCheck" Margin="5,5,0,5" Content="Materials" />
+            <CheckBox Name="ModelsCheck" Margin="5,0,0,5" Content="Model" />
+            <CheckBox Name="OptionsCheck" Margin="5,0,0,5" Content="Options" IsEnabled="{Binding Path=IsChecked, ElementName=EMFToXAML_RadioButton}" />
+            <CheckBox Name="SymbolsCheck" Margin="5,0,0,5" Content="Symbols" IsEnabled="{Binding Path=IsChecked, ElementName=EMFToXAML_RadioButton}" />
+          </StackPanel>
+        </GroupBox>
+      </Grid>
+      <Grid Column="1">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <CheckBox Name="OverwriteAllCheck" Margin="0,0,5,5" Grid.Row="0" Content="Overwrite existing XAML's" VerticalAlignment="Bottom" HorizontalAlignment="Right" />
+        <StackPanel HorizontalAlignment="Right" Margin="0,5,0,0" Grid.Row="1" Orientation="Horizontal">
+          <Button Name="AcceptButton" Width="100" Margin="0,0,7,0" Content="OK" IsDefault="True" Click="AcceptButton_Click" />
+          <Button Name="CancelButton" Width="100" Content="Cancel" TabIndex="1" Click="CancelButton_Click" />
+        </StackPanel>
+      </Grid>
+    </Grid>
+    <Grid Row="2">
+      <StatusBar Margin="0,5,0,0">
+        <ItemsControl.ItemsPanel>
+          <ItemsPanelTemplate>
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+            </Grid>
+          </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <StatusBarItem>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="4*" />
+              <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <CheckBox Name="ProcessCheck" Grid.Column="0" Visibility="Hidden" Style="{StaticResource CheckBoxProgressStyle}" IsChecked="{Binding Path=Success}" />
+            <TextBlock Name="StatusBarText" Grid.Column="1" Margin="5,0,0,0" Text="Ready" />
+          </Grid>
+        </StatusBarItem>
+        <StatusBarItem Grid.Column="1">
+          <Grid>
+            <ProgressBar Name="ProgressBar" Width="300" Height="20" />
+            <TextBlock Name="ProgressBarText" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="11" />
+          </Grid>
+        </StatusBarItem>
+      </StatusBar>
+    </Grid>
+  </Grid>
+</Window>

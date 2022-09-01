@@ -1,0 +1,19 @@
+using System;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
+namespace std;
+
+[StructLayout(LayoutKind.Sequential, Size = 16)]
+[NativeCppClass]
+internal struct _Tree_val_003Cstd_003A_003A_Tree_simple_types_003Cstd_003A_003Apair_003CATL_003A_003ACStringT_003Cwchar_t_002CStrTraitMFC_DLL_003Cwchar_t_002CATL_003A_003AChTraitsCRT_003Cwchar_t_003E_0020_003E_0020_003E_0020const_0020_002CATL_003A_003ACStringT_003Cwchar_t_002CStrTraitMFC_DLL_003Cwchar_t_002CATL_003A_003AChTraitsCRT_003Cwchar_t_003E_0020_003E_0020_003E_0020_003E_0020_003E_0020_003E
+{
+	[CLSCompliant(false)]
+	[NativeCppClass]
+	public enum _Redbl
+	{
+
+	}
+
+	private long _003Calignment_0020member_003E;
+}

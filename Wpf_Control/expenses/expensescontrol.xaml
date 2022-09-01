@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="Preference.Wpf.Controls.Expenses.ExpensesControl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2006" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:gui="clr-namespace:Preference.Wpf.Controls.Expenses" xmlns:src="clr-namespace:Preference.Wpf.Controls.Expenses.Models" xmlns:attachments="clr-namespace:Preference.Wpf.Controls.Attachments.Views" Height="Auto" Width="Auto" Background="#FF000000">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Resources\Brushes.xaml" />
+        <ResourceDictionary Source="Resources\ButtonsImages.xaml" />
+        <ResourceDictionary Source="Resources\ButtonStyle.xaml" />
+        <ResourceDictionary Source="Resources\CheckBoxStyle.xaml" />
+        <ResourceDictionary Source="Resources\ComboBoxStyle.xaml" />
+        <ResourceDictionary Source="Resources\Images.xaml" />
+        <ResourceDictionary Source="Resources\ListViewStyle.xaml" />
+        <ResourceDictionary Source="Resources\ScrollBarStyle.xaml" />
+        <ResourceDictionary Source="Resources\Shared.xaml" />
+        <ResourceDictionary Source="Resources\ShortcutsImages.xaml" />
+        <ResourceDictionary Source="Resources\StatusImages.xaml" />
+        <ResourceDictionary Source="Resources\TabControlStyle.xaml" />
+        <ResourceDictionary Source="Resources\TreeViewStyle.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <src:PrefStaffList x:Key="PrefStaffListResource" />
+      <src:PrefCurrencyList x:Key="PrefCurrencyListResource" />
+      <src:ExpensesDocItemTypeList x:Key="ExpensesDocItemTypeListResource" />
+      <gui:NumberConverter x:Key="resNumberConverter" />
+      <gui:ControlWidthConverter x:Key="ControlWidthConverter" />
+      <DataTemplate x:Key="ConceptTemplate">
+        <TextBox Name="textboxConceptTemplate" TextAlignment="Left" VerticalAlignment="Center" HorizontalAlignment="Right" BorderThickness="0,0,0,0" Background="{StaticResource DataTemplatedTextBoxBackgroundBrush}" Width="{Binding Path=Width, ElementName=ConceptColumn, Converter={StaticResource ControlWidthConverter}}" BorderBrush="{x:Null}" Text="{Binding Path=Concept, UpdateSourceTrigger=PropertyChanged}" GotKeyboardFocus="OnTemplateItemGotFocus" />
+      </DataTemplate>
+      <DataTemplate x:Key="DescriptionTemplate">
+        <TextBox Name="textboxDescriptionTemplate" TextAlignment="Left" VerticalAlignment="Center" HorizontalAlignment="Right" BorderThickness="0,0,0,0" Background="{StaticResource DataTemplatedTextBoxBackgroundBrush}" Width="{Binding Path=Width, ElementName=DescriptionColumn, Converter={StaticResource ControlWidthConverter}}" BorderBrush="{x:Null}" Text="{Binding Path=Description, UpdateSourceTrigger=PropertyChanged}" GotKeyboardFocus="OnTemplateItemGotFocus" />
+      </DataTemplate>
+      <DataTemplate x:Key="TypeTemplate">
+        <ComboBox Name="comboboxTypeTemplate" IsEditable="True" VerticalAlignment="Center" HorizontalAlignment="Right" Background="{StaticResource DataTemplatedTextBoxBackgroundBrush}" Width="{Binding Path=Width, ElementName=TypeColumn, Converter={StaticResource ControlWidthConverter}}" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged, Source={StaticResource ExpensesDocItemTypeListResource}}" Text="{Binding Path=Type, UpdateSourceTrigger=PropertyChanged}" GotKeyboardFocus="OnTemplateItemGotFocus" />
+      </DataTemplate>
+      <DataTemplate x:Key="UnitPriceTemplate">
+        <TextBox Name="textboxUnitPriceTemplate" TextAlignment="Right" VerticalAlignment="Center" HorizontalAlignment="Right" BorderThickness="0,0,0,0" Background="{StaticResource DataTemplatedTextBoxBackgroundBrush}" Validation.ErrorTemplate="{StaticResource validationTemplate}" Width="{Binding Path=Width, ElementName=UnitPriceColumn, Converter={StaticResource ControlWidthConverter}}" BorderBrush="{x:Null}" GotKeyboardFocus="OnTemplateItemGotFocus">
+          <Binding Path="UnitPrice" UpdateSourceTrigger="PropertyChanged" Converter="{StaticResource resNumberConverter}">
+            <Binding.ValidationRules>
+              <gui:DoubleRule />
+            </Binding.ValidationRules>
+          </Binding>
+        </TextBox>
+      </DataTemplate>
+      <DataTemplate x:Key="QuantityTemplate">
+        <TextBox Name="textboxQuantityTemplate" TextAlignment="Right" VerticalAlignment="Center" HorizontalAlignment="Right" BorderThickness="0,0,0,0" Background="{StaticResource DataTemplatedTextBoxBackgroundBrush}" Validation.ErrorTemplate="{StaticResource validationTemplate}" Width="{Binding Path=Width, ElementName=QuantityColumn, Converter={StaticResource ControlWidthConverter}}" BorderBrush="{x:Null}" GotKeyboardFocus="OnTemplateItemGotFocus">
+          <Binding Path="Quantity" UpdateSourceTrigger="PropertyChanged" Converter="{StaticResource resNumberConverter}">
+            <Binding.ValidationRules>
+              <gui:DoubleRule />
+            </Binding.ValidationRules>
+          </Binding>
+        </TextBox>
+      </DataTemplate>
+      <DataTemplate x:Key="TaxTemplate">
+        <TextBox Name="textboxTaxTemplate" TextAlignment="Right" VerticalAlignment="Center" HorizontalAlignment="Right" BorderThickness="0,0,0,0" Background="{StaticResource DataTemplatedTextBoxBackgroundBrush}" Validation.ErrorTemplate="{StaticResource validationTemplate}" Width="{Binding Path=Width, ElementName=TaxColumn, Converter={StaticResource ControlWidthConverter}}" BorderBrush="{x:Null}" GotKeyboardFocus="OnTemplateItemGotFocus">
+          <Binding Path="Tax" UpdateSourceTrigger="PropertyChanged" Converter="{StaticResource resNumberConverter}">
+            <Binding.ValidationRules>
+              <gui:DoubleRule />
+            </Binding.ValidationRules>
+          </Binding>
+        </TextBox>
+      </DataTemplate>
+      <DataTemplate x:Key="AmountTemplate">
+        <TextBlock Name="textblockAmountTemplate" VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="Right" Width="{Binding Path=Width, ElementName=AmountColumn, Converter={StaticResource ControlWidthConverter}}" Text="{Binding Path=Amount, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource resNumberConverter}}" GotKeyboardFocus="OnTemplateItemGotFocus" />
+      </DataTemplate>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <ScrollViewer Name="scrollviewer01" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <Grid Name="gridPrincipal01" Width="Auto" Margin="0,0,0,0" HorizontalAlignment="Stretch" MaxHeight="Infinity" VerticalAlignment="Stretch" Height="Auto">
+      <Image Name="imageBgRightBottom0" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="580" Height="530" Source="{StaticResource background_right_bottom}" Grid.Row="0" />
+      <Image Name="imageBgLeftTop0" HorizontalAlignment="Left" Margin="0,0,8,0" VerticalAlignment="Top" Width="450" Height="210" Source="{StaticResource background_left_top}" />
+      <Grid Name="gridPrincipal02" Margin="50,50,50,70" MinHeight="600" MinWidth="800" Width="850" Height="650" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Border Name="borderFrame01" BorderBrush="#FF747678" BorderThickness="1,1,1,1" CornerRadius="8,8,8,8" Background="#FFFFFFFF">
+          <Rectangle Name="rectangleFrame1Bottom" VerticalAlignment="Bottom" Width="Auto" Height="30" RadiusX="8" RadiusY="8" Fill="{StaticResource FooterGradientBrush}" />
+        </Border>
+        <Image Name="imagePreferenceLogo0" HorizontalAlignment="Left" Margin="12,0,0,9" VerticalAlignment="Bottom" Width="Auto" Height="14" Source="{StaticResource PreferenceLogo}" />
+        <TextBlock Name="textblockCopyright" Height="Auto" FontSize="11" Foreground="#7F000000" TextAlignment="Right" Margin="0,0,12,9" VerticalAlignment="Bottom" HorizontalAlignment="Right" Text="© 2007 PrefSuite. All rights reserved. www.prefsuite.com" />
+        <Image Name="shadow01" Margin="5,5,5,25" Source="{StaticResource Shadow}" />
+        <Rectangle Name="rectangleFrame01" Opacity="1" Fill="#FFFFFFFF" StrokeThickness="0" RadiusX="4" RadiusY="4" Margin="10,10,10,30" />
+        <Grid Name="gridContent0" Margin="10,10,10,30">
+          <TabControl Name="tabcontrolContent" Margin="0,110,0,0" VerticalAlignment="Stretch" IsSynchronizedWithCurrentItem="True" SelectedIndex="0">
+            <TabItem Name="tabitemDetails" Width="Auto" Header="Loaded Document" IsEnabled="True">
+              <Grid Name="gridDocument" Width="Auto" Height="Auto">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="0.795*" />
+                  <ColumnDefinition Width="0.205*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="0.329*" />
+                  <RowDefinition Height="0.671*" />
+                </Grid.RowDefinitions>
+                <Rectangle Fill="{StaticResource BackgroundTopRightTabBrush}" Width="400" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Top" Height="400" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+                <StackPanel Name="stackpanelIconExpenses" Height="Auto" Opacity="1" Margin="83,15,15,0" VerticalAlignment="Top" Grid.Column="1" Grid.RowSpan="2">
+                  <Image Width="Auto" Height="Auto" Source="{StaticResource IconExpenses}" Margin="0,0,0,2" />
+                  <Image Width="Auto" Height="Auto" Source="{StaticResource IconExpenses}" RenderTransformOrigin="0.5,0.5" OpacityMask="{StaticResource ReflectionOpacityMaskBrush}">
+                    <UIElement.RenderTransform>
+                      <TransformGroup>
+                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                      </TransformGroup>
+                    </UIElement.RenderTransform>
+                  </Image>
+                </StackPanel>
+                <StackPanel Name="stackpanelDetails" Margin="20,1,0,10" HorizontalAlignment="Left" Height="Auto" Width="640" Grid.ColumnSpan="2" Grid.Row="1">
+                  <TextBlock Name="textblockDetails" FontSize="18" Foreground="{StaticResource OrangeSolidBrush}" Text="Details" TextWrapping="Wrap" FontFamily="Arial" FontWeight="Bold" Height="Auto" Width="Auto" HorizontalAlignment="Left" Margin="0,0,0,5" VerticalAlignment="Top" />
+                  <ListView Name="listviewItems" IsSynchronizedWithCurrentItem="True" Width="Auto" Height="200" HorizontalAlignment="Stretch" BorderBrush="{StaticResource OrangeSolidBrush}">
+                    <ListView.View>
+                      <GridView x:Name="gridviewItems">
+                        <GridViewColumn x:Name="ConceptColumn" Width="80" Header="Concept" CellTemplate="{StaticResource ConceptTemplate}" />
+                        <GridViewColumn x:Name="DescriptionColumn" Width="150" Header="Description" CellTemplate="{StaticResource DescriptionTemplate}" />
+                        <GridViewColumn x:Name="TypeColumn" Width="80" Header="Type" CellTemplate="{StaticResource TypeTemplate}" />
+                        <GridViewColumn x:Name="UnitPriceColumn" Width="80" Header="UnitPrice" CellTemplate="{StaticResource UnitPriceTemplate}" />
+                        <GridViewColumn x:Name="QuantityColumn" Width="80" Header="Quantity" CellTemplate="{StaticResource QuantityTemplate}" />
+                        <GridViewColumn x:Name="TaxColumn" Width="80" Header="Taxes" CellTemplate="{StaticResource TaxTemplate}" />
+                        <GridViewColumn x:Name="AmountColumn" Width="80" Header="Amount" CellTemplate="{StaticResource AmountTemplate}" />
+                      </GridView>
+                    </ListView.View>
+                  </ListView>
+                  <StackPanel Name="stackpanelTotals" HorizontalAlignment="Right" Margin="0,5,0,0" Width="Auto" Height="Auto" Orientation="Horizontal">
+                    <TextBlock Name="textblockTotals" MaxWidth="80" FontSize="18" Foreground="{StaticResource OrangeSolidBrush}" Text="Totals" TextWrapping="Wrap" FontFamily="Arial" FontWeight="Bold" Height="Auto" Width="Auto" HorizontalAlignment="Stretch" Margin="0,0,5,0" VerticalAlignment="Center" />
+                    <Border Name="borderTotals" Opacity="1" Width="Auto" Height="Auto" BorderBrush="{StaticResource OrangeSolidBrush}" BorderThickness="1,1,1,1" CornerRadius="5,5,5,5" HorizontalAlignment="Stretch" Background="{x:Null}">
+                      <DockPanel HorizontalAlignment="Stretch" Margin="10,8,10,8" VerticalAlignment="Center" Width="Auto" Height="Auto">
+                        <StackPanel Name="stackpanelLoadedDocument1" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Top" Orientation="Horizontal" DockPanel.Dock="Right">
+                          <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="150" Height="Auto" Margin="5,0,5,0">
+                            <TextBlock Name="textblockItemsCount" Text="Number of Details:" Height="Auto" FontSize="14" Foreground="{StaticResource OrangeSolidBrush}" TextWrapping="Wrap" Width="Auto" TextAlignment="Left" FontWeight="Bold" FontFamily="Arial" />
+                            <TextBox Name="textboxItemsCount" Background="{StaticResource TextBoxBackgroundBrush}" BorderThickness="0,0,0,0" FontSize="16" VerticalContentAlignment="Center" TextWrapping="NoWrap" MaxLines="1" FontFamily="Arial" FontWeight="Bold" TextAlignment="Right" HorizontalContentAlignment="Right" IsReadOnly="True" Validation.ErrorTemplate="{StaticResource validationTemplate}" BorderBrush="{x:Null}">
+                              <Binding Mode="OneWay" Path="Items.Count" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                  <ExceptionValidationRule />
+                                </Binding.ValidationRules>
+                              </Binding>
+                            </TextBox>
+                          </StackPanel>
+                          <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="175" Height="Auto" Margin="5,0,5,0">
+                            <TextBlock Name="textblockTaxesTotal" Text="Taxes Total Amount:" Height="Auto" FontSize="14" Foreground="{StaticResource OrangeSolidBrush}" TextWrapping="Wrap" Width="Auto" TextAlignment="Left" FontWeight="Bold" FontFamily="Arial" />
+                            <TextBox Name="textboxTaxes" Background="{StaticResource TextBoxBackgroundBrush}" BorderThickness="0,0,0,0" FontSize="16" VerticalContentAlignment="Center" TextWrapping="NoWrap" Width="Auto" Height="Auto" MaxLines="1" FontFamily="Arial" FontWeight="Bold" TextAlignment="Right" HorizontalContentAlignment="Right" IsReadOnly="True" Validation.ErrorTemplate="{StaticResource validationTemplate}" BorderBrush="{x:Null}">
+                              <Binding Path="Header.TaxAmount" UpdateSourceTrigger="PropertyChanged" Converter="{StaticResource resNumberConverter}">
+                                <Binding.ValidationRules>
+                                  <gui:DoubleRule />
+                                </Binding.ValidationRules>
+                              </Binding>
+                            </TextBox>
+                          </StackPanel>
+                          <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="175" Height="Auto" Margin="5,0,5,0">
+                            <TextBlock Name="textblockTotalAmount" Height="Auto" FontSize="14" Foreground="{StaticResource OrangeSolidBrush}" TextWrapping="Wrap" Width="Auto" TextAlignment="Left" Text="Total Amount:" FontWeight="Bold" FontFamily="Arial" />
+                            <TextBox Name="textboxTotal" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="16" VerticalContentAlignment="Center" TextWrapping="NoWrap" MaxLines="1" FontFamily="Arial" FontWeight="Bold" BorderThickness="0,0,0,0" TextAlignment="Right" HorizontalContentAlignment="Right" IsReadOnly="True" Validation.ErrorTemplate="{StaticResource validationTemplate}" BorderBrush="{x:Null}">
+                              <Binding Path="Header.TotalAmount" UpdateSourceTrigger="PropertyChanged" Converter="{StaticResource resNumberConverter}">
+                                <Binding.ValidationRules>
+                                  <gui:DoubleRule />
+                                </Binding.ValidationRules>
+                              </Binding>
+                            </TextBox>
+                          </StackPanel>
+                        </StackPanel>
+                      </DockPanel>
+                    </Border>
+                  </StackPanel>
+                </StackPanel>
+                <StackPanel Name="stackpanelButtonsDetails" Width="70" Orientation="Vertical" Margin="5,0,0,30" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="1">
+                  <Button Name="buttonAddLine" Width="40" Height="Auto" HorizontalAlignment="Center" Margin="0,0,0,3" VerticalAlignment="Top" ToolTip="Add Line" Click="OnButtonAddDetailClick">
+                    <Image Width="Auto" Height="Auto" Source="{StaticResource IconAdd}" />
+                  </Button>
+                  <TextBlock Name="textblockAddDetail" Height="Auto" FontSize="11" Foreground="#FF000000" TextWrapping="Wrap" Width="Auto" TextAlignment="Center" Text="Add Line" FontWeight="Normal" Padding="0,0,0,3" Margin="0,0,0,0" HorizontalAlignment="Center" />
+                  <Button Name="buttonDeleteLine" Width="40" Height="Auto" Margin="0,0,0,3" ToolTip="Delete Line" Click="OnButtonRemoveDetailClick">
+                    <Image Width="Auto" Height="Auto" Source="{StaticResource IconEliminate}" />
+                  </Button>
+                  <TextBlock Name="textblockRemoveDetail" Height="Auto" FontSize="11" Foreground="#FF000000" TextWrapping="Wrap" Width="Auto" TextAlignment="Center" Text="Delete Line" FontWeight="Normal" Padding="0,0,0,3" />
+                  <Button Name="buttonViewLineAttachments" Width="40" Height="Auto" ToolTip="Add Line" Click="OnButtonViewLineAttachmentsClick">
+                    <Image Width="Auto" Height="Auto" Source="{StaticResource IconAttachedDocument}" />
+                  </Button>
+                  <TextBlock Name="textblockViewLineAttachments" Height="Auto" FontSize="11" Foreground="#FF000000" TextWrapping="Wrap" Width="Auto" TextAlignment="Center" Text="View Line Attachments" FontWeight="Normal" Padding="0,0,0,3" HorizontalAlignment="Center" />
+                </StackPanel>
+                <StackPanel Name="stackpanelLoadedDoc" Margin="20,10,170,0" Width="640" Height="Auto" Grid.ColumnSpan="2" VerticalAlignment="Top">
+                  <TextBlock Name="textblockLoadedDoc" FontSize="18" Foreground="{StaticResource OrangeSolidBrush}" Text="Loaded Document" TextWrapping="Wrap" FontFamily="Arial" FontWeight="Bold" Height="Auto" Width="Auto" HorizontalAlignment="Left" Margin="0,0,0,5" VerticalAlignment="Top" />
+                  <Border Name="borderHeader" Opacity="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="113.747" BorderBrush="{StaticResource OrangeSolidBrush}" BorderThickness="1,1,1,1" CornerRadius="5,5,5,5" Background="{x:Null}">
+                    <DockPanel HorizontalAlignment="Stretch" Margin="10,8,10,8" VerticalAlignment="Stretch" Width="Auto" Height="Auto" LastChildFill="False">
+                      <WrapPanel Name="wrapPanelButtonsDocument" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Center" Width="100" Height="Auto" DockPanel.Dock="Right" Orientation="Horizontal">
+                        <Button Name="buttonOpen" Width="40" Height="Auto" ToolTip="Open Document" Margin="2,2,2,2" Click="OnLoadButtonClick">
+                          <Image Width="Auto" Height="Auto" Source="{StaticResource IconOpen}" />
+                        </Button>
+                        <Button Name="buttonSave" Width="40" Height="Auto" ToolTip="Save Document" Margin="2,2,2,2" Click="OnSaveButtonClick">
+                          <Image Width="Auto" Height="Auto" Source="{StaticResource IconSave}" />
+                        </Button>
+                        <Button Name="buttonViewDocumentAttachments" Width="40" Height="40.7465971153853" ToolTip="View Attachments" Margin="2,2,2,2" Click="OnButtonViewDocumentAttachmentsClick">
+                          <Image Width="Auto" Height="Auto" Source="{StaticResource IconAttachedDocument}" />
+                        </Button>
+                        <Button Name="buttonNew" Width="40" Height="Auto" ToolTip="New Document" Margin="2,2,2,2" Click="OnNewButtonClick">
+                          <Image Width="Auto" Height="Auto" Source="{StaticResource IconAddDocument}" />
+                        </Button>
+                      </WrapPanel>
+                      <Grid Name="gridHeader" Width="Auto" Height="Auto">
+                        <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="0.347*" />
+                          <ColumnDefinition Width="0.166*" />
+                          <ColumnDefinition Width="0.172*" />
+                          <ColumnDefinition Width="0.315*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                          <RowDefinition Height="0.504*" />
+                          <RowDefinition Height="0.496*" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Name="stackpanelLoadedDocument" Orientation="Horizontal" Margin="0,5,0,7.503" Grid.ColumnSpan="4" />
+                        <StackPanel Name="stackpanelOptionalData" Orientation="Horizontal" Margin="0,2.497,0,9.147" Grid.ColumnSpan="4" Grid.Row="1" />
+                        <StackPanel Name="stackpanelNumber" Margin="5,5,5,5" Grid.ColumnSpan="1">
+                          <TextBlock Name="textblockNumber" Text="Document Number:" Height="Auto" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" Width="Auto" TextAlignment="Left" FontWeight="Normal" FontFamily="Arial" />
+                          <TextBox Name="textboxNumber" Background="{StaticResource TextBoxBackgroundBrush}" BorderThickness="0,0,0,0" FontSize="12" VerticalContentAlignment="Center" TextWrapping="NoWrap" Width="Auto" Height="22" MaxLines="1" FontFamily="Arial" FontWeight="Bold" Validation.ErrorTemplate="{StaticResource validationTemplate}" HorizontalAlignment="Stretch" BorderBrush="{x:Null}">
+                            <Binding Path="Header.Number" UpdateSourceTrigger="PropertyChanged">
+                              <Binding.ValidationRules>
+                                <ExceptionValidationRule />
+                              </Binding.ValidationRules>
+                            </Binding>
+                          </TextBox>
+                        </StackPanel>
+                        <StackPanel Name="stackpanelDocumentDate" Margin="5,5,5,5" Grid.Column="1" Grid.ColumnSpan="2">
+                          <TextBlock Name="textblockDocumentDate" Foreground="#FF000000" Height="Auto" FontSize="12" TextWrapping="Wrap" Width="Auto" TextAlignment="Left" Text="Document Date:" FontWeight="Normal" FontFamily="Arial" />
+                          <TextBox Name="textboxDate" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" VerticalContentAlignment="Center" TextWrapping="NoWrap" Width="Auto" Height="22" MaxLines="1" FontFamily="Arial" FontWeight="Bold" BorderThickness="0,0,0,0" Validation.ErrorTemplate="{StaticResource validationTemplate}" HorizontalAlignment="Stretch" BorderBrush="{x:Null}">
+                            <Binding Path="Header.DocumentDate" UpdateSourceTrigger="PropertyChanged">
+                              <Binding.ValidationRules>
+                                <ExceptionValidationRule />
+                              </Binding.ValidationRules>
+                            </Binding>
+                          </TextBox>
+                        </StackPanel>
+                        <StackPanel Name="stackpanelCurrency" Margin="5,5,5,5" Grid.Column="3" Grid.ColumnSpan="2">
+                          <TextBlock Name="textblockCurrency" Height="Auto" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" Width="Auto" TextAlignment="Left" Text="Currency:" FontWeight="Normal" FontFamily="Arial" />
+                          <ComboBox Name="comboboxCurrency" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" VerticalContentAlignment="Center" Width="150" Height="22" FontFamily="Arial" FontWeight="Bold" IsEditable="True" BorderThickness="0,0,0,0" BorderBrush="{x:Null}" ItemsSource="{Binding Source={StaticResource PrefCurrencyListResource}, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Path=Header.Currency, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                        <StackPanel Name="stackpanelDocumentTitle" Margin="5,5,5,5" Grid.ColumnSpan="2" Grid.Row="1">
+                          <TextBlock Name="textblockDocumentTitle" Text="Document Title:" Height="13.8" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" Width="175" TextAlignment="Left" FontWeight="Normal" FontFamily="Arial" HorizontalAlignment="Left" />
+                          <TextBox Name="textboxDocumentTitle" Background="{StaticResource TextBoxBackgroundBrush}" BorderThickness="0,0,0,0" FontSize="12" VerticalContentAlignment="Center" TextWrapping="NoWrap" Width="250" Height="22" MaxLines="1" FontFamily="Arial" FontWeight="Bold" BorderBrush="{x:Null}" Text="{Binding Path=Header.Title, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                        <StackPanel Name="stackpanelCostDriver" Margin="5,5,5,5" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1">
+                          <TextBlock Name="textblockCostDriver" Height="13.8" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" Width="175" TextAlignment="Left" Text="Cost Driver:" FontWeight="Normal" FontFamily="Arial" HorizontalAlignment="Left" />
+                          <ComboBox Name="comboboxCostDriver" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" VerticalContentAlignment="Center" Width="Auto" Height="22" FontFamily="Arial" FontWeight="Bold" BorderThickness="0,0,0,0" IsEditable="False" SelectedValuePath="Code" BorderBrush="{x:Null}" ItemsSource="{Binding Source={StaticResource PrefStaffListResource}, UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding Path=Header.CostDriverCode, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                      </Grid>
+                    </DockPanel>
+                  </Border>
+                </StackPanel>
+              </Grid>
+            </TabItem>
+            <TabItem Name="tabitemAttachments" Header="Attachments">
+              <Grid>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="0.085*" />
+                  <RowDefinition Height="0.915*" />
+                </Grid.RowDefinitions>
+                <TextBlock Name="textblockAttachmentsOwner" FontSize="18" Foreground="{StaticResource OrangeSolidBrush}" Text="Line Attachments" TextWrapping="Wrap" FontFamily="Arial" FontWeight="Bold" Height="Auto" Width="Auto" Margin="20,20,20,0" Grid.RowSpan="1" />
+                <Border Grid.Row="1" Grid.RowSpan="2" Margin="20,5,20,20" Opacity="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto" Height="Auto" BorderBrush="{StaticResource OrangeSolidBrush}" BorderThickness="1,1,1,1" Background="{x:Null}">
+                  <attachments:AttachmentsView x:Name="attachmentsView" />
+                </Border>
+              </Grid>
+            </TabItem>
+          </TabControl>
+          <Border Name="borderHeader0" Height="110" CornerRadius="4,4,0,0" VerticalAlignment="Top" Background="{StaticResource HeaderGradientBrush}" />
+          <Image Name="imagePrefSuiteLogo0" HorizontalAlignment="Right" Margin="0,10,15,0" VerticalAlignment="Top" Width="82" Height="Auto" Source="{StaticResource PrefSuite_logo}" Stretch="Uniform" StretchDirection="Both" Opacity="1" />
+          <StackPanel Name="stackpanelTitle" Height="Auto" Opacity="1" Width="Auto" HorizontalAlignment="Left" Margin="20,25,0,0" VerticalAlignment="Top">
+            <TextBlock Name="textblockTitle" Height="Auto" FontSize="24" Foreground="{StaticResource WindowBackgroundBrush}" Text="Expenses Documents" TextWrapping="Wrap" FontFamily="Arial" FontWeight="Bold" Opacity="1" Width="Auto" FontStretch="Normal" FontStyle="Normal" />
+            <TextBlock Name="textblockTitleReflection" Height="Auto" FontSize="24" Foreground="{StaticResource WindowBackgroundBrush}" Text="Expenses Documents" TextWrapping="Wrap" FontFamily="Arial" FontWeight="Bold" Opacity="1" Width="Auto" OpacityMask="{StaticResource ReflectionOpacityMaskBrush}" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,0" FontStretch="Normal" FontStyle="Normal">
+              <UIElement.RenderTransform>
+                <TransformGroup>
+                  <ScaleTransform ScaleX="1" ScaleY="-1" />
+                </TransformGroup>
+              </UIElement.RenderTransform>
+            </TextBlock>
+          </StackPanel>
+        </Grid>
+      </Grid>
+    </Grid>
+  </ScrollViewer>
+</UserControl>

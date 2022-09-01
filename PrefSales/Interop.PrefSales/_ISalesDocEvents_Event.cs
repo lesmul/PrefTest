@@ -1,0 +1,105 @@
+using System.Runtime.InteropServices;
+
+namespace Interop.PrefSales;
+
+[ComVisible(false)]
+[TypeLibType(TypeLibTypeFlags.FHidden)]
+[ComEventInterface(typeof(_ISalesDocEvents), typeof(_ISalesDocEvents_EventProvider))]
+public interface _ISalesDocEvents_Event
+{
+	event _ISalesDocEvents_IsModelEventHandler IsModel;
+
+	event _ISalesDocEvents_IsMaterialEventHandler IsMaterial;
+
+	event _ISalesDocEvents_IsScriptEventHandler IsScript;
+
+	event _ISalesDocEvents_BeforeSaveEventHandler BeforeSave;
+
+	event _ISalesDocEvents_AfterSaveEventHandler AfterSave;
+
+	event _ISalesDocEvents_AfterLoadEventHandler AfterLoad;
+
+	event _ISalesDocEvents_BeforeConfirmOrderEventHandler BeforeConfirmOrder;
+
+	event _ISalesDocEvents_AfterConfirmOrderEventHandler AfterConfirmOrder;
+
+	event _ISalesDocEvents_BeforeRemoveDocumentEventHandler BeforeRemoveDocument;
+
+	event _ISalesDocEvents_AfterRemoveDocumentEventHandler AfterRemoveDocument;
+
+	event _ISalesDocEvents_BeforeRemoveOfferEventHandler BeforeRemoveOffer;
+
+	event _ISalesDocEvents_BeforeRemoveOrderEventHandler BeforeRemoveOrder;
+
+	event _ISalesDocEvents_BeforeRemoveDeliveryNoteEventHandler BeforeRemoveDeliveryNote;
+
+	event _ISalesDocEvents_BeforeRemoveInvoiceEventHandler BeforeRemoveInvoice;
+
+	event _ISalesDocEvents_BeforeRemoveSubOrderEventHandler BeforeRemoveSubOrder;
+
+	event _ISalesDocEvents_BeforeRemoveNotActiveOffersEventHandler BeforeRemoveNotActiveOffers;
+
+	event _ISalesDocEvents_RecalculatePerVolumeEventHandler RecalculatePerVolume;
+
+	event _ISalesDocEvents_AfterItemChangedEventHandler AfterItemChanged;
+
+	event _ISalesDocEvents_AfterItemInsertedEventHandler AfterItemInserted;
+
+	event _ISalesDocEvents_BeforeItemDeletedEventHandler BeforeItemDeleted;
+
+	event _ISalesDocEvents_AfterItemDeletedEventHandler AfterItemDeleted;
+
+	event _ISalesDocEvents_BeforeSelectCustomerEventHandler BeforeSelectCustomer;
+
+	event _ISalesDocEvents_AfterCalculateCommissionEventHandler AfterCalculateCommission;
+
+	event _ISalesDocEvents_AfterFieldChangedEventHandler AfterFieldChanged;
+
+	event _ISalesDocEvents_FormatAliasEventHandler FormatAlias;
+
+	event _ISalesDocEvents_ModifySalesmanSurchargeEventHandler ModifySalesmanSurcharge;
+
+	event _ISalesDocEvents_BlockDocumentEventHandler BlockDocument;
+
+	event _ISalesDocEvents_BeforeCancelDocumentEventHandler BeforeCancelDocument;
+
+	event _ISalesDocEvents_AfterCancelDocumentEventHandler AfterCancelDocument;
+
+	event _ISalesDocEvents_ValidateEventHandler Validate;
+
+	event _ISalesDocEvents_BeforeRecalculateItemEventHandler BeforeRecalculateItem;
+
+	event _ISalesDocEvents_AfterRecalculateItemEventHandler AfterRecalculateItem;
+
+	event _ISalesDocEvents_AfterSetItemCodeEventHandler AfterSetItemCode;
+
+	event _ISalesDocEvents_BeforeSetItemContextEventHandler BeforeSetItemContext;
+
+	event _ISalesDocEvents_BeforeCreateSalesDocEventHandler BeforeCreateSalesDoc;
+
+	event _ISalesDocEvents_AfterCreateSalesDocEventHandler AfterCreateSalesDoc;
+
+	event _ISalesDocEvents_BeforeSetItemXmlEventHandler BeforeSetItemXml;
+
+	event _ISalesDocEvents_AfterSetItemXmlEventHandler AfterSetItemXml;
+
+	event _ISalesDocEvents_BeforeRecalculateItemPricesEventHandler BeforeRecalculateItemPrices;
+
+	event _ISalesDocEvents_AfterRecalculateItemPricesEventHandler AfterRecalculateItemPrices;
+
+	event _ISalesDocEvents_BeforeCalculateSchedulingEventHandler BeforeCalculateScheduling;
+
+	event _ISalesDocEvents_AfterCalculateSchedulingEventHandler AfterCalculateScheduling;
+
+	event _ISalesDocEvents_NewWizardSelectNumerationEventHandler NewWizardSelectNumeration;
+
+	event _ISalesDocEvents_AfterNewVersionEventHandler AfterNewVersion;
+
+	event _ISalesDocEvents_BeforeSetDataVersionEventHandler BeforeSetDataVersion;
+
+	event _ISalesDocEvents_SearchConsolidationRiskPonderationEventHandler SearchConsolidationRiskPonderation;
+
+	event _ISalesDocEvents_ReplaceItemCodeEventHandler ReplaceItemCode;
+
+	event _ISalesDocEvents_AfterReplaceItemCodeEventHandler AfterReplaceItemCode;
+}

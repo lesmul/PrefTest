@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Grid x:Class="Preference.Wpf.Controls.JitmvViewer" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dc="clr-namespace:DevComponents.WpfRibbon;assembly=DevComponents.WpfRibbon" Background="#FFFFFFFF" xmlns:controls="clr-namespace:Preference.Wpf.Controls;assembly=Preference.Wpf.Controls">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Resources\JitmvViewerIcons.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <Grid Name="HideMenuPanel" Background="#00FFFFFF" VerticalAlignment="Top" HorizontalAlignment="Left" Width="30" Height="30" ZIndex="1000" ClipToBounds="False">
+    <dc:ButtonPanel FrameworkElement.Name="ButtonsPanel" dc:ButtonPanel.Orientation="Horizontal" UIElement.Visibility="Collapsed">
+      <dc:GroupPanel FrameworkElement.Margin="2">
+        <dc:ButtonDropDown dc:ButtonDropDown.Name="PanModeButton" dc:ButtonDropDown.PartVisibility="ImageOnly" FrameworkElement.Height="25" FrameworkElement.Width="25" FrameworkElement.ToolTip="Activate/Deactivated pan mode" Click="ActivePanModeClick">
+          <dc:ButtonDropDown.Image>
+            <Image Stretch="Uniform" Source="{StaticResource iconHand}" Height="18" Width="18" HorizontalAlignment="Center" />
+          </dc:ButtonDropDown.Image>
+        </dc:ButtonDropDown>
+        <dc:ButtonDropDown dc:ButtonDropDown.Name="MoreZoomButton" dc:ButtonDropDown.PartVisibility="ImageOnly" FrameworkElement.Height="25" FrameworkElement.Width="25" FrameworkElement.ToolTip="More Zoom" Click="MoreZoomClick">
+          <dc:ButtonDropDown.Image>
+            <Image Stretch="Uniform" Source="{StaticResource iconMoreZoom}" Height="18" Width="18" HorizontalAlignment="Center" />
+          </dc:ButtonDropDown.Image>
+        </dc:ButtonDropDown>
+        <dc:ButtonDropDown dc:ButtonDropDown.Name="LessZoomButton" dc:ButtonDropDown.PartVisibility="ImageOnly" FrameworkElement.Height="25" FrameworkElement.Width="25" FrameworkElement.ToolTip="Less Zoom" Click="LessZoomClick">
+          <dc:ButtonDropDown.Image>
+            <Image Stretch="Uniform" Source="{StaticResource iconLessZoom}" Height="18" Width="18" HorizontalAlignment="Center" />
+          </dc:ButtonDropDown.Image>
+        </dc:ButtonDropDown>
+        <dc:ButtonDropDown dc:ButtonDropDown.Name="ResetZoomButton" dc:ButtonDropDown.PartVisibility="ImageOnly" FrameworkElement.Height="25" FrameworkElement.Width="25" FrameworkElement.ToolTip="Restore Zoom" Click="ResetZoomClick">
+          <dc:ButtonDropDown.Image>
+            <Image Stretch="Uniform" Source="{StaticResource iconResetZoom}" Height="18" Width="18" HorizontalAlignment="Center" />
+          </dc:ButtonDropDown.Image>
+        </dc:ButtonDropDown>
+      </dc:GroupPanel>
+      <!--Unknown connection ID: 2-->
+    </dc:ButtonPanel>
+  </Grid>
+  <ScrollViewer Name="ScrollView" Width="Auto" Height="Auto" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <Grid Name="JitmvViewerContent">
+      <FrameworkElement.LayoutTransform>
+        <ScaleTransform x:Name="Scale" />
+      </FrameworkElement.LayoutTransform>
+    </Grid>
+  </ScrollViewer>
+</Grid>

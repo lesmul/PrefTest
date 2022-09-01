@@ -1,0 +1,1287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="Preference.Wpf.Controls.Projects.Views.ProjectView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2006" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:src="clr-namespace:Preference.Wpf.Controls.Projects.AppLogic" xmlns:attachments="clr-namespace:Preference.Wpf.Controls.Attachments.Views" xmlns:PrefProjectBrowserApp="clr-namespace:Preference.Wpf.Controls.Projects.AppLogic" x:Name="ProjectMainPage" FlowDirection="LeftToRight" Background="#FF000000" MinHeight="0" MinWidth="0" Width="Auto" Height="Auto" xmlns:views="clr-namespace:Preference.Wpf.Controls.Projects.Views">
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="./../Resources/TreeViewStyle.xaml" />
+        <ResourceDictionary Source="./../Resources/TabControlStyle.xaml" />
+        <ResourceDictionary Source="./../Resources/ShortcutsImages.xaml" />
+        <ResourceDictionary Source="./../Resources/ListViewStyle.xaml" />
+        <ResourceDictionary Source="./../Resources/ButtonStyle.xaml" />
+        <ResourceDictionary Source="./../Resources/ButtonsImages.xaml" />
+        <ResourceDictionary Source="./../Resources/StatusImages.xaml" />
+        <ResourceDictionary Source="./../Resources/Brushes.xaml" />
+        <ResourceDictionary Source="./../Resources/TreeListViewStyle.xaml" />
+        <ResourceDictionary Source="./../Resources/ScrollBarStyle.xaml" />
+        <ResourceDictionary Source="./../Resources/ComboBoxStyle.xaml" />
+        <ResourceDictionary Source="./../Resources/CheckBoxStyle.xaml" />
+        <ResourceDictionary Source="./../Resources/ProgressBarStyle.xaml" />
+        <ResourceDictionary Source="./../Resources/OtherImages.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+      <DrawingImage x:Key="background_left_top">
+        <DrawingImage.Drawing>
+          <DrawingGroup>
+            <GeometryDrawing Geometry="F1 M450,210 L0,210 L0,0 L450,0 L450,210">
+              <GeometryDrawing.Brush>
+                <RadialGradientBrush RadiusX="1.4" RadiusY="1.4" Center="0,0" GradientOrigin="0,0">
+                  <GradientStop Color="#FFBF5B00" Offset="0.05" />
+                  <GradientStop Color="#FE000000" Offset="0.75" />
+                </RadialGradientBrush>
+              </GeometryDrawing.Brush>
+            </GeometryDrawing>
+          </DrawingGroup>
+        </DrawingImage.Drawing>
+      </DrawingImage>
+      <DrawingImage x:Key="background_right_bottom">
+        <DrawingImage.Drawing>
+          <DrawingGroup>
+            <GeometryDrawing Geometry="F1 M0,0 L580,0 L580,530 L0,530 L0,0">
+              <GeometryDrawing.Brush>
+                <RadialGradientBrush RadiusX="1.4" RadiusY="1.4" Center="1,1" GradientOrigin="1,1">
+                  <GradientStop Color="#FFBF5B00" Offset="0.05" />
+                  <GradientStop Color="#FE000000" Offset="0.75" />
+                </RadialGradientBrush>
+              </GeometryDrawing.Brush>
+            </GeometryDrawing>
+          </DrawingGroup>
+        </DrawingImage.Drawing>
+      </DrawingImage>
+      <DrawingImage x:Key="PrefSuite_logo">
+        <DrawingImage.Drawing>
+          <DrawingGroup>
+            <DrawingGroup.Children>
+              <GeometryDrawing Geometry="F1 M9.78933,34.2293 L9.78933,7.06133 L29.6067,5.34267 L29.6067,30.6693 L9.78933,34.2293">
+                <GeometryDrawing.Brush>
+                  <LinearGradientBrush StartPoint="-0.07104,0.108264" EndPoint="1.25768,0.108264">
+                    <Brush.RelativeTransform>
+                      <TransformGroup>
+                        <SkewTransform CenterX="-0.07104" CenterY="0.108264" AngleX="-21.0968" AngleY="0" />
+                        <RotateTransform CenterX="-0.07104" CenterY="0.108264" Angle="34.4516" />
+                      </TransformGroup>
+                    </Brush.RelativeTransform>
+                    <GradientBrush.GradientStops>
+                      <GradientStop Color="#FFEBEDED" Offset="0" />
+                      <GradientStop Color="#FFAAACAF" Offset="1" />
+                    </GradientBrush.GradientStops>
+                  </LinearGradientBrush>
+                </GeometryDrawing.Brush>
+              </GeometryDrawing>
+              <GeometryDrawing Brush="#FFFFFFFF" Geometry="F1 M0.437333,28.128 L9.78933,34.2293 L9.78933,7.06133 L0.437333,3.49334 L0.437333,28.128" />
+              <GeometryDrawing Brush="#FFE6E6E6" Geometry="F1 M0.437333,3.49334 L9.78933,7.06133 L29.6067,5.34267 L18.8387,1.948 L0.437333,3.49334" />
+              <GeometryDrawing Geometry="F1 M18.7893,2.39067 C18.9453,2.4413299999999998 28.5987,5.48267 29.1693,5.66267 L29.1693,30.3053 C28.484,30.4293 10.236,33.7067 9.89067,33.7667 C9.608,33.5693 1.22667,28.1467 0.873333,27.9013 L0.873333,3.89467 C1.636,3.83067 18.6227,2.40533 18.7893,2.39067 M18.8013,1.51334 L0.401333,3.05733 C0.174667,3.07734 0,3.26667 0,3.49334 L0,28.128 C0,28.2707 0.0693333,28.404 0.186667,28.488 L9.53867,34.588 C9.63333,34.656 9.75067,34.6787 9.86533,34.66 L29.684,31.1013 C29.892,31.064 30.044,30.8827 30.044,30.6693 L30.044,5.34267 C30.044,5.152 29.92,4.984 29.7373,4.92667 L18.9707,1.532 C18.916,1.51334 18.86,1.508 18.8013,1.51334">
+                <GeometryDrawing.Brush>
+                  <LinearGradientBrush StartPoint="-0.0747601,0.378462" EndPoint="0.934219,0.378462">
+                    <Brush.RelativeTransform>
+                      <TransformGroup>
+                        <SkewTransform CenterX="-0.0747601" CenterY="0.378462" AngleX="-2.59608" AngleY="0" />
+                        <RotateTransform CenterX="-0.0747601" CenterY="0.378462" Angle="12.4343" />
+                      </TransformGroup>
+                    </Brush.RelativeTransform>
+                    <GradientBrush.GradientStops>
+                      <GradientStop Color="#FFAAACAF" Offset="0" />
+                      <GradientStop Color="#FFAAACAF" Offset="0.134831" />
+                      <GradientStop Color="#FF828387" Offset="0.530205" />
+                      <GradientStop Color="#FF5B5B60" Offset="0.75" />
+                      <GradientStop Color="#FF5B5B60" Offset="1" />
+                    </GradientBrush.GradientStops>
+                  </LinearGradientBrush>
+                </GeometryDrawing.Brush>
+              </GeometryDrawing>
+              <GeometryDrawing Geometry="F1 M0.028,3.33733 C-0.056,3.564 0.0546667,3.816 0.28,3.9 L9.632,7.46933 C9.69467,7.49334 9.76133,7.50134 9.828,7.49467 L29.644,5.77867 C29.8853,5.756 30.0627,5.54533 30.0413,5.304 C30.0213,5.06533 29.8093,4.88667 29.5693,4.90667 C29.5693,4.90667 10.0493,6.6 9.85067,6.61733 C9.66667,6.54667 0.593333,3.084 0.593333,3.084 C0.366667,2.99867 0.113333,3.11067 0.028,3.33733">
+                <GeometryDrawing.Brush>
+                  <LinearGradientBrush StartPoint="0.0261359,-0.327776" EndPoint="1.92378,-0.327776">
+                    <Brush.RelativeTransform>
+                      <TransformGroup>
+                        <SkewTransform CenterX="0.0261359" CenterY="-0.327776" AngleX="56.6579" AngleY="0" />
+                        <RotateTransform CenterX="0.0261359" CenterY="-0.327776" Angle="58.7181" />
+                      </TransformGroup>
+                    </Brush.RelativeTransform>
+                    <GradientBrush.GradientStops>
+                      <GradientStop Color="#FFAAACAF" Offset="0" />
+                      <GradientStop Color="#FFAAACAF" Offset="0.134831" />
+                      <GradientStop Color="#FF828387" Offset="0.530205" />
+                      <GradientStop Color="#FF5B5B60" Offset="0.75" />
+                      <GradientStop Color="#FF5B5B60" Offset="1" />
+                    </GradientBrush.GradientStops>
+                  </LinearGradientBrush>
+                </GeometryDrawing.Brush>
+              </GeometryDrawing>
+              <GeometryDrawing Geometry="F1 M9.352,7.06133 L9.352,34.2293 C9.352,34.4693 9.548,34.6667 9.78933,34.6667 C10.0293,34.6667 10.2253,34.4693 10.2253,34.2293 L10.2253,7.06133 C10.2253,6.82 10.0293,6.624 9.78933,6.624 C9.548,6.624 9.352,6.82 9.352,7.06133">
+                <GeometryDrawing.Brush>
+                  <LinearGradientBrush StartPoint="-14.2442,0.388256" EndPoint="19.6551,0.388256">
+                    <Brush.RelativeTransform>
+                      <TransformGroup>
+                        <SkewTransform CenterX="-14.2442" CenterY="0.388256" AngleX="-82.2722" AngleY="0" />
+                        <RotateTransform CenterX="-14.2442" CenterY="0.388256" Angle="0.434168" />
+                      </TransformGroup>
+                    </Brush.RelativeTransform>
+                    <GradientBrush.GradientStops>
+                      <GradientStop Color="#FFAAACAF" Offset="0" />
+                      <GradientStop Color="#FFAAACAF" Offset="0.134831" />
+                      <GradientStop Color="#FF828387" Offset="0.530205" />
+                      <GradientStop Color="#FF5B5B60" Offset="0.75" />
+                      <GradientStop Color="#FF5B5B60" Offset="1" />
+                    </GradientBrush.GradientStops>
+                  </LinearGradientBrush>
+                </GeometryDrawing.Brush>
+              </GeometryDrawing>
+              <GeometryDrawing Geometry="F1 M23.8813,4.472 L10.6027,5.572 L10.6027,3.62933 L23.8813,2.528 L23.8813,4.472">
+                <GeometryDrawing.Brush>
+                  <LinearGradientBrush StartPoint="-3.41145e-005,0.500043" EndPoint="1.00001,0.500043">
+                    <GradientBrush.GradientStops>
+                      <GradientStop Color="#FFEBEDED" Offset="0" />
+                      <GradientStop Color="#FFAAACAF" Offset="1" />
+                    </GradientBrush.GradientStops>
+                  </LinearGradientBrush>
+                </GeometryDrawing.Brush>
+              </GeometryDrawing>
+              <GeometryDrawing Brush="#FFFFFFFF" Geometry="F1 M4.67467,3.33733 L10.6027,5.572 L10.6027,3.62933 L4.67467,1.39467 L4.67467,3.33733" />
+              <GeometryDrawing Brush="#FFE6E6E6" Geometry="F1 M10.6027,3.62933 L23.8813,2.528 L16.5387,0.325333 L4.67467,1.39467 L10.6027,3.62933" />
+              <GeometryDrawing Geometry="F1 M4.26533,3.184 C4.18133,3.40933 4.29867,3.66133 4.52,3.74667 L10.448,5.98 C10.508,6.00267 10.5733,6.012 10.6387,6.00667 L23.9173,4.90667 C24.1587,4.88667 24.3373,4.676 24.3173,4.43467 C24.2987,4.19467 24.0853,4.01733 23.8453,4.036 C23.8453,4.036 10.8587,5.11067 10.6653,5.12933 C10.4853,5.06133 4.82933,2.92667 4.82933,2.92667 C4.60267,2.84267 4.35067,2.96133 4.26533,3.184">
+                <GeometryDrawing.Brush>
+                  <LinearGradientBrush StartPoint="-0.165273,-0.595176" EndPoint="2.58096,-0.595176">
+                    <Brush.RelativeTransform>
+                      <TransformGroup>
+                        <SkewTransform CenterX="-0.165273" CenterY="-0.595176" AngleX="55.3784" AngleY="0" />
+                        <RotateTransform CenterX="-0.165273" CenterY="-0.595176" Angle="57.5356" />
+                      </TransformGroup>
+                    </Brush.RelativeTransform>
+                    <GradientBrush.GradientStops>
+                      <GradientStop Color="#FFAAACAF" Offset="0" />
+                      <GradientStop Color="#FFAAACAF" Offset="0.134831" />
+                      <GradientStop Color="#FF828387" Offset="0.530205" />
+                      <GradientStop Color="#FF5B5B60" Offset="0.75" />
+                      <GradientStop Color="#FF5B5B60" Offset="1" />
+                    </GradientBrush.GradientStops>
+                  </LinearGradientBrush>
+                </GeometryDrawing.Brush>
+              </GeometryDrawing>
+              <GeometryDrawing Geometry="F1 M16.9027,0.00133514 L4.64133,0.958668 C4.41333,0.97467 4.23733,1.16534 4.23733,1.39467 L4.23733,3.33733 C4.23733,3.57867 4.43333,3.77333 4.67467,3.77333 C4.916,3.77333 5.11067,3.57867 5.11067,3.33733 L5.11067,1.79733 C5.86,1.73867 16.7333,0.890667 16.8893,0.87867 C17.0347,0.922668 22.884,2.684 23.444,2.852 L23.444,4.472 C23.444,4.712 23.64,4.908 23.8813,4.908 C24.1227,4.908 24.3187,4.712 24.3187,4.472 L24.3187,2.528 C24.3187,2.336 24.1933,2.16534 24.008,2.11067 L17.0627,0.0186691 C17.0093,0.00267029 16.956,-0.00266266 16.9027,0.00133514">
+                <GeometryDrawing.Brush>
+                  <LinearGradientBrush StartPoint="-0.14727,-0.0880925" EndPoint="1.93276,-0.0880925">
+                    <Brush.RelativeTransform>
+                      <TransformGroup>
+                        <SkewTransform CenterX="-0.14727" CenterY="-0.0880925" AngleX="41.4698" AngleY="0" />
+                        <RotateTransform CenterX="-0.14727" CenterY="-0.0880925" Angle="44.8731" />
+                      </TransformGroup>
+                    </Brush.RelativeTransform>
+                    <GradientBrush.GradientStops>
+                      <GradientStop Color="#FFAAACAF" Offset="0" />
+                      <GradientStop Color="#FFAAACAF" Offset="0.134831" />
+                      <GradientStop Color="#FF828387" Offset="0.530205" />
+                      <GradientStop Color="#FF5B5B60" Offset="0.75" />
+                      <GradientStop Color="#FF5B5B60" Offset="1" />
+                    </GradientBrush.GradientStops>
+                  </LinearGradientBrush>
+                </GeometryDrawing.Brush>
+              </GeometryDrawing>
+              <GeometryDrawing Geometry="F1 M4.26533,1.24 C4.18133,1.46534 4.292,1.71867 4.52,1.804 L10.448,4.03733 C10.508,4.06 10.5733,4.06934 10.6387,4.064 L23.9173,2.96267 C24.1587,2.94267 24.3373,2.732 24.3173,2.492 C24.2987,2.252 24.0853,2.07333 23.8453,2.092 C23.8453,2.092 10.8587,3.168 10.6653,3.18533 C10.4853,3.11733 4.82933,0.985336 4.82933,0.985336 C4.60267,0.900002 4.34933,1.01067 4.26533,1.24">
+                <GeometryDrawing.Brush>
+                  <LinearGradientBrush StartPoint="-0.142989,-0.560263" EndPoint="2.60301,-0.560263">
+                    <Brush.RelativeTransform>
+                      <TransformGroup>
+                        <SkewTransform CenterX="-0.142989" CenterY="-0.560263" AngleX="55.3767" AngleY="0" />
+                        <RotateTransform CenterX="-0.142989" CenterY="-0.560263" Angle="57.5339" />
+                      </TransformGroup>
+                    </Brush.RelativeTransform>
+                    <GradientBrush.GradientStops>
+                      <GradientStop Color="#FFAAACAF" Offset="0" />
+                      <GradientStop Color="#FFAAACAF" Offset="0.134831" />
+                      <GradientStop Color="#FF828387" Offset="0.530205" />
+                      <GradientStop Color="#FF5B5B60" Offset="0.75" />
+                      <GradientStop Color="#FF5B5B60" Offset="1" />
+                    </GradientBrush.GradientStops>
+                  </LinearGradientBrush>
+                </GeometryDrawing.Brush>
+              </GeometryDrawing>
+              <GeometryDrawing Geometry="F1 M10.1667,3.62933 L10.1667,5.572 C10.1667,5.812 10.3627,6.008 10.6027,6.008 C10.8427,6.008 11.04,5.812 11.04,5.572 L11.04,3.62933 C11.04,3.388 10.8427,3.192 10.6027,3.192 C10.3627,3.192 10.1667,3.388 10.1667,3.62933">
+                <GeometryDrawing.Brush>
+                  <LinearGradientBrush StartPoint="-10.9069,-0.360873" EndPoint="23.1011,-0.360873">
+                    <Brush.RelativeTransform>
+                      <TransformGroup>
+                        <SkewTransform CenterX="-10.9069" CenterY="-0.360873" AngleX="-33.8014" AngleY="0" />
+                        <RotateTransform CenterX="-10.9069" CenterY="-0.360873" Angle="4.31549" />
+                      </TransformGroup>
+                    </Brush.RelativeTransform>
+                    <GradientBrush.GradientStops>
+                      <GradientStop Color="#FFAAACAF" Offset="0" />
+                      <GradientStop Color="#FFAAACAF" Offset="0.134831" />
+                      <GradientStop Color="#FF828387" Offset="0.530205" />
+                      <GradientStop Color="#FF5B5B60" Offset="0.75" />
+                      <GradientStop Color="#FF5B5B60" Offset="1" />
+                    </GradientBrush.GradientStops>
+                  </LinearGradientBrush>
+                </GeometryDrawing.Brush>
+              </GeometryDrawing>
+              <GeometryDrawing Geometry="F1 M24.084,9.07867 L24.084,14.2053 L27.252,13.888 L27.252,8.848 M12.6067,30.7293 L16.0053,30.1787 L16.0053,24.9893 L12.6067,25.4187 M24.084,21.608 L27.252,21.2067 L27.252,16.0333 L24.084,16.352 M24.084,28.8707 L27.252,28.3547 L27.252,23.5667 L24.084,23.9693 M12.6067,15.3533 L16.0053,15.0133 L16.0053,9.66534 L12.6067,9.91333 M18.5533,14.7573 L21.7133,14.444 L21.7133,9.25067 L18.5533,9.48133 M12.6067,23.0627 L16.0053,22.632 L16.0053,17.1613 L12.6067,17.5013 M18.5533,22.308 L21.7133,21.908 L21.7133,16.5907 L18.5533,16.904 M18.5533,29.7667 L21.7133,29.2533 L21.7133,24.268 L18.5533,24.6653 L18.5533,29.7667">
+                <GeometryDrawing.Brush>
+                  <LinearGradientBrush StartPoint="-0.152425,0.194482" EndPoint="1.24214,0.194482">
+                    <Brush.RelativeTransform>
+                      <TransformGroup>
+                        <SkewTransform CenterX="-0.152425" CenterY="0.194482" AngleX="-21.1775" AngleY="0" />
+                        <RotateTransform CenterX="-0.152425" CenterY="0.194482" Angle="25.0946" />
+                      </TransformGroup>
+                    </Brush.RelativeTransform>
+                    <GradientBrush.GradientStops>
+                      <GradientStop Color="#FF0066CC" Offset="0" />
+                      <GradientStop Color="#FF003399" Offset="1" />
+                    </GradientBrush.GradientStops>
+                  </LinearGradientBrush>
+                </GeometryDrawing.Brush>
+              </GeometryDrawing>
+              <GeometryDrawing Brush="#FF0066CC" Geometry="F1 M5.58,28.608 L7.68667,29.8213 L7.68667,24.6813 L5.58,23.588 M5.58,8.77333 L5.58,13.5387 L7.68667,14.5827 L7.68667,9.66667 M2.276,11.9067 L4.28267,12.8987 L4.28267,8.22134 L2.276,7.36533 M2.276,19.62 L4.28267,20.664 L4.28267,15.0533 L2.276,14.0613 M5.58,21.3373 L7.68667,22.432 L7.68667,16.7387 L5.58,15.696 M2.276,26.7027 L4.28267,27.8613 L4.28267,22.9133 L2.276,21.8707 L2.276,26.7027" />
+              <GeometryDrawing Geometry="F1 M19.86,31.9987 C16.1453,33.0187 10.7707,37.5173 11.6227,39.2253 C12.9707,41.9147 23.3067,42.4507 27.9293,41.9987 C31.376,41.6613 34.216,37.9573 39.0027,36.052 L19.86,31.9987">
+                <GeometryDrawing.Brush>
+                  <LinearGradientBrush StartPoint="-0.00222684,0.617837" EndPoint="1.03523,0.617837">
+                    <Brush.RelativeTransform>
+                      <TransformGroup>
+                        <SkewTransform CenterX="-0.00222684" CenterY="0.617837" AngleX="-13.2765" AngleY="0" />
+                        <RotateTransform CenterX="-0.00222684" CenterY="0.617837" Angle="-15.4319" />
+                      </TransformGroup>
+                    </Brush.RelativeTransform>
+                    <GradientBrush.GradientStops>
+                      <GradientStop Color="#FFFFFF00" Offset="0" />
+                      <GradientStop Color="#FFFFFF00" Offset="0.376404" />
+                      <GradientStop Color="#FFB5901C" Offset="1" />
+                    </GradientBrush.GradientStops>
+                  </LinearGradientBrush>
+                </GeometryDrawing.Brush>
+              </GeometryDrawing>
+              <GeometryDrawing Geometry="F1 M41.2613,34.3907 C42.3693,33.368 42.1187,31.8827 42.0947,31.4973 C41.6587,24.8067 37.5333,16.5827 26.9787,17.296 C23.748,17.5133 23.608,18.4027 21.48,19.5987 C16.9467,22.1493 14.8587,27.3707 14.8587,34.896 C14.6267,38.132 31.332,38.244 35.6533,37.3493 C37.7267,36.92 39.7173,35.8213 41.2613,34.3907">
+                <GeometryDrawing.Brush>
+                  <RadialGradientBrush RadiusX="0.902131" RadiusY="1.19594" Center="0.0862693,0.424779" GradientOrigin="0.0862693,0.424779">
+                    <GradientBrush.GradientStops>
+                      <GradientStop Color="#FFFFFFFF" Offset="0" />
+                      <GradientStop Color="#FFFFFF00" Offset="0.438202" />
+                      <GradientStop Color="#FFB5901C" Offset="1" />
+                    </GradientBrush.GradientStops>
+                    <Brush.RelativeTransform>
+                      <TransformGroup />
+                    </Brush.RelativeTransform>
+                  </RadialGradientBrush>
+                </GeometryDrawing.Brush>
+              </GeometryDrawing>
+              <GeometryDrawing Brush="#27000000" Geometry="F1 M26.76,16.724 C22.672,17.5227 20.092,20.856 19.2947,26.3587 C19.252,26.6453 19.4533,26.916 19.7427,26.9587 C20.032,27 20.3013,26.8 20.3427,26.5093 C20.8507,23.0133 22.4093,18.6547 26.964,17.7653 C27.2507,17.7107 27.4387,17.4307 27.3813,17.1427 C27.3267,16.8573 27.0467,16.668 26.76,16.724" />
+              <GeometryDrawing Brush="#27000000" Geometry="F1 M32.4733,17.808 C29.408,18.812 27.4893,21.792 26.612,26.9133 C26.5627,27.1987 26.7547,27.4747 27.0453,27.5253 C27.3333,27.572 27.6067,27.38 27.6573,27.0893 C28.472,22.3293 30.1093,19.6973 32.804,18.816 C33.0827,18.7227 33.2347,18.4253 33.1413,18.1467 C33.0507,17.8693 32.752,17.7173 32.4733,17.808" />
+              <GeometryDrawing Brush="#27000000" Geometry="F1 M29.516,17.0453 C25.7707,18.0693 23.768,20.8507 22.824,26.3373 C22.7733,26.6267 22.968,26.9 23.2547,26.9507 C23.5453,27 23.8187,26.8053 23.8693,26.5187 C24.7333,21.496 26.5053,18.968 29.796,18.068 C30.0787,17.9907 30.2453,17.6987 30.1667,17.416 C30.0893,17.1347 29.7987,16.968 29.516,17.0453" />
+              <GeometryDrawing Geometry="F1 M40.9,34.0027 C40.2053,34.6453 39.4307,35.1893 38.6213,35.644 C38.0427,35.8813 37.492,36.144 36.9653,36.4253 C36.496,36.596 36.0227,36.732 35.5467,36.8307 C31.848,37.5933 18.1093,37.5573 15.6533,35.4067 C15.372,35.1613 15.3827,34.9893 15.388,34.9333 C15.3893,28.884 16.7667,24.468 19.552,21.704 C19.0733,23.008 18.732,24.5347 18.4573,26.336 C18.4133,26.6253 18.612,26.8947 18.9013,26.94 C19.1907,26.984 19.4613,26.7853 19.5053,26.496 C19.948,23.6 20.5227,21.616 21.4307,20.248 C21.6333,19.988 21.852,19.716 22.068,19.4427 C22.9107,18.5613 23.9813,18.0333 25.392,17.7307 L26.2133,17.752 C23.6427,19.264 22.6693,22.1107 22.016,26.392 C21.972,26.68 22.1707,26.9507 22.46,26.996 C22.7507,27.0387 23.02,26.8413 23.0653,26.552 C23.9533,20.7307 25.3867,18.5973 28.936,17.828 C29.052,17.8347 29.5107,17.8627 30.0893,17.9 C28.3253,18.9853 26.7093,21.3453 25.852,27.0053 C25.808,27.296 26.008,27.5653 26.2973,27.6093 C26.5867,27.6533 26.8573,27.4533 26.9,27.1627 C28.0133,19.8093 30.284,18.576 32.552,18.0973 C32.868,18.328 33.9373,19.1053 34.0133,19.1227 L34.0093,19.1267 C39.7387,21.276 41.1707,27.3827 41.5093,30.84 C40.5333,32.3693 38.0267,34.1493 35.8147,34.8613 C35.536,34.9507 35.3827,35.248 35.472,35.528 C35.5627,35.8053 35.8613,35.96 36.1387,35.8693 C37.8907,35.3067 40.1387,33.9947 41.5893,32.4373 C41.5547,32.9627 41.3973,33.5427 40.9,34.0027 M33.1387,38.8453 C31.252,40.1627 29.62,41.3013 27.8787,41.472 C23.0093,41.9467 13.2267,41.2453 12.0973,38.9893 C12.028,38.8493 12.064,38.6027 12.2,38.2973 C12.532,37.552 13.4053,36.5853 14.5133,35.6467 C14.6107,35.8293 14.7413,36.0173 14.9547,36.2053 C17.608,38.528 29.2027,38.6253 34.244,38.084 C33.864,38.34 33.4947,38.596 33.1387,38.8453 M42.6667,32.1973 C42.6667,31.9387 42.6453,31.7227 42.632,31.5733 C42.62,31.392 42.5853,31.2307 42.572,31.052 C42.5813,30.976 42.568,30.9027 42.5453,30.8293 C41.9373,24.448 39.0667,20.0253 34.516,18.2147 L32.976,17.1 C32.9067,17.0493 32.8227,17.024 32.7067,17.0027 L28.9227,16.7653 L25.144,16.704 C23.0773,17.1573 21.7,18.0867 20.7093,19.4573 C19.9907,19.9053 19.3307,20.4227 18.736,21.0133 C15.8867,23.8453 14.4173,28.3613 14.3427,34.4173 C12.888,35.56 11.696,36.824 11.232,37.864 C10.9573,38.4827 10.928,39.0227 11.1493,39.464 C12.7267,42.616 23.8307,42.932 27.98,42.5267 C30,42.3293 31.7373,41.116 33.748,39.7133 C34.8613,38.9373 36.0853,38.0907 37.4613,37.3613 C38.0213,37.148 38.5693,36.8853 39.1987,36.544 C39.272,36.5147 39.332,36.4707 39.384,36.416 C40.1747,35.948 40.9347,35.416 41.6213,34.7813 C42.5093,33.9627 42.6667,32.9173 42.6667,32.1973">
+                <GeometryDrawing.Brush>
+                  <LinearGradientBrush StartPoint="-1.08727e-005,0.499273" EndPoint="1,0.499273">
+                    <GradientBrush.GradientStops>
+                      <GradientStop Color="#FFAA9900" Offset="0" />
+                      <GradientStop Color="#FF998700" Offset="0.7" />
+                      <GradientStop Color="#FF998700" Offset="1" />
+                    </GradientBrush.GradientStops>
+                  </LinearGradientBrush>
+                </GeometryDrawing.Brush>
+              </GeometryDrawing>
+              <GeometryDrawing Brush="#1A000000" Geometry="F1 M42.632,31.5733 L42.624,31.4627 C42.4427,28.696 41.7,24.7453 39.1893,21.6333 C39.0347,21.4413 38.7653,21.3773 38.5427,21.4867 C38.32,21.596 38.2027,21.84 38.26,22.0827 L38.4773,22.996 C40.7733,31.824 40.1747,33.268 36.1053,36.7147 C35.916,36.8773 35.8627,37.1493 35.9813,37.3707 C36.1013,37.5907 36.3573,37.6973 36.5987,37.628 C38.4293,37.0947 40.2133,36.0827 41.6227,34.78 C42.8253,33.6693 42.6867,32.1453 42.632,31.5733" />
+            </DrawingGroup.Children>
+          </DrawingGroup>
+        </DrawingImage.Drawing>
+      </DrawingImage>
+      <DrawingImage x:Key="PreferenceLogo">
+        <DrawingImage.Drawing>
+          <GeometryDrawing Brush="#3F000000" Geometry="M13.915635,0.40530427 C13.742197,0.34563235 13.60626,0.56374189 13.741893,0.6881248 C15.579066,2.3765636 16.730645,4.7993702 16.730645,7.4918019 C16.730645,10.183366 15.579066,12.606571 13.741893,14.295245 C13.606893,14.419698 13.742197,14.637432 13.915635,14.578136 C16.860958,13.568682 18.977834,10.778445 18.977834,7.4918019 C18.977834,4.20469 16.860629,1.4143832 13.915635,0.40530427 M11.424391,9.3311783 C10.300937,10.16321 9.352819,10.43532 7.3346846,10.43532 L6.7818873,10.43532 C6.384387,10.43532 6.0396914,10.718444999999999 5.9718867,11.110086 C5.8696991,11.700008 5.7621912,12.321806 5.6590661,12.918759 C5.5968864,13.277822 5.232808,13.512197 4.8962452,13.371806 C4.3165651,13.130634 3.7778069,12.810947 3.2928143,12.426806 C2.9525015,12.157509 2.8187436,11.705868 2.912189,11.282117 L4.6550028,3.4084472 C4.7421904,3.0134313 5.0934485,2.7315717 5.4981207,2.7318764 L8.4675136,2.7334467 C9.211561,2.7334467 9.9006241,2.7949936 10.453749,2.8968765 C11.007508,2.9987594 11.389703,3.2068846 11.790321,3.4565644 C12.188759,3.7050021 12.589704,4.154065 12.798134,4.553745 C13.007197,4.9528156 13.111564,5.451566 13.111564,6.0496914 C13.111564,7.4046143 12.549064,8.5003183 11.424391,9.3311783 M7.4912472,-7.2956141E-07 C3.3534472,-7.2956141E-07 3.6191969E-08,3.3543769 3.6191969E-08,7.4918019 C3.6191969E-08,11.628758 3.3534472,14.983136 7.4912472,14.983136 C11.629071,14.983136 14.982511,11.628758 14.982511,7.4918019 C14.982511,3.3543769 11.629071,-7.2956141E-07 7.4912472,-7.2956141E-07 M9.4925066,5.3446909 C9.1715766,5.1303079 8.6940606,5.0390657 8.0618805,5.0228235 L7.7315755,5.0228235 C7.3315674,5.0228235 6.9881375,5.3115737 6.9196999,5.7059334 L6.5656293,7.7397709 C6.5031215,8.0978961 6.7815592,8.4225058 7.1456376,8.4225058 C8.0337554,8.4803964 8.7306232,8.2528181 9.2293736,7.8871928 C9.7250067,7.5241457 9.9759523,7.0050047 9.9759523,6.3312463 C9.9759523,5.8878085 9.8140693,5.5587457 9.4925066,5.3446909 M17.910958,0.40530427 C17.737521,0.34563235 17.601888,0.56374189 17.737193,0.6881248 C19.574389,2.3765636 20.72564,4.7993702 20.72564,7.4918019 C20.72564,10.183366 19.574389,12.606571 17.737193,14.295245 C17.602193,14.419698 17.737825,14.637432 17.911263,14.578136 C20.856258,13.568682 22.973533,10.778445 22.973533,7.4918019 C22.973533,4.20469 20.856258,1.4143832 17.910958,0.40530427 M67.747161,5.9718789 C67.860364,5.3815581 67.426536,4.7681279 66.848801,4.9340656 C65.945753,5.1937533 65.221534,5.9809492 64.733096,6.9953953 C64.725596,7.0115672 64.710127,7.0246922 64.691846,7.0246922 C64.675674,7.0246922 64.667237,7.0068797 64.669346,6.990239 C64.715752,6.6365669 64.751846,6.2928088 64.784424,5.9559414 C64.831065,5.4668707 64.437315,5.0531282 63.946299,5.0531282 C63.423407,5.0531282 62.97997,5.4443707 62.924188,5.9637461 C62.840751,6.7497701 62.73786,7.7144583 62.573094,8.6327403 L61.724187,13.338056 C61.626219,13.878994 62.041297,14.37587 62.591376,14.37587 C63.200985,14.37587 63.724814,13.937588 63.832158,13.337822 L64.319189,10.623757 C64.608174,8.9589905 65.329112,7.5625832 66.439347,7.1491454 C67.025285,6.9311765 67.629739,6.5859418 67.747161,5.9718789 M73.284743,7.4843019 C73.284743,8.3777401 72.37818,8.7628185 70.886851,8.8593811 C70.292007,8.898053 69.837319,8.2905525 70.146694,7.7805521 C70.578413,7.0696922 71.265367,6.5081293 72.157164,6.5081293 C72.83029,6.5081293 73.284743,6.8716452 73.284743,7.4650831 M72.429977,4.8421905 C69.374662,4.8421905 67.410598,7.9052397 67.410598,10.719617 C67.410598,12.997744 68.592552,14.586573 71.048101,14.586573 C71.835601,14.586573 72.682868,14.442198 73.42279,14.175948 C73.887322,14.008369 74.136228,13.516182 74.075759,13.026337 C74.027244,12.628134 73.603259,12.413681 73.224509,12.545634 C72.738415,12.715322 72.179664,12.825244 71.539117,12.825244 C70.702163,12.825244 70.0656,12.499931 69.720131,11.868055 C69.695053,11.822821 69.672319,11.773133 69.651225,11.720399 C69.4056,11.10493 70.016616,10.565632 70.677788,10.53657 C73.444821,10.41446 75.28537,9.568366 75.28537,7.4650831 C75.28537,5.9146913 74.176072,4.8421905 72.429977,4.8421905 M91.609367,4.9350031 C91.33257,4.8803233 91.018741,4.8421905 90.688741,4.8421905 C87.397176,4.8421905 85.051315,7.5991457 85.051315,10.853445 C85.051315,13.07415 86.414675,14.586573 88.633739,14.586573 C89.303115,14.586573 89.895615,14.491885 90.373272,14.359463 C90.877179,14.219073 91.16546,13.711182 91.143898,13.188759 C91.126085,12.772275 90.70046,12.51915 90.297803,12.626962 C89.984209,12.710634 89.624678,12.767822 89.215693,12.767822 C88.033739,12.767822 87.269676,11.982899 87.269676,10.58532 C87.269676,8.6521934 88.561317,6.6609419 90.616319,6.6609419 C90.779679,6.6609419 90.931085,6.6714888 91.070069,6.6907075 C91.555929,6.7553951 92.070148,6.5449965 92.216398,6.0771836 C92.370617,5.5834489 92.117258,5.0353156 91.609367,4.9350031 M94.862025,7.7805521 C95.293276,7.0696922 95.980464,6.5081293 96.872261,6.5081293 C97.545387,6.5081293 97.99984,6.8716452 97.99984,7.4650831 L97.99984,7.4843019 C97.99984,8.3777401 97.092808,8.7628185 95.601714,8.8593811 C95.006635,8.898053 94.551947,8.2905525 94.862025,7.7805521 M95.392885,10.53657 C98.160153,10.41446 99.999998,9.568366 99.999998,7.4650831 C99.999998,5.9146913 98.8907,4.8421905 97.145308,4.8421905 C94.089994,4.8421905 92.125695,7.9052397 92.125695,10.719617 C92.125695,12.997744 93.307649,14.586573 95.762964,14.586573 C96.551402,14.586573 97.397965,14.442198 98.137653,14.175948 C98.602653,14.008369 98.851091,13.516182 98.791325,13.026337 C98.742341,12.628134 98.317887,12.413681 97.939372,12.545634 C97.453277,12.715322 96.894761,12.825244 96.254214,12.825244 C95.41726,12.825244 94.780697,12.499931 94.434994,11.868055 C94.41015,11.822821 94.387181,11.773133 94.366322,11.720399 C94.120697,11.10493 94.731713,10.565632 95.392885,10.53657 M81.905062,4.8421905 C80.677874,4.8421905 79.558498,5.4643863 78.741935,6.7080513 C78.732326,6.7221138 78.721076,6.7375826 78.704435,6.7375826 L78.687794,6.7197701 L78.776857,5.8956366 C78.825372,5.4450035 78.473107,5.0531282 78.020762,5.0531282 L77.931231,5.0531282 C77.394746,5.0531282 76.942637,5.4537457 76.866699,5.9846992 C76.781855,6.5763325 76.679668,7.2321142 76.53998,7.9434429 L75.579511,13.337588 C75.482479,13.878994 75.898495,14.37587 76.449043,14.37587 C77.058418,14.37587 77.581543,13.937119 77.688184,13.337588 L78.26756,10.068757 C78.649825,7.8864897 79.886389,6.6609419 80.850374,6.6609419 C81.686625,6.6609419 81.959672,7.2353955 81.959672,8.0013336 C81.959672,8.3646151 81.905062,8.7668029 81.850453,9.1115688 L81.091312,13.337822 C80.994515,13.878994 81.409828,14.37587 81.959672,14.37587 C82.569516,14.37587 83.093813,13.937823 83.202563,13.338056 L83.996626,8.958053 C84.086861,8.4796933 84.159986,7.8288334 84.159986,7.4074269 C84.159986,5.6462614 83.159673,4.8421905 81.905062,4.8421905 M59.427311,7.4843019 C59.427311,8.3777401 58.520747,8.7628185 57.029418,8.8593811 C56.43434,8.898053 55.980121,8.2905525 56.289027,7.7805521 C56.72098,7.0696922 57.407934,6.5081293 58.299732,6.5081293 C58.972857,6.5081293 59.427311,6.8716452 59.427311,7.4650831 M58.572544,4.8421905 C55.516995,4.8421905 53.552931,7.9052397 53.552931,10.719617 C53.552931,12.997744 54.73512,14.586573 57.190434,14.586573 C57.978169,14.586573 58.824966,14.442198 59.565123,14.175948 C60.029655,14.008369 60.278796,13.516182 60.218093,13.026337 C60.169342,12.628134 59.745592,12.413681 59.367311,12.545634 C58.880748,12.715322 58.322232,12.825244 57.681216,12.825244 C56.844731,12.825244 56.208168,12.499931 55.862933,11.868055 C55.837855,11.822821 55.814417,11.773133 55.793558,11.720399 C55.547933,11.10493 56.158714,10.565632 56.820356,10.53657 C59.587155,10.41446 61.427937,9.568366 61.427937,7.4650831 C61.427937,5.9146913 60.318405,4.8421905 58.572544,4.8421905 M40.66839,5.9718789 C40.781593,5.3815581 40.34753,4.7681279 39.77003,4.9340656 C38.867217,5.1937533 38.142763,5.9809492 37.654325,6.9953953 C37.646591,7.0115672 37.631356,7.0246922 37.613075,7.0246922 C37.596669,7.0246922 37.588231,7.0068797 37.590341,6.990239 C37.636513,6.6365669 37.673075,6.2928088 37.705419,5.9559414 C37.752294,5.4668707 37.358544,5.0531282 36.867293,5.0531282 C36.344402,5.0531282 35.901199,5.4443707 35.845652,5.9637461 C35.76198,6.7497701 35.658855,7.7144583 35.494323,8.6327403 L34.644948,13.338056 C34.547213,13.878994 34.962526,14.37587 35.512605,14.37587 C36.122215,14.37587 36.646043,13.937588 36.753387,13.337822 L37.240419,10.623757 C37.529169,8.9589905 38.250107,7.5625832 39.360576,7.1491454 C39.946514,6.9311765 40.550734,6.5859418 40.66839,5.9718789 M29.95885,7.7707084 C29.294162,7.7843021 28.862912,7.1240673 28.983147,6.4703246 L29.348069,4.4778074 C29.478147,3.7678147 30.035726,3.1725017 30.757601,3.1768845 C31.944477,3.1846892 32.857603,3.6850099 32.857603,5.0340735 C32.857603,6.5412465 31.711977,7.7336771 29.95885,7.7707084 M33.857447,2.2962432 C33.075572,1.6262583 31.857289,1.3774925 30.729476,1.3774925 C30.123147,1.3774925 29.51635,1.4118754 28.96885,1.4743832 C28.239474,1.5574927 27.681192,2.1478134 27.55088,2.8703218 L25.659472,13.346494 C25.562441,13.883447 25.974472,14.37587 26.519395,14.37587 C27.12338,14.37587 27.642755,13.941338 27.749161,13.34626 L28.225646,10.681648 C28.344943,10.015085 28.975412,9.5953192 29.651819,9.5896942 C31.082211,9.5775066 32.454477,9.1750845 33.421041,8.3646151 C34.294088,7.6181301 34.985026,6.3931214 34.985026,4.8615733 C34.985026,3.7131349 34.584948,2.8706265 33.857447,2.2962432 M46.205972,7.4843019 C46.205972,8.3777401 45.299175,8.7628185 43.807846,8.8593811 C43.212533,8.898053 42.758079,8.2905525 43.067923,7.7805521 C43.499642,7.0696922 44.186361,6.5081293 45.078159,6.5081293 C45.751285,6.5081293 46.205972,6.8716452 46.205972,7.4650831 M45.351206,4.8421905 C42.295891,4.8421905 40.331827,7.9052397 40.331827,10.719617 C40.331827,12.997744 41.513781,14.586573 43.969096,14.586573 C44.756831,14.586573 45.604097,14.442198 46.343785,14.175948 C46.808785,14.008369 47.057223,13.516182 46.996989,13.026337 C46.948239,12.628134 46.524019,12.413681 46.145738,12.545634 C45.659409,12.715322 45.100659,12.825244 44.460112,12.825244 C43.623392,12.825244 42.986829,12.499931 42.64136,11.868055 C42.616282,11.822821 42.593548,11.773133 42.57222,11.720399 C42.326594,11.10493 42.93761,10.565632 43.599017,10.53657 C46.366285,10.41446 48.206365,9.568366 48.206365,7.4650831 C48.206365,5.9146913 47.096832,4.8421905 45.351206,4.8421905 M54.035041,5.9146913 C54.115666,5.4653238 53.770431,5.0531282 53.314103,5.0531282 L53.271212,5.0531282 C52.78629,5.0531282 52.40004,4.6218778 52.522618,4.1531275 C52.775977,3.1859314 53.300978,2.4571887 54.143088,2.4309386 C54.633166,2.4159386 55.135667,2.1809306 55.244417,1.7031334 C55.359964,1.1937424 55.087151,0.64342945 54.567307,0.59343723 C54.433713,0.58061691 54.289807,0.57344502 54.13465,0.57344502 C53.316681,0.57344502 52.462149,0.84124211 51.806836,1.4350082 C50.990039,2.182501 50.555038,3.3321815 50.348554,4.4909324 C50.290429,4.8178155 50.001913,5.0531282 49.670038,5.0531282 C49.16449,5.0531282 48.729724,5.4165738 48.639959,5.9146913 C48.559334,6.3637542 48.904334,6.7760201 49.360662,6.7760201 L49.360897,6.7760201 C49.659725,6.7760201 49.885428,7.0460203 49.83246,7.3399268 L48.756209,13.337822 C48.658709,13.878994 49.07449,14.37587 49.624803,14.37587 C50.234413,14.37587 50.758241,13.937588 50.866054,13.337822 L51.881367,7.6797708 C51.974649,7.1578173 52.430977,6.7760201 52.962306,6.7760201 L53.004962,6.7760201 C53.510744,6.7760201 53.945744,6.4121995 54.035041,5.9146913" />
+        </DrawingImage.Drawing>
+      </DrawingImage>
+      <Storyboard x:Key="storyboardDocuments1">
+        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="stackpanelDocuments" Storyboard.TargetProperty="(FrameworkElement.Width)">
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="52" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.2" Value="62" />
+        </DoubleAnimationUsingKeyFrames>
+      </Storyboard>
+      <Storyboard x:Key="storyboardDocuments2">
+        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="stackpanelDocuments" Storyboard.TargetProperty="(FrameworkElement.Width)">
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="62" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.2" Value="52" />
+        </DoubleAnimationUsingKeyFrames>
+      </Storyboard>
+      <Storyboard x:Key="storyboardSales1">
+        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="stackpanelSales" Storyboard.TargetProperty="(FrameworkElement.Width)">
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="50" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.2" Value="62" />
+        </DoubleAnimationUsingKeyFrames>
+      </Storyboard>
+      <Storyboard x:Key="storyboardSales2">
+        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="stackpanelSales" Storyboard.TargetProperty="(FrameworkElement.Width)">
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="62" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.2" Value="52" />
+        </DoubleAnimationUsingKeyFrames>
+      </Storyboard>
+      <Storyboard x:Key="storyboardPurchases1">
+        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="stackpanelPurchases" Storyboard.TargetProperty="(FrameworkElement.Width)">
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="50" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.2" Value="62" />
+        </DoubleAnimationUsingKeyFrames>
+      </Storyboard>
+      <Storyboard x:Key="storyboardPurchases2">
+        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="stackpanelPurchases" Storyboard.TargetProperty="(FrameworkElement.Width)">
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="62" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.2" Value="52" />
+        </DoubleAnimationUsingKeyFrames>
+      </Storyboard>
+      <Storyboard x:Key="storyboardTariffExceptions1">
+        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="stackpanelTariffExceptions" Storyboard.TargetProperty="(FrameworkElement.Width)">
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="50" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.2" Value="62" />
+        </DoubleAnimationUsingKeyFrames>
+      </Storyboard>
+      <Storyboard x:Key="storyboardTariffExceptions2">
+        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="stackpanelTariffExceptions" Storyboard.TargetProperty="(FrameworkElement.Width)">
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="62" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.2" Value="52" />
+        </DoubleAnimationUsingKeyFrames>
+      </Storyboard>
+      <Storyboard x:Key="storyboardContacts1">
+        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="stackpanelContacts" Storyboard.TargetProperty="(FrameworkElement.Width)">
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="50" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.2" Value="62" />
+        </DoubleAnimationUsingKeyFrames>
+      </Storyboard>
+      <Storyboard x:Key="storyboardContacts2">
+        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="stackpanelContacts" Storyboard.TargetProperty="(FrameworkElement.Width)">
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="62" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.2" Value="52" />
+        </DoubleAnimationUsingKeyFrames>
+      </Storyboard>
+      <Storyboard x:Key="storyboardAttachments1">
+        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="stackpanelAttachments" Storyboard.TargetProperty="(FrameworkElement.Width)">
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="50" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.2" Value="62" />
+        </DoubleAnimationUsingKeyFrames>
+      </Storyboard>
+      <Storyboard x:Key="storyboardAttachments2">
+        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="stackpanelAttachments" Storyboard.TargetProperty="(FrameworkElement.Width)">
+          <SplineDoubleKeyFrame KeyTime="00:00:00" Value="62" />
+          <SplineDoubleKeyFrame KeyTime="00:00:00.2" Value="52" />
+        </DoubleAnimationUsingKeyFrames>
+      </Storyboard>
+      <PrefProjectBrowserApp:PrefCurrencyConverter x:Key="CurrencyConverter" />
+      <PrefProjectBrowserApp:PriceAsDoubleConverter x:Key="PriceConverter" />
+      <PrefProjectBrowserApp:NumberConverter x:Key="resNumberConverter" />
+      <PrefProjectBrowserApp:BoolNegatorConverter x:Key="boolNegatorConverter" />
+      <PrefProjectBrowserApp:DocumentSubTypeToImageConverter x:Key="documentSubTypeToImageConverter" />
+      <PrefProjectBrowserApp:DocumentTypeToStringConverter x:Key="documentTypeToStringConverter" />
+      <PrefProjectBrowserApp:DocumentSubTypeToStringConverter x:Key="documentSubTypeToStringConverter" />
+      <Style x:Key="resRightAlignListViewItemStyle" TargetType="{x:Type ListViewItem}">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+      </Style>
+      <DataTemplate x:Key="TextHeaderTemplate">
+        <TextBlock TextTrimming="CharacterEllipsis" Text="{Binding}" />
+      </DataTemplate>
+      <DataTemplate x:Key="templateDocumentsDocumentType">
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=DocumentTypeName}" />
+      </DataTemplate>
+      <DataTemplate x:Key="templateDocumentsDocumentDescription">
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=Description}" />
+      </DataTemplate>
+      <DataTemplate x:Key="templateDocumentsDocumentName">
+        <StackPanel Orientation="Horizontal" TextBlock.FontSize="12">
+          <ToggleButton Name="Expander" ClickMode="Press" Style="{StaticResource ExpandCollapseToggleStyle}" Margin="{Binding Level, Converter={StaticResource LevelToIndentConverter}, RelativeSource={RelativeSource AncestorType={x:Type src:TreeListViewItem}}}" IsChecked="{Binding Path=IsExpanded}" />
+          <Image Width="32" Height="32" Source="{Binding Path=IconSource}" />
+          <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=DocumentName}" />
+        </StackPanel>
+        <DataTemplate.Triggers>
+          <DataTrigger Value="False" Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type src:TreeListViewItem}}}">
+            <Setter TargetName="Expander" Property="UIElement.Visibility" Value="Hidden" />
+          </DataTrigger>
+        </DataTemplate.Triggers>
+      </DataTemplate>
+      <DataTemplate x:Key="RemnantIncrementTemplate">
+        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" TextBlock.FontSize="12">
+          <TextBox Name="RemnantIncrementTextBox" TextAlignment="Right" HorizontalAlignment="Right" Text="{Binding Path=RemnantIncrementAsPercentage, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource resNumberConverter}}" IsReadOnly="{Binding Path=IsCostIncrementEditable, Converter={StaticResource boolNegatorConverter}}" GotKeyboardFocus="OnTemplateItemGotFocus" />
+          <TextBlock Name="RemnantIncrementTextBlock" Text="%" TextAlignment="Right" HorizontalAlignment="Right" VerticalAlignment="Center" />
+          <Button Name="RemnantIncrementButton" Width="18" Height="18" HorizontalAlignment="Right" VerticalAlignment="Center" Click="RemnantIncrementButton_Click">
+            <Image Margin="-2,-2,-2,-2" Width="Auto" Height="Auto" Source="{StaticResource IconUndo}" />
+          </Button>
+        </StackPanel>
+        <DataTemplate.Triggers>
+          <DataTrigger Value="true" Binding="{Binding Path=IsLabourCost, UpdateSourceTrigger=PropertyChanged}">
+            <Setter TargetName="RemnantIncrementTextBox" Property="UIElement.Visibility" Value="Hidden" />
+            <Setter TargetName="RemnantIncrementTextBlock" Property="UIElement.Visibility" Value="Hidden" />
+            <Setter TargetName="RemnantIncrementButton" Property="UIElement.Visibility" Value="Hidden" />
+          </DataTrigger>
+          <DataTrigger Value="true" Binding="{Binding Path=IsWithoutGroup, UpdateSourceTrigger=PropertyChanged}">
+            <Setter TargetName="RemnantIncrementTextBox" Property="UIElement.Visibility" Value="Hidden" />
+            <Setter TargetName="RemnantIncrementTextBlock" Property="UIElement.Visibility" Value="Hidden" />
+            <Setter TargetName="RemnantIncrementButton" Property="UIElement.Visibility" Value="Hidden" />
+          </DataTrigger>
+          <DataTrigger Value="true" Binding="{Binding Path=IsRemnantIncrementOverriden, UpdateSourceTrigger=PropertyChanged}">
+            <Setter TargetName="RemnantIncrementTextBox" Property="Control.Background" Value="#FFF0FFF0" />
+            <Setter TargetName="RemnantIncrementButton" Property="UIElement.Visibility" Value="Visible" />
+          </DataTrigger>
+          <DataTrigger Value="false" Binding="{Binding Path=IsRemnantIncrementOverriden, UpdateSourceTrigger=PropertyChanged}">
+            <Setter TargetName="RemnantIncrementTextBox" Property="Control.Background" Value="#FFFFFFFF" />
+            <Setter TargetName="RemnantIncrementButton" Property="UIElement.Visibility" Value="Hidden" />
+          </DataTrigger>
+          <DataTrigger Value="false" Binding="{Binding Path=IsCostIncrementEditable, UpdateSourceTrigger=PropertyChanged}">
+            <Setter TargetName="RemnantIncrementTextBox" Property="Control.Background" Value="#FFA9A9A9" />
+            <Setter TargetName="RemnantIncrementButton" Property="UIElement.Visibility" Value="Hidden" />
+          </DataTrigger>
+        </DataTemplate.Triggers>
+      </DataTemplate>
+      <DataTemplate x:Key="SupplierDiscountTemplate">
+        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" TextBlock.FontSize="12">
+          <TextBox Name="ProviderDiscountTextBox" TextAlignment="Right" HorizontalAlignment="Right" Text="{Binding Path=ProviderDiscountAsPercentage, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource resNumberConverter}}" IsReadOnly="{Binding Path=IsProviderDiscountEditable, Converter={StaticResource boolNegatorConverter}}" GotKeyboardFocus="OnTemplateItemGotFocus" />
+          <TextBlock Name="ProviderDiscountTextBlock" Text="%" TextAlignment="Right" HorizontalAlignment="Right" VerticalAlignment="Center" />
+          <Button Name="ProviderDiscountButton" Width="18" Height="18" HorizontalAlignment="Right" VerticalAlignment="Center" Click="ProviderDiscountButton_Click">
+            <Image Margin="-2,-2,-2,-2" Width="Auto" Height="Auto" Source="{StaticResource IconUndo}" />
+          </Button>
+        </StackPanel>
+        <DataTemplate.Triggers>
+          <DataTrigger Value="true" Binding="{Binding Path=IsLabourCost, UpdateSourceTrigger=PropertyChanged}">
+            <Setter TargetName="ProviderDiscountTextBox" Property="UIElement.Visibility" Value="Hidden" />
+            <Setter TargetName="ProviderDiscountTextBlock" Property="UIElement.Visibility" Value="Hidden" />
+            <Setter TargetName="ProviderDiscountButton" Property="UIElement.Visibility" Value="Hidden" />
+          </DataTrigger>
+          <DataTrigger Value="true" Binding="{Binding Path=IsWithoutGroup, UpdateSourceTrigger=PropertyChanged}">
+            <Setter TargetName="ProviderDiscountTextBox" Property="UIElement.Visibility" Value="Hidden" />
+            <Setter TargetName="ProviderDiscountTextBlock" Property="UIElement.Visibility" Value="Hidden" />
+            <Setter TargetName="ProviderDiscountButton" Property="UIElement.Visibility" Value="Hidden" />
+          </DataTrigger>
+          <DataTrigger Value="true" Binding="{Binding Path=IsProviderDiscountOverriden, UpdateSourceTrigger=PropertyChanged}">
+            <Setter TargetName="ProviderDiscountTextBox" Property="Control.Background" Value="#FFF0FFF0" />
+            <Setter TargetName="ProviderDiscountButton" Property="UIElement.Visibility" Value="Visible" />
+          </DataTrigger>
+          <DataTrigger Value="false" Binding="{Binding Path=IsProviderDiscountOverriden, UpdateSourceTrigger=PropertyChanged}">
+            <Setter TargetName="ProviderDiscountTextBox" Property="Control.Background" Value="#FFFFFFFF" />
+            <Setter TargetName="ProviderDiscountButton" Property="UIElement.Visibility" Value="Hidden" />
+          </DataTrigger>
+          <DataTrigger Value="false" Binding="{Binding Path=IsProviderDiscountEditable, UpdateSourceTrigger=PropertyChanged}">
+            <Setter TargetName="ProviderDiscountTextBox" Property="Control.Background" Value="#FFA9A9A9" />
+            <Setter TargetName="ProviderDiscountButton" Property="UIElement.Visibility" Value="Hidden" />
+          </DataTrigger>
+        </DataTemplate.Triggers>
+      </DataTemplate>
+      <DataTemplate x:Key="FactorTemplate">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal" TextBlock.FontSize="12">
+          <TextBox Name="CoefficientTextBox" Width="Auto" TextAlignment="Right" HorizontalAlignment="Right" Text="{Binding Path=CoefficientAsPercentage, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource resNumberConverter}}" IsReadOnly="{Binding Path=IsSalesIncrementEditable, Converter={StaticResource boolNegatorConverter}}" GotKeyboardFocus="OnTemplateItemGotFocus" />
+          <TextBlock Name="CoefficientTextBlock" Text="%" TextAlignment="Right" HorizontalAlignment="Right" />
+          <Button Name="CoefficientButton" Width="18" Height="18" HorizontalAlignment="Right" Click="CoefficientTextBox_Click">
+            <Image Margin="-2,-2,-2,-2" Width="Auto" Height="Auto" Source="{StaticResource IconUndo}" />
+          </Button>
+        </StackPanel>
+        <DataTemplate.Triggers>
+          <DataTrigger Value="true" Binding="{Binding Path=IsWithoutGroup, UpdateSourceTrigger=PropertyChanged}">
+            <Setter TargetName="CoefficientTextBox" Property="UIElement.Visibility" Value="Hidden" />
+            <Setter TargetName="CoefficientTextBlock" Property="UIElement.Visibility" Value="Hidden" />
+            <Setter TargetName="CoefficientButton" Property="UIElement.Visibility" Value="Hidden" />
+          </DataTrigger>
+          <DataTrigger Value="true" Binding="{Binding Path=IsCoefficientOverriden, UpdateSourceTrigger=PropertyChanged}">
+            <Setter TargetName="CoefficientTextBox" Property="Control.Background" Value="#FFF0FFF0" />
+            <Setter TargetName="CoefficientButton" Property="UIElement.Visibility" Value="Visible" />
+          </DataTrigger>
+          <DataTrigger Value="false" Binding="{Binding Path=IsCoefficientOverriden, UpdateSourceTrigger=PropertyChanged}">
+            <Setter TargetName="CoefficientTextBox" Property="Control.Background" Value="#FFFFFFFF" />
+            <Setter TargetName="CoefficientButton" Property="UIElement.Visibility" Value="Hidden" />
+          </DataTrigger>
+          <DataTrigger Value="false" Binding="{Binding Path=IsSalesIncrementEditable, UpdateSourceTrigger=PropertyChanged}">
+            <Setter TargetName="CoefficientTextBox" Property="Control.Background" Value="#FFA9A9A9" />
+            <Setter TargetName="CoefficientButton" Property="UIElement.Visibility" Value="Hidden" />
+          </DataTrigger>
+        </DataTemplate.Triggers>
+      </DataTemplate>
+      <DataTemplate x:Key="PercentageTemplate">
+        <TextBox Width="Auto" TextAlignment="Right" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{Binding Path=CoefficientAsPercentage, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource resNumberConverter}}" GotKeyboardFocus="OnTemplateItemGotFocus" />
+      </DataTemplate>
+      <DataTemplate x:Key="PercentageTemplateText">
+        <TextBlock Width="Auto" TextAlignment="Right" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{Binding Path=CoefficientAsPercentage, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource resNumberConverter}}" />
+      </DataTemplate>
+      <PrefProjectBrowserApp:PercentageTemplateSelector x:Key="templateSelectorPercentage" PercentageTemplate="{StaticResource PercentageTemplate}" PercentageTemplateText="{StaticResource PercentageTemplateText}" />
+      <DataTemplate x:Key="OriginCostTemplate">
+        <TextBlock TextAlignment="Right" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{Binding Path=OriginCost, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource PriceConverter}}" />
+      </DataTemplate>
+      <DataTemplate x:Key="PurchasePriceTemplate">
+        <TextBlock TextAlignment="Right" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{Binding Path=PurchasePrice, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource PriceConverter}}" />
+      </DataTemplate>
+      <DataTemplate x:Key="EffectiveCostTemplate">
+        <TextBlock TextAlignment="Right" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{Binding Path=EffectiveCost, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource PriceConverter}}" />
+      </DataTemplate>
+      <DataTemplate x:Key="SaleTemplate">
+        <TextBlock TextAlignment="Right" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{Binding Path=Sale, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource PriceConverter}}" />
+      </DataTemplate>
+      <DataTemplate x:Key="AmountPriceTemplate">
+        <TextBlock TextAlignment="Right" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{Binding Path=Result, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource PriceConverter}}" />
+      </DataTemplate>
+      <PrefProjectBrowserApp:WidthConverter x:Key="WidthConverter" />
+      <ContextMenu x:Key="SalesDocumentContextMenu" StaysOpen="True">
+        <MenuItem Header="Valuate Document" />
+        <MenuItem Header="View Document" />
+      </ContextMenu>
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <FrameworkElement.Triggers>
+    <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="imageDocuments">
+      <BeginStoryboard Name="storyboardDocuments1_BeginStoryboard" Storyboard="{StaticResource storyboardDocuments1}" />
+    </EventTrigger>
+    <EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="imageDocuments">
+      <BeginStoryboard Storyboard="{StaticResource storyboardDocuments2}" />
+    </EventTrigger>
+    <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="imageSales">
+      <BeginStoryboard Storyboard="{StaticResource storyboardSales1}" />
+    </EventTrigger>
+    <EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="imageSales">
+      <BeginStoryboard Storyboard="{StaticResource storyboardSales2}" />
+    </EventTrigger>
+    <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="imagePurchases">
+      <BeginStoryboard Storyboard="{StaticResource storyboardPurchases1}" />
+    </EventTrigger>
+    <EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="imagePurchases">
+      <BeginStoryboard Storyboard="{StaticResource storyboardPurchases2}" />
+    </EventTrigger>
+    <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="imageTariffExceptions">
+      <BeginStoryboard Storyboard="{StaticResource storyboardTariffExceptions1}" />
+    </EventTrigger>
+    <EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="imageTariffExceptions">
+      <BeginStoryboard Storyboard="{StaticResource storyboardTariffExceptions2}" />
+    </EventTrigger>
+    <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="imageContacts">
+      <BeginStoryboard Storyboard="{StaticResource storyboardContacts1}" />
+    </EventTrigger>
+    <EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="imageContacts">
+      <BeginStoryboard Storyboard="{StaticResource storyboardContacts2}" />
+    </EventTrigger>
+    <EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="imageAttachments">
+      <BeginStoryboard Storyboard="{StaticResource storyboardAttachments1}" />
+    </EventTrigger>
+    <EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="imageAttachments">
+      <BeginStoryboard Storyboard="{StaticResource storyboardAttachments2}" />
+    </EventTrigger>
+  </FrameworkElement.Triggers>
+  <Grid Name="gridPrincipal2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Image Name="shadow01" Margin="5,5,5,25" Source="{StaticResource Shadow}" />
+    <Rectangle Name="rectangleFrame01" Opacity="1" Fill="#FFFFFFFF" StrokeThickness="0" Margin="0" />
+    <Grid Name="gridContent" Margin="0">
+      <StackPanel Name="stackpanelProgressLoop" Margin="0,12,100,0" Width="Auto" Height="Auto" Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Top" ZIndex="1000">
+        <Viewbox Name="viewboxProgressLoop" Width="50" Height="50" Opacity="1" RenderTransformOrigin="0.5,0.5">
+          <Image Name="imageProgressLoop" Source="{StaticResource ProgressLoopImage}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" RenderTransformOrigin="0.5,0.5">
+            <UIElement.RenderTransform>
+              <RotateTransform x:Name="rotationProgressLoop" Angle="0" />
+            </UIElement.RenderTransform>
+          </Image>
+        </Viewbox>
+        <TextBlock Name="textProgressLoop" Foreground="#FFFFFFFF" FontSize="10" FontWeight="Bold" TextAlignment="Center" Width="100" TextWrapping="Wrap" Text="Processing..." />
+      </StackPanel>
+      <Border Name="borderHeader" Height="110" VerticalAlignment="Top" Background="{StaticResource HeaderGradientBrush}" />
+      <Image Name="imagePrefSuiteLogo" HorizontalAlignment="Right" Margin="0,10,15,0" VerticalAlignment="Top" Width="82" Height="Auto" Source="{StaticResource PrefSuite_logo}" Stretch="Uniform" StretchDirection="Both" />
+      <StackPanel Width="Auto" Orientation="Horizontal" VerticalAlignment="Top">
+        <StackPanel Name="stackpanelName" HorizontalAlignment="Left" Margin="15,20,0,0" VerticalAlignment="Top" Width="Auto" Height="Auto">
+          <StackPanel Margin="0,0,0,4" Width="Auto" Height="Auto" Orientation="Horizontal">
+            <TextBlock Name="staticProjectName" Width="100" Height="Auto" FontFamily="Arial" FontSize="14" FontWeight="Bold" Foreground="#FFFFFFFF" TextWrapping="Wrap" TextAlignment="Right" Text="Project Name:" HorizontalAlignment="Left" Margin="0,0,7,0" VerticalAlignment="Center" />
+            <Border Width="Auto" Height="Auto" Background="#FFFFFFFF" CornerRadius="5,5,5,5">
+              <TextBox Name="textboxProjectName" Background="#00FFFFFF" TextWrapping="Wrap" FontFamily="Arial" FontSize="12" FontWeight="Normal" Foreground="#FF000000" TextAlignment="Left" Width="200" Height="22" Padding="5,5,5,0" BorderBrush="{x:Null}" Text="{Binding Path=ProjectName}" />
+            </Border>
+            <TextBlock Name="staticProjectCode" Width="70" Height="Auto" FontFamily="Arial" FontSize="14" FontWeight="Bold" Foreground="#FFFFFFFF" TextWrapping="Wrap" TextAlignment="Right" Text="Code:" Margin="5,0,0,0" VerticalAlignment="Center" />
+            <TextBlock Name="textblockProjectCode" MaxWidth="100" Height="Auto" FontFamily="Arial" FontSize="14" FontWeight="Bold" Foreground="#FFFFFFFF" TextWrapping="Wrap" TextAlignment="Right" Margin="10,0,0,0" Text="{Binding Path=ProjectCode}" />
+          </StackPanel>
+          <StackPanel Margin="0,4,0,0" Width="Auto" Height="Auto" Orientation="Horizontal">
+            <TextBlock Name="staticClientName" Width="100" Height="Auto" FontFamily="Arial" FontSize="14" FontWeight="Bold" Foreground="#FFFFFFFF" TextWrapping="Wrap" TextAlignment="Right" Text="Customer Name:" HorizontalAlignment="Left" Margin="0,0,7,0" VerticalAlignment="Center" />
+            <Border Width="Auto" Height="Auto" Background="#FFFFFFFF" CornerRadius="5,0,0,5">
+              <TextBox Name="textboxCustomerCode" Background="#00D04B4B" TextWrapping="Wrap" FontFamily="Arial" FontSize="12" FontWeight="Normal" Foreground="#FF000000" TextAlignment="Right" Width="70" Height="Auto" VerticalAlignment="Center" BorderBrush="{x:Null}" Text="{Binding Path=ClientCode}" />
+            </Border>
+            <Border Width="Auto" Height="Auto" Background="#FFFFFFFF" CornerRadius="0,5,5,0" Margin="3,0,0,0">
+              <ComboBox Name="comboboxClientName" IsEditable="True" Background="#FFFFFFFF" FontFamily="Arial" FontSize="12" FontWeight="Normal" Foreground="#FF000000" Width="270" Height="Auto" Padding="5,5,5,0" BorderBrush="{x:Null}" Text="{Binding Path=ClientName}" />
+            </Border>
+            <Button Name="buttonRefreshCustomers" Width="32" Height="32" Margin="5,0,5,0" Click="buttonRefreshCustomers_Click">
+              <Image Width="16" Height="16" Source="{StaticResource IconReload}" />
+            </Button>
+          </StackPanel>
+        </StackPanel>
+        <StackPanel Name="stackpanelButtonDetails" HorizontalAlignment="Left" Margin="30,20,0,0" VerticalAlignment="Top" Width="Auto" Height="Auto" Orientation="Horizontal">
+          <Button Name="buttonSave" Width="54" Height="54" Margin="5,0,5,0">
+            <Image Margin="5" Width="Auto" Height="Auto" Source="{StaticResource IconSave}" />
+          </Button>
+          <Button Name="buttonUndo" Width="54" Height="54" Margin="5,0,5,0">
+            <Image Margin="5" Width="Auto" Height="Auto" Source="{StaticResource IconReload}" />
+          </Button>
+        </StackPanel>
+      </StackPanel>
+      <Grid Name="gridTab" Margin="0,100,0,0" VerticalAlignment="Stretch" Height="Auto">
+        <Border Name="borderTab" CornerRadius="0,0,0,0" Margin="0,30,0,0" Background="{StaticResource GradientGridTabBackgroundBrush}" />
+        <Rectangle Fill="{StaticResource BackgroundTopRightTabBrush}" Width="400" HorizontalAlignment="Right" Margin="0,28,0,0" VerticalAlignment="Top" Height="400" />
+        <TabControl Name="tabcontrolContent" IsSynchronizedWithCurrentItem="True" SelectedIndex="0" SelectionChanged="tabcontrolContent_SelectionChanged">
+          <TabItem Name="tabitemDetails" Width="Auto" Header="Details &amp; Status" IsEnabled="True">
+            <Grid Name="gridTabItemDetails">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" />
+                  <ColumnDefinition Width="*" />
+                  <ColumnDefinition Width="120" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Height="Auto" Opacity="0.75" HorizontalAlignment="Center" Margin="0,45,0,0" VerticalAlignment="Top" Width="72" Grid.Column="2">
+                  <Image Width="Auto" Height="Auto" Source="{StaticResource IconProject}" />
+                  <Image Width="Auto" Height="Auto" Source="{StaticResource IconProject}" RenderTransformOrigin="0.5,0.5" OpacityMask="{StaticResource ReflectionOpacityMaskBrush}">
+                    <UIElement.RenderTransform>
+                      <TransformGroup>
+                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                      </TransformGroup>
+                    </UIElement.RenderTransform>
+                  </Image>
+                </StackPanel>
+                <Grid Name="stackPanelStatus" Column="1" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Top">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                  </Grid.RowDefinitions>
+                  <TextBlock Name="staticProjectStatus" Width="Auto" Height="Auto" FontSize="18" Foreground="{StaticResource OrangeSolidBrush}" Text="Project Status" TextWrapping="Wrap" Margin="0,0,0,10" />
+                  <Grid Row="1">
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="Auto" />
+                      <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="Auto" />
+                      <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Name="staticAgreedAmount" Height="Auto" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" TextAlignment="Left" Text="Agreed Price of the Project:" FontWeight="Normal" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBox Name="textboxPrice1" Grid.Column="1" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" TextWrapping="NoWrap" VerticalContentAlignment="Center" Width="72" Height="22" MaxLines="1" Margin="0,2,0,2" Foreground="{StaticResource TextBoxForegroundBrush}" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Right" Text="{Binding Path=AgreedAmount, Converter={StaticResource resNumberConverter}}" BorderBrush="{x:Null}" />
+                    <TextBlock Name="staticAgreedAmountCurrency" Grid.Row="1" Height="Auto" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" Width="160" TextAlignment="Left" Text="Currency of the Agreed Price:" FontWeight="Normal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,2,4,2" />
+                    <ComboBox Name="comboboxPrice2" Grid.Column="1" Grid.Row="1" Background="#FFFFDDBF" FontSize="12" VerticalContentAlignment="Center" Width="72" Height="22" Margin="0,2,0,2" Foreground="{StaticResource TextBoxForegroundBrush}" HorizontalAlignment="Left" VerticalAlignment="Center" BorderThickness="0" Text="{Binding Path=AgreedAmountCurrency, Converter={StaticResource CurrencyConverter}}" BorderBrush="{x:Null}" />
+                  </Grid>
+                  <StackPanel Grid.Row="2" HorizontalAlignment="Left" Width="Auto" Height="Auto" Margin="0,5,0,0" VerticalAlignment="Top" Orientation="Horizontal">
+                    <DockPanel Name="stackPanelSalesStatus" HorizontalAlignment="Center" Margin="0,0,5,0" VerticalAlignment="Stretch" Width="72" Height="Auto" Background="{StaticResource DisabledTabBackgroundBrush}" ToolTip="Value of all products mounted or invoiced">
+                      <Image Width="Auto" Height="48" Source="{StaticResource IconSalesStatus}" Stretch="Uniform" HorizontalAlignment="Stretch" Margin="0,6,0,2" VerticalAlignment="Top" DockPanel.Dock="Top" />
+                      <TextBlock Name="textblockSales" VerticalAlignment="Bottom" Height="22" FontSize="12" Foreground="{StaticResource TextBoxForegroundBrush}" TextWrapping="Wrap" Width="Auto" TextAlignment="Center" FontWeight="Bold" Background="{StaticResource TextBoxBackgroundBrush}" Padding="0,4,0,0" DockPanel.Dock="Bottom" Text="{Binding Path=ProjectStatus.TotalSales, Converter={StaticResource PriceConverter}}" />
+                      <TextBlock Name="staticSales" Height="Auto" FontSize="11" Foreground="{StaticResource DisabledTabForegroundBrush}" TextWrapping="Wrap" Width="Auto" TextAlignment="Center" Text="Sales" FontWeight="Bold" Padding="0,0,0,3" DockPanel.Dock="Bottom" />
+                    </DockPanel>
+                    <DockPanel Name="stackPanelPurchasesStatus" Width="72" Height="Auto" HorizontalAlignment="Center" Margin="5,0,5,0" VerticalAlignment="Stretch" Background="{StaticResource DisabledTabBackgroundBrush}" ToolTip="Cost of all materials acquired">
+                      <Image Width="Auto" Height="48" Source="{StaticResource IconPurchasesStatus}" Stretch="Uniform" HorizontalAlignment="Stretch" Margin="0,6,0,2" VerticalAlignment="Top" DockPanel.Dock="Top" />
+                      <TextBlock Name="textblockPurchases" VerticalAlignment="Bottom" Height="22" FontSize="12" Foreground="{StaticResource TextBoxForegroundBrush}" TextWrapping="Wrap" Width="Auto" TextAlignment="Center" FontWeight="Bold" Background="{StaticResource TextBoxBackgroundBrush}" Padding="0,4,0,0" Margin="0,0,0,0" DockPanel.Dock="Bottom" Text="{Binding Path=ProjectStatus.TotalPurchases, Converter={StaticResource PriceConverter}}" />
+                      <TextBlock Name="staticPurchases" Height="Auto" FontSize="11" Foreground="{StaticResource DisabledTabForegroundBrush}" TextWrapping="Wrap" Width="Auto" TextAlignment="Center" Text="Purchases" FontWeight="Bold" Padding="0,0,0,3" DockPanel.Dock="Bottom" />
+                    </DockPanel>
+                    <DockPanel Name="stackPanelProductionStatus" Width="72" Height="Auto" HorizontalAlignment="Center" Margin="5,0,5,0" VerticalAlignment="Stretch" Background="{StaticResource DisabledTabBackgroundBrush}" ToolTip="Expected value for all items produced">
+                      <Image Width="Auto" Height="48" Source="{StaticResource IconProductionStatus}" Stretch="Uniform" HorizontalAlignment="Stretch" Margin="0,6,0,2" VerticalAlignment="Top" DockPanel.Dock="Top" />
+                      <TextBlock Name="textblockProduction" VerticalAlignment="Bottom" Height="22" FontSize="12" Foreground="{StaticResource TextBoxForegroundBrush}" TextWrapping="Wrap" Width="Auto" TextAlignment="Center" FontWeight="Bold" Background="{StaticResource TextBoxBackgroundBrush}" Padding="0,4,0,0" DockPanel.Dock="Bottom" Text="{Binding Path=ProjectStatus.TotalProduction, Converter={StaticResource PriceConverter}}" />
+                      <TextBlock Name="staticProduction" Height="Auto" FontSize="11" Foreground="{StaticResource DisabledTabForegroundBrush}" TextWrapping="Wrap" Width="Auto" TextAlignment="Center" Text="Production" FontWeight="Bold" Padding="0,0,0,3" DockPanel.Dock="Bottom" />
+                    </DockPanel>
+                    <DockPanel Name="stackPanelWorkforceStatus" Width="72" Height="Auto" HorizontalAlignment="Center" Margin="5,0,0,0" VerticalAlignment="Stretch" Background="{StaticResource DisabledTabBackgroundBrush}" ToolTip="Worker hours invested so far">
+                      <Image Width="Auto" Height="48" Source="{StaticResource IconWorkForceStatus}" Stretch="Uniform" HorizontalAlignment="Stretch" Margin="0,6,0,2" VerticalAlignment="Top" DockPanel.Dock="Top" />
+                      <TextBlock Name="textblockWorkforce" VerticalAlignment="Bottom" Height="22" FontSize="12" Foreground="{StaticResource TextBoxForegroundBrush}" TextWrapping="Wrap" Width="Auto" TextAlignment="Center" FontWeight="Bold" Background="{StaticResource TextBoxBackgroundBrush}" Padding="0,4,0,0" DockPanel.Dock="Bottom" Text="{Binding Path=ProjectStatus.TotalWorkforce, Converter={StaticResource PriceConverter}}" />
+                      <TextBlock Name="staticWorkforce" Height="Auto" FontSize="11" Foreground="{StaticResource DisabledTabForegroundBrush}" TextWrapping="Wrap" Width="Auto" TextAlignment="Center" Text="Work Force" FontWeight="Bold" Padding="0,0,0,3" DockPanel.Dock="Bottom" />
+                    </DockPanel>
+                  </StackPanel>
+                  <TextBlock Name="staticProgress" Grid.Row="3" Height="Auto" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" Width="Auto" TextAlignment="Left" Text="Progress:" FontWeight="Normal" HorizontalAlignment="Left" Margin="0,10,0,0" />
+                  <StackPanel Grid.Row="4" Width="Auto" Height="Auto">
+                    <Grid Name="gridStatusBar" Height="20" Margin="0,5,0,10" Width="Auto">
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{Binding Path=ProjectStatus.AcceptedAsPercentage}" />
+                        <ColumnDefinition Width="{Binding Path=ProjectStatus.EstimatedAsPercentage}" />
+                        <ColumnDefinition Width="0" />
+                        <ColumnDefinition Width="{Binding Path=ProjectStatus.PurchasedAsPercentage}" />
+                        <ColumnDefinition Width="{Binding Path=ProjectStatus.StartedAsPercentage}" />
+                        <ColumnDefinition Width="{Binding Path=ProjectStatus.FinishedAsPercentage}" />
+                        <ColumnDefinition Width="{Binding Path=ProjectStatus.SentAsPercentage}" />
+                        <ColumnDefinition Width="{Binding Path=ProjectStatus.DeliveredAsPercentage}" />
+                        <ColumnDefinition Width="{Binding Path=ProjectStatus.MountedAsPercentage}" />
+                      </Grid.ColumnDefinitions>
+                      <Grid.RowDefinitions>
+                        <RowDefinition Height="0.5*" />
+                        <RowDefinition Height="0.5*" />
+                      </Grid.RowDefinitions>
+                      <Rectangle Fill="{StaticResource ColorAcceptedBrush}" Stroke="#FFFFFFFF" StrokeThickness="1" Grid.RowSpan="2" />
+                      <Rectangle Fill="{StaticResource ColorEstimatedBrush}" Stroke="#FFFFFFFF" StrokeThickness="1" Grid.Column="1" Grid.RowSpan="2" />
+                      <Rectangle Fill="{StaticResource ColorOrderedBrush}" Stroke="#FFFFFFFF" StrokeThickness="1" Grid.Column="2" Grid.RowSpan="2" />
+                      <Rectangle Fill="{StaticResource ColorPurchasedBrush}" Stroke="#FFFFFFFF" StrokeThickness="1" Grid.Column="3" Grid.RowSpan="2" />
+                      <Rectangle Fill="{StaticResource ColorStartedBrush}" Stroke="#FFFFFFFF" StrokeThickness="1" Grid.Column="4" Grid.RowSpan="2" />
+                      <Rectangle Fill="{StaticResource ColorFinishedBrush}" Stroke="#FFFFFFFF" StrokeThickness="1" Grid.Column="5" Grid.RowSpan="2" />
+                      <Rectangle Fill="{StaticResource ColorSentBrush}" Stroke="#FFFFFFFF" StrokeThickness="1" Grid.Column="6" Grid.RowSpan="2" />
+                      <Rectangle Fill="{StaticResource ColorDeliveredBrush}" Stroke="#FFFFFFFF" StrokeThickness="1" Grid.Column="7" Grid.RowSpan="2" />
+                      <Rectangle Fill="{StaticResource ColorMountedBrush}" Stroke="#FFFFFFFF" StrokeThickness="1" Grid.Column="8" Grid.RowSpan="2" />
+                      <Rectangle Opacity="1" Grid.ColumnSpan="9" Grid.RowSpan="2" Fill="{StaticResource EmbossGradientBrush}" />
+                      <Rectangle Opacity="1" Fill="{StaticResource WhiteShineBrush}" Grid.ColumnSpan="9" Grid.RowSpan="1" />
+                      <Rectangle Stroke="#FFFFFFFF" StrokeThickness="1" RadiusX="0" RadiusY="0" Grid.ColumnSpan="9" Grid.RowSpan="2" Fill="{x:Null}" />
+                      <Rectangle Stroke="#FFB9BABB" StrokeThickness="2" RadiusX="3" RadiusY="3" Margin="-2,-2,-2,-2" Grid.ColumnSpan="9" Grid.RowSpan="2" Fill="{x:Null}" />
+                    </Grid>
+                    <StackPanel TextBlock.FontSize="12" Width="Auto" Height="Auto" Orientation="Horizontal" Margin="0,0,0,0" HorizontalAlignment="Center">
+                      <StackPanel Margin="0,0,10,0" Width="Auto" Height="Auto">
+                        <StackPanel Margin="0,2,0,2" Width="Auto" Height="Auto" Orientation="Horizontal">
+                          <Grid Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                              <RowDefinition Height="0.532*" />
+                              <RowDefinition Height="0.468*" />
+                            </Grid.RowDefinitions>
+                            <Rectangle Fill="{StaticResource ColorAcceptedBrush}" Stroke="#FFFFFFFF" Margin="0,0,0,0" Grid.RowSpan="2" RadiusX="1" RadiusY="1" />
+                            <Rectangle Fill="{StaticResource EmbossGradientBrush}" Grid.RowSpan="2" />
+                            <Rectangle Opacity="1" Fill="{StaticResource WhiteShineBrush}" Margin="0,0,0,0" />
+                          </Grid>
+                          <TextBlock Name="staticAccepted" Height="Auto" Foreground="#FF000000" TextWrapping="Wrap" Width="85" TextAlignment="Left" FontWeight="Normal" HorizontalAlignment="Left" Margin="4,0,0,0" VerticalAlignment="Center" Padding="0,0,0,0" Text="Accepted:" />
+                          <TextBox Name="textblockAccepted" Height="18" Foreground="{StaticResource TextBoxForegroundBrush}" TextWrapping="Wrap" Width="40" TextAlignment="Right" FontWeight="Bold" Background="{StaticResource TextBoxBackgroundBrush}" Padding="0,0,4,0" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" Text="{Binding Path=ProjectStatus.Accepted}" />
+                        </StackPanel>
+                        <StackPanel Width="Auto" Height="Auto" Orientation="Horizontal" Margin="0,2,0,2">
+                          <Grid Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                              <RowDefinition Height="0.532*" />
+                              <RowDefinition Height="0.468*" />
+                            </Grid.RowDefinitions>
+                            <Rectangle Fill="{StaticResource ColorEstimatedBrush}" Stroke="#FFFFFFFF" Margin="0,0,0,0" Grid.RowSpan="2" RadiusX="1" RadiusY="1" />
+                            <Rectangle Fill="{StaticResource EmbossGradientBrush}" Grid.RowSpan="2" />
+                            <Rectangle Opacity="1" Fill="{StaticResource WhiteShineBrush}" Margin="0,0,0,0" />
+                          </Grid>
+                          <TextBlock Name="staticEstimated" Height="Auto" Foreground="#FF000000" TextWrapping="Wrap" Width="85" TextAlignment="Left" FontWeight="Normal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,0,0,0" Padding="0,0,0,0" Text="Estimated:" />
+                          <TextBox Name="textblockEstimated" Height="18" Foreground="{StaticResource TextBoxForegroundBrush}" TextWrapping="Wrap" Width="40" TextAlignment="Right" FontWeight="Bold" Background="{StaticResource TextBoxBackgroundBrush}" Padding="0,0,4,0" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" Text="{Binding Path=ProjectStatus.Estimated}" />
+                        </StackPanel>
+                        <StackPanel Name="stackPanelOrdered" Width="Auto" Height="Auto" Orientation="Horizontal" Margin="0,2,0,2">
+                          <Grid Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                              <RowDefinition Height="0.532*" />
+                              <RowDefinition Height="0.468*" />
+                            </Grid.RowDefinitions>
+                            <Rectangle Fill="{StaticResource ColorOrderedBrush}" Stroke="#FFFFFFFF" Margin="0,0,0,0" Grid.RowSpan="2" RadiusX="1" RadiusY="1" />
+                            <Rectangle Fill="{StaticResource EmbossGradientBrush}" Grid.RowSpan="2" />
+                            <Rectangle Opacity="1" Fill="{StaticResource WhiteShineBrush}" Margin="0,0,0,0" />
+                          </Grid>
+                          <TextBlock Name="staticOrdered" Height="Auto" Foreground="#FF000000" TextWrapping="Wrap" Width="85" TextAlignment="Left" FontWeight="Normal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,0,0,0" Padding="0,0,0,0" Text="Ordered:" />
+                          <TextBox Name="textblockOrdered" Height="18" Foreground="{StaticResource TextBoxForegroundBrush}" TextWrapping="Wrap" Width="40" TextAlignment="Right" FontWeight="Bold" Background="{StaticResource TextBoxBackgroundBrush}" Padding="0,0,4,0" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" Text="{Binding Path=ProjectStatus.Ordered}" />
+                        </StackPanel>
+                        <StackPanel Name="stackPanelPurchased" Width="Auto" Height="Auto" Orientation="Horizontal" Margin="0,2,0,2" ToolTip="Ready for Production">
+                          <Grid Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                              <RowDefinition Height="0.532*" />
+                              <RowDefinition Height="0.468*" />
+                            </Grid.RowDefinitions>
+                            <Rectangle Fill="{StaticResource ColorPurchasedBrush}" Stroke="#FFFFFFFF" Margin="0,0,0,0" Grid.RowSpan="2" RadiusX="1" RadiusY="1" />
+                            <Rectangle Fill="{StaticResource EmbossGradientBrush}" Grid.RowSpan="2" />
+                            <Rectangle Opacity="1" Fill="{StaticResource WhiteShineBrush}" Margin="0,0,0,0" />
+                          </Grid>
+                          <TextBlock Name="staticPurchased" Height="Auto" Foreground="#FF000000" TextWrapping="Wrap" Width="85" TextAlignment="Left" FontWeight="Normal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,0,0,0" Padding="0,0,0,0" Text="Purchased:" />
+                          <TextBox Name="textblockPurchased" Height="18" Foreground="{StaticResource TextBoxForegroundBrush}" TextWrapping="Wrap" Width="40" TextAlignment="Right" FontWeight="Bold" Background="{StaticResource TextBoxBackgroundBrush}" Padding="0,0,4,0" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" Text="{Binding Path=ProjectStatus.Purchased}" />
+                        </StackPanel>
+                        <StackPanel Width="Auto" Height="Auto" Orientation="Horizontal" Margin="0,2,0,2">
+                          <Grid Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                              <RowDefinition Height="0.532*" />
+                              <RowDefinition Height="0.468*" />
+                            </Grid.RowDefinitions>
+                            <Rectangle Fill="{StaticResource ColorStartedBrush}" Stroke="#FFFFFFFF" Margin="0,0,0,0" Grid.RowSpan="2" RadiusX="1" RadiusY="1" />
+                            <Rectangle Fill="{StaticResource EmbossGradientBrush}" Grid.RowSpan="2" />
+                            <Rectangle Opacity="1" Fill="{StaticResource WhiteShineBrush}" Margin="0,0,0,0" />
+                          </Grid>
+                          <TextBlock Name="staticStarted" Height="Auto" Foreground="#FF000000" TextWrapping="Wrap" Width="85" TextAlignment="Left" FontWeight="Normal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,0,0,0" Padding="0,0,0,0" Text="Started:" />
+                          <TextBox Name="textblockStarted" Height="18" Foreground="{StaticResource TextBoxForegroundBrush}" TextWrapping="Wrap" Width="40" TextAlignment="Right" FontWeight="Bold" Background="{StaticResource TextBoxBackgroundBrush}" Padding="0,0,4,0" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" Text="{Binding Path=ProjectStatus.Started}" />
+                        </StackPanel>
+                      </StackPanel>
+                      <StackPanel Width="Auto" Height="Auto" Margin="10,0,0,0">
+                        <StackPanel Margin="0,2,0,2" Width="Auto" Height="Auto" Orientation="Horizontal">
+                          <Grid Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                              <RowDefinition Height="0.532*" />
+                              <RowDefinition Height="0.468*" />
+                            </Grid.RowDefinitions>
+                            <Rectangle Fill="{StaticResource ColorFinishedBrush}" Stroke="#FFFFFFFF" Margin="0,0,0,0" Grid.RowSpan="2" RadiusX="1" RadiusY="1" />
+                            <Rectangle Fill="{StaticResource EmbossGradientBrush}" Grid.RowSpan="2" />
+                            <Rectangle Opacity="1" Fill="{StaticResource WhiteShineBrush}" Margin="0,0,0,0" />
+                          </Grid>
+                          <TextBlock Name="staticFinished" Height="Auto" Foreground="#FF000000" TextWrapping="Wrap" Width="85" TextAlignment="Left" FontWeight="Normal" HorizontalAlignment="Left" Margin="4,0,0,0" VerticalAlignment="Center" Padding="0,0,0,0" Text="Finished:" />
+                          <TextBox Name="textblockFinished" Height="18" Foreground="{StaticResource TextBoxForegroundBrush}" TextWrapping="Wrap" Width="40" TextAlignment="Right" FontWeight="Bold" Background="{StaticResource TextBoxBackgroundBrush}" Padding="0,0,4,0" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" Text="{Binding Path=ProjectStatus.Finished}" />
+                        </StackPanel>
+                        <StackPanel Width="Auto" Height="Auto" Orientation="Horizontal" Margin="0,2,0,2">
+                          <Grid Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                              <RowDefinition Height="0.532*" />
+                              <RowDefinition Height="0.468*" />
+                            </Grid.RowDefinitions>
+                            <Rectangle Fill="{StaticResource ColorSentBrush}" Stroke="#FFFFFFFF" Margin="0,0,0,0" Grid.RowSpan="2" RadiusX="1" RadiusY="1" />
+                            <Rectangle Fill="{StaticResource EmbossGradientBrush}" Grid.RowSpan="2" />
+                            <Rectangle Opacity="1" Fill="{StaticResource WhiteShineBrush}" Margin="0,0,0,0" />
+                          </Grid>
+                          <TextBlock Name="staticSent" Height="Auto" Foreground="#FF000000" TextWrapping="Wrap" Width="85" TextAlignment="Left" FontWeight="Normal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,0,0,0" Padding="0,0,0,0" Text="Sent:" />
+                          <TextBox Name="textblockSent" Height="18" Foreground="{StaticResource TextBoxForegroundBrush}" TextWrapping="Wrap" Width="40" TextAlignment="Right" FontWeight="Bold" Background="{StaticResource TextBoxBackgroundBrush}" Padding="0,0,4,0" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" Text="{Binding Path=ProjectStatus.Sent}" />
+                        </StackPanel>
+                        <StackPanel Width="Auto" Height="Auto" Orientation="Horizontal" Margin="0,2,0,2">
+                          <Grid Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                              <RowDefinition Height="0.532*" />
+                              <RowDefinition Height="0.468*" />
+                            </Grid.RowDefinitions>
+                            <Rectangle Fill="{StaticResource ColorDeliveredBrush}" Stroke="#FFFFFFFF" Margin="0,0,0,0" Grid.RowSpan="2" RadiusX="1" RadiusY="1" />
+                            <Rectangle Fill="{StaticResource EmbossGradientBrush}" Grid.RowSpan="2" />
+                            <Rectangle Opacity="1" Fill="{StaticResource WhiteShineBrush}" Margin="0,0,0,0" />
+                          </Grid>
+                          <TextBlock Name="staticDelivered" Height="Auto" Foreground="#FF000000" TextWrapping="Wrap" Width="85" TextAlignment="Left" FontWeight="Normal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,0,0,0" Padding="0,0,0,0" Text="Delivered:" />
+                          <TextBox Name="textblockDelivered" Height="18" Foreground="{StaticResource TextBoxForegroundBrush}" TextWrapping="Wrap" Width="40" TextAlignment="Right" FontWeight="Bold" Background="{StaticResource TextBoxBackgroundBrush}" Padding="0,0,4,0" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" Text="{Binding Path=ProjectStatus.Delivered}" />
+                        </StackPanel>
+                        <StackPanel Width="Auto" Height="Auto" Orientation="Horizontal" Margin="0,2,0,2">
+                          <Grid Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                              <RowDefinition Height="0.532*" />
+                              <RowDefinition Height="0.468*" />
+                            </Grid.RowDefinitions>
+                            <Rectangle Fill="{StaticResource ColorMountedBrush}" Stroke="#FFFFFFFF" Margin="0,0,0,0" Grid.RowSpan="2" RadiusX="1" RadiusY="1" />
+                            <Rectangle Fill="{StaticResource EmbossGradientBrush}" Grid.RowSpan="2" />
+                            <Rectangle Opacity="1" Fill="{StaticResource WhiteShineBrush}" Margin="0,0,0,0" />
+                          </Grid>
+                          <TextBlock Name="staticMounted" Height="Auto" Foreground="#FF000000" TextWrapping="Wrap" Width="85" TextAlignment="Left" FontWeight="Normal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,0,0,0" Padding="0,0,0,0" Text="Mounted:" />
+                          <TextBox Name="textblockMounted" Height="18" Foreground="{StaticResource TextBoxForegroundBrush}" TextWrapping="Wrap" Width="40" TextAlignment="Right" FontWeight="Bold" Background="{StaticResource TextBoxBackgroundBrush}" Padding="0,0,4,0" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" Text="{Binding Path=ProjectStatus.Mounted}" />
+                        </StackPanel>
+                        <StackPanel Width="Auto" Height="Auto" Orientation="Horizontal" Margin="0,2,0,2">
+                          <Grid Width="18" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                              <RowDefinition Height="0.532*" />
+                              <RowDefinition Height="0.468*" />
+                            </Grid.RowDefinitions>
+                            <Rectangle Fill="{StaticResource ColorInvoicedBrush}" Stroke="#FFFFFFFF" Margin="0,0,0,0" Grid.RowSpan="2" RadiusX="1" RadiusY="1" />
+                            <Rectangle Fill="{StaticResource EmbossGradientBrush}" Grid.RowSpan="2" />
+                            <Rectangle Opacity="1" Fill="{StaticResource WhiteShineBrush}" Margin="0,0,0,0" />
+                          </Grid>
+                          <TextBlock Name="staticInvoiced" Height="Auto" Foreground="#FF000000" TextWrapping="Wrap" Width="85" TextAlignment="Left" FontWeight="Normal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,0,0,0" Padding="0,0,0,0" Text="Invoiced:" />
+                          <TextBox Name="textboxInvoiced" Height="18" Foreground="{StaticResource TextBoxForegroundBrush}" TextWrapping="Wrap" Width="40" TextAlignment="Right" FontWeight="Bold" Background="{StaticResource TextBoxBackgroundBrush}" Padding="0,0,4,0" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" Text="{Binding Path=ProjectStatus.Invoiced}" />
+                        </StackPanel>
+                      </StackPanel>
+                    </StackPanel>
+                  </StackPanel>
+                  <StackPanel Name="stackPanelTotalInstances" Grid.Row="5" Width="Auto" Height="Auto" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,43" VerticalAlignment="Center">
+                    <TextBlock Name="staticTotalInstances" Height="Auto" Foreground="#FF000000" TextWrapping="Wrap" Width="Auto" TextAlignment="Right" FontWeight="Normal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0" Padding="0,0,0,0" Text="Project Total:" />
+                    <TextBlock Name="textBlockTotalInstances" Width="Auto" Height="Auto" FontSize="12" Foreground="{StaticResource OrangeSolidBrush}" TextWrapping="Wrap" HorizontalAlignment="Right" Margin="3,0,3,0" VerticalAlignment="Center" Text="{Binding Path=ProjectStatus.TotalInstances}" />
+                  </StackPanel>
+                </Grid>
+                <ScrollViewer Name="scrollviewerDetails" Margin="5" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden">
+                  <StackPanel Name="stackpanelDetails" Width="330" Height="Auto" CanVerticallyScroll="True">
+                    <TextBlock Name="staticProjectDetails" Width="Auto" Height="Auto" FontSize="18" Foreground="{StaticResource OrangeSolidBrush}" Text="Project Details" TextWrapping="Wrap" Margin="0,0,0,10" />
+                    <TextBlock Name="staticProjectDescription" Height="Auto" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" Width="Auto" TextAlignment="Left" Text="Project Description:" Margin="0,2,0,2" FontWeight="Normal" />
+                    <TextBox Name="textboxDescription" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" VerticalContentAlignment="Center" TextWrapping="NoWrap" Margin="0,2,0,2" Width="Auto" Height="22" MaxLines="1" Foreground="{StaticResource TextBoxForegroundBrush}" Text="{Binding Path=Description}" BorderBrush="{x:Null}" />
+                    <TextBlock Name="staticCreationDate" Height="Auto" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" Width="Auto" TextAlignment="Left" Text="Creation Date:" Margin="0,2,0,2" FontWeight="Normal" />
+                    <TextBox Name="textboxCreationDate" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" TextWrapping="NoWrap" VerticalContentAlignment="Center" Margin="0,2,0,2" Width="Auto" Height="22" MaxLines="1" Foreground="{StaticResource TextBoxForegroundBrush}" Text="{Binding Path=CreationDate}" BorderBrush="{x:Null}" />
+                    <Expander Name="expanderShippingAddress" IsExpanded="True" Width="Auto" Height="Auto" Header="Shipping Address" ExpandDirection="Down">
+                      <StackPanel Name="stackPanelShippingAddress" Width="Auto" Height="Auto">
+                        <TextBlock Name="staticShippingAddressMain" Height="13.8" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" Width="Auto" TextAlignment="Left" Text="Address's main data:" FontWeight="Normal" />
+                        <TextBox Name="textboxShippingAddressPart1" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" VerticalContentAlignment="Center" TextWrapping="NoWrap" Width="Auto" Height="20" MaxLines="1" Foreground="{StaticResource TextBoxForegroundBrush}" Text="{Binding Path=ShippingAddress.Address1}" BorderBrush="{x:Null}" />
+                        <TextBox Name="textboxShippingAddressPart2" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" TextWrapping="NoWrap" VerticalContentAlignment="Center" Width="Auto" Height="20" MaxLines="1" Foreground="{StaticResource TextBoxForegroundBrush}" Text="{Binding Path=ShippingAddress.Address2}" BorderBrush="{x:Null}" />
+                        <StackPanel Width="Auto" Height="Auto" Orientation="Horizontal">
+                          <TextBlock Name="staticShippingPostalCode" Height="Auto" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" Width="70" TextAlignment="Left" Text="Postal Code:" FontWeight="Normal" Margin="0,2,2,2" HorizontalAlignment="Left" />
+                          <TextBlock Name="staticShippingCity" Height="Auto" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" TextAlignment="Left" Text="City:" Width="100" FontWeight="Normal" Margin="2,2,2,2" HorizontalAlignment="Left" />
+                          <TextBlock Name="staticShippingProvince" Height="Auto" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" TextAlignment="Left" Text="Province:" Width="80" FontWeight="Normal" Margin="2,2,2,2" HorizontalAlignment="Left" />
+                          <TextBlock Name="staticShippingCountry" Height="Auto" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" Width="70" TextAlignment="Left" Text="Country:" FontWeight="Normal" Margin="2,2,0,2" HorizontalAlignment="Left" />
+                        </StackPanel>
+                        <StackPanel Width="Auto" Height="Auto" Orientation="Horizontal">
+                          <TextBox Name="textboxShippingPostal" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" TextWrapping="NoWrap" VerticalContentAlignment="Center" Width="70" Height="20" MaxLines="1" Margin="0,2,2,2" Foreground="{StaticResource TextBoxForegroundBrush}" Text="{Binding Path=ShippingAddress.PostalCode}" BorderBrush="{x:Null}" />
+                          <TextBox Name="textboxShippingCity" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" TextWrapping="NoWrap" VerticalContentAlignment="Center" Width="100" Height="20" MaxLines="1" Margin="2,2,2,2" Foreground="{StaticResource TextBoxForegroundBrush}" Text="{Binding Path=ShippingAddress.City}" BorderBrush="{x:Null}" />
+                          <TextBox Name="textboxShippingProvince" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" TextWrapping="NoWrap" VerticalContentAlignment="Center" Width="80" Height="20" MaxLines="1" Margin="2,2,2,2" Foreground="{StaticResource TextBoxForegroundBrush}" Text="{Binding Path=ShippingAddress.Province}" BorderBrush="{x:Null}" />
+                          <TextBox Name="textboxShippingCountry" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" TextWrapping="NoWrap" VerticalContentAlignment="Center" Width="70" Height="20" MaxLines="1" Margin="2,2,0,2" Foreground="{StaticResource TextBoxForegroundBrush}" Text="{Binding Path=ShippingAddress.Country}" BorderBrush="{x:Null}" />
+                        </StackPanel>
+                      </StackPanel>
+                    </Expander>
+                    <Expander Name="expanderInvoicingAddress" IsExpanded="False" Width="Auto" Height="Auto" Header="Invoicing Address" ExpandDirection="Down">
+                      <StackPanel Name="stackPanelInvoicingAddress" Width="Auto" Height="Auto">
+                        <TextBlock Name="staticInvoicingAddressMain" Height="13.8" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" Width="350" TextAlignment="Left" Text="Address's main data:" FontWeight="Normal" />
+                        <TextBox Name="textboxInvoicingAddressPart1" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" VerticalContentAlignment="Center" TextWrapping="NoWrap" Width="Auto" Height="22" MaxLines="1" Foreground="{StaticResource TextBoxForegroundBrush}" Text="{Binding Path=InvoicingAddress.Address1}" BorderBrush="{x:Null}" />
+                        <TextBox Name="textboxInvoicingAddressPart2" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" TextWrapping="NoWrap" VerticalContentAlignment="Center" Width="Auto" Height="22" MaxLines="1" Foreground="{StaticResource TextBoxForegroundBrush}" Text="{Binding Path=InvoicingAddress.Address2}" BorderBrush="{x:Null}" />
+                        <StackPanel Width="350" Height="17.8" Orientation="Horizontal">
+                          <TextBlock Name="staticInvoicingPostalCode" Height="Auto" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" Width="70" TextAlignment="Left" Text="Postal Code:" FontWeight="Normal" Margin="0,2,2,2" HorizontalAlignment="Left" />
+                          <TextBlock Name="staticInvoicingCity" Height="Auto" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" TextAlignment="Left" Text="City:" Width="100" FontWeight="Normal" Margin="2,2,2,2" HorizontalAlignment="Left" />
+                          <TextBlock Name="staticInvoicingProvince" Height="Auto" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" TextAlignment="Left" Text="Province:" Width="80" FontWeight="Normal" Margin="2,2,2,2" HorizontalAlignment="Left" />
+                          <TextBlock Name="staticInvoicingCountry" Height="Auto" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" Width="70" TextAlignment="Left" Text="Country:" FontWeight="Normal" Margin="2,2,0,2" HorizontalAlignment="Left" />
+                        </StackPanel>
+                        <StackPanel Width="350" Height="26" Orientation="Horizontal">
+                          <TextBox Name="textboxInvoicingPostal" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" TextWrapping="NoWrap" VerticalContentAlignment="Center" Width="70" Height="22" MaxLines="1" Margin="0,2,2,2" Foreground="{StaticResource TextBoxForegroundBrush}" Text="{Binding Path=InvoicingAddress.PostalCode}" BorderBrush="{x:Null}" />
+                          <TextBox Name="textboxInvoicingCity" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" TextWrapping="NoWrap" VerticalContentAlignment="Center" Width="100" Height="22" MaxLines="1" Margin="2,2,2,2" Foreground="{StaticResource TextBoxForegroundBrush}" Text="{Binding Path=InvoicingAddress.City}" BorderBrush="{x:Null}" />
+                          <TextBox Name="textboxInvoicingProvince" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" TextWrapping="NoWrap" VerticalContentAlignment="Center" Width="80" Height="22" MaxLines="1" Margin="2,2,2,2" Foreground="{StaticResource TextBoxForegroundBrush}" Text="{Binding Path=InvoicingAddress.Province}" BorderBrush="{x:Null}" />
+                          <TextBox Name="textboxInvoicingCountry" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" TextWrapping="NoWrap" VerticalContentAlignment="Center" Width="70" Height="22" MaxLines="1" Margin="2,2,0,2" Foreground="{StaticResource TextBoxForegroundBrush}" Text="{Binding Path=InvoicingAddress.Country}" BorderBrush="{x:Null}" />
+                        </StackPanel>
+                      </StackPanel>
+                    </Expander>
+                    <Expander Name="expanderCustomerAddress" IsExpanded="False" Width="Auto" Height="Auto" Header="Customer Address" ExpandDirection="Down">
+                      <StackPanel Name="stackPanelAddress" Width="Auto" Height="Auto">
+                        <TextBlock Name="staticAddressMain" Height="13.8" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" Width="Auto" TextAlignment="Left" Text="Address's main data:" FontWeight="Normal" />
+                        <TextBox Name="textboxAddressPart1" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" VerticalContentAlignment="Center" TextWrapping="NoWrap" Width="Auto" Height="20" MaxLines="1" Foreground="{StaticResource TextBoxForegroundBrush}" Text="{Binding Path=CustomerAddress.Address1}" BorderBrush="{x:Null}" />
+                        <TextBox Name="textboxAddressPart2" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" TextWrapping="NoWrap" VerticalContentAlignment="Center" Width="Auto" Height="20" MaxLines="1" Foreground="{StaticResource TextBoxForegroundBrush}" Text="{Binding Path=CustomerAddress.Address2}" BorderBrush="{x:Null}" />
+                        <StackPanel Width="Auto" Height="Auto" Orientation="Horizontal">
+                          <TextBlock Name="staticPostalCode" Height="Auto" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" Width="70" TextAlignment="Left" Text="Postal Code:" FontWeight="Normal" Margin="0,2,2,2" HorizontalAlignment="Left" />
+                          <TextBlock Name="staticCity" Height="Auto" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" TextAlignment="Left" Text="City:" Width="100" FontWeight="Normal" Margin="2,2,2,2" HorizontalAlignment="Left" />
+                          <TextBlock Name="staticProvince" Height="Auto" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" TextAlignment="Left" Text="Province:" Width="80" FontWeight="Normal" Margin="2,2,2,2" HorizontalAlignment="Left" />
+                          <TextBlock Name="staticCountry" Height="Auto" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" Width="70" TextAlignment="Left" Text="Country:" FontWeight="Normal" Margin="2,2,0,2" HorizontalAlignment="Left" />
+                        </StackPanel>
+                        <StackPanel Width="Auto" Height="Auto" Orientation="Horizontal">
+                          <TextBox Name="textboxPostal" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" TextWrapping="NoWrap" VerticalContentAlignment="Center" Width="70" Height="20" MaxLines="1" Margin="0,2,2,2" Foreground="{StaticResource TextBoxForegroundBrush}" Text="{Binding Path=CustomerAddress.PostalCode}" BorderBrush="{x:Null}" />
+                          <TextBox Name="textboxCity" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" TextWrapping="NoWrap" VerticalContentAlignment="Center" Width="100" Height="20" MaxLines="1" Margin="2,2,2,2" Foreground="{StaticResource TextBoxForegroundBrush}" Text="{Binding Path=CustomerAddress.City}" BorderBrush="{x:Null}" />
+                          <TextBox Name="textboxProvince" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" TextWrapping="NoWrap" VerticalContentAlignment="Center" Width="80" Height="20" MaxLines="1" Margin="2,2,2,2" Foreground="{StaticResource TextBoxForegroundBrush}" Text="{Binding Path=CustomerAddress.Province}" BorderBrush="{x:Null}" />
+                          <TextBox Name="textboxCountry" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" TextWrapping="NoWrap" VerticalContentAlignment="Center" Width="70" Height="20" MaxLines="1" Margin="2,2,0,2" Foreground="{StaticResource TextBoxForegroundBrush}" Text="{Binding Path=CustomerAddress.Country}" BorderBrush="{x:Null}" />
+                        </StackPanel>
+                      </StackPanel>
+                    </Expander>
+                    <StackPanel Name="stackPanelComments" Width="Auto" Height="Auto">
+                      <TextBlock Name="staticComments" Height="13.8" FontSize="12" Foreground="#FF000000" TextWrapping="Wrap" Width="Auto" TextAlignment="Left" Text="Additional Comments:" FontWeight="Normal" />
+                      <TextBox Name="textboxComments" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" TextWrapping="Wrap" VerticalContentAlignment="Top" Height="Auto" MaxLines="10" Foreground="{StaticResource TextBoxForegroundBrush}" Width="Auto" AcceptsReturn="True" Text="{Binding Path=Comments}" BorderBrush="{x:Null}" />
+                    </StackPanel>
+                  </StackPanel>
+                </ScrollViewer>
+              </Grid>
+              <StackPanel Name="stackpanelShorcuts" Grid.Row="1" Height="Auto" Orientation="Horizontal" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Bottom">
+                <StackPanel Name="stackpanelDocuments" Width="52" Height="90" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top">
+                  <Image Name="imageDocuments" Width="Auto" Height="Auto" Source="{StaticResource IconDocuments}" Cursor="Hand" ToolTip="Documents" VerticalAlignment="Top" />
+                  <Image Width="Auto" Height="Auto" Source="{StaticResource IconDocuments}" RenderTransformOrigin="0.5,0.5" OpacityMask="{StaticResource ReflectionOpacityMaskBrush}" VerticalAlignment="Top">
+                    <UIElement.RenderTransform>
+                      <TransformGroup>
+                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                      </TransformGroup>
+                    </UIElement.RenderTransform>
+                  </Image>
+                </StackPanel>
+                <StackPanel Name="stackpanelSales" Width="52" Height="90" Margin="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                  <Image Name="imageSales" Width="Auto" Height="Auto" Source="{StaticResource IconSales}" Cursor="Hand" ToolTip="Sales" VerticalAlignment="Top" />
+                  <Image Width="Auto" Height="Auto" Source="{StaticResource IconSales}" RenderTransformOrigin="0.5,0.5" OpacityMask="{StaticResource ReflectionOpacityMaskBrush}" VerticalAlignment="Top">
+                    <UIElement.RenderTransform>
+                      <TransformGroup>
+                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                      </TransformGroup>
+                    </UIElement.RenderTransform>
+                  </Image>
+                </StackPanel>
+                <StackPanel Name="stackpanelPurchases" Width="52" Height="90" Margin="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                  <Image Name="imagePurchases" Width="Auto" Height="Auto" Source="{StaticResource IconPurchases}" Cursor="Hand" ToolTip="Purchases" VerticalAlignment="Top" />
+                  <Image Width="Auto" Height="Auto" Source="{StaticResource IconPurchases}" RenderTransformOrigin="0.5,0.5" OpacityMask="{StaticResource ReflectionOpacityMaskBrush}" VerticalAlignment="Top">
+                    <UIElement.RenderTransform>
+                      <TransformGroup>
+                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                      </TransformGroup>
+                    </UIElement.RenderTransform>
+                  </Image>
+                </StackPanel>
+                <StackPanel Name="stackpanelTariffExceptions" Width="52" Height="90" Margin="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                  <Image Name="imageTariffExceptions" Width="Auto" Height="Auto" Source="{StaticResource IconTariffs}" Cursor="Hand" ToolTip="Prices Policy" VerticalAlignment="Top" />
+                  <Image Width="Auto" Height="Auto" Source="{StaticResource IconTariffs}" RenderTransformOrigin="0.5,0.5" OpacityMask="{StaticResource ReflectionOpacityMaskBrush}" VerticalAlignment="Top">
+                    <UIElement.RenderTransform>
+                      <TransformGroup>
+                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                      </TransformGroup>
+                    </UIElement.RenderTransform>
+                  </Image>
+                </StackPanel>
+                <StackPanel Name="stackpanelContacts" Width="52" Height="90" Margin="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                  <Image Name="imageContacts" Width="Auto" Height="Auto" Source="{StaticResource IconContacts}" Cursor="Hand" ToolTip="Contacts" VerticalAlignment="Top" />
+                  <Image Width="Auto" Height="Auto" Source="{StaticResource IconContacts}" RenderTransformOrigin="0.5,0.5" OpacityMask="{StaticResource ReflectionOpacityMaskBrush}" VerticalAlignment="Top">
+                    <UIElement.RenderTransform>
+                      <TransformGroup>
+                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                      </TransformGroup>
+                    </UIElement.RenderTransform>
+                  </Image>
+                </StackPanel>
+                <StackPanel Name="stackpanelAttachments" Width="52" Height="90" Margin="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                  <Image Name="imageAttachments" Width="Auto" Height="Auto" Source="{StaticResource IconAttachments}" Cursor="Hand" ToolTip="Attachments" VerticalAlignment="Top" />
+                  <Image Width="Auto" Height="Auto" Source="{StaticResource IconAttachments}" RenderTransformOrigin="0.5,0.5" OpacityMask="{StaticResource ReflectionOpacityMaskBrush}" VerticalAlignment="Top">
+                    <UIElement.RenderTransform>
+                      <TransformGroup>
+                        <ScaleTransform ScaleX="1" ScaleY="-1" />
+                      </TransformGroup>
+                    </UIElement.RenderTransform>
+                  </Image>
+                </StackPanel>
+              </StackPanel>
+            </Grid>
+          </TabItem>
+          <TabItem Name="tabitemTariffsExceptions" Width="Auto" Header="Prices Policy" IsEnabled="True">
+            <Grid Name="gridTabItemTariffsExceptions">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.865*" />
+                <ColumnDefinition Width="10" />
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <TextBlock Name="staticPricesPolicy" Width="Auto" Height="Auto" FontSize="18" Foreground="{StaticResource OrangeSolidBrush}" Text="Prices Policy" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="20,15,0,10" VerticalAlignment="Top" />
+              <TextBlock Name="staticDataBasedOn" Height="Auto" FontSize="14" Foreground="{StaticResource OrangeSolidBrush}" Text="(All data extracted from: )" TextWrapping="Wrap" FontWeight="Bold" HorizontalAlignment="Left" Margin="200,18,0,10" VerticalAlignment="Top" Width="Auto" />
+              <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
+                <ListView Name="listviewTariffExceptions1" ItemContainerStyle="{StaticResource resRightAlignListViewItemStyle}" HorizontalContentAlignment="Left" Margin="20,0,0,0" BorderBrush="{StaticResource SolidBorderBrush}" HorizontalAlignment="Stretch" Width="Auto" FontWeight="Normal">
+                  <ItemsControl.GroupStyle>
+                    <GroupStyle ContainerStyle="{StaticResource ListViewGroupItemStyle}" />
+                  </ItemsControl.GroupStyle>
+                  <ListView.View>
+                    <GridView AllowsColumnReorder="False">
+                      <GridViewColumn x:Name="GroupNameColumn" HeaderTemplate="{StaticResource TextHeaderTemplate}" Header="Price Group" Width="90" DisplayMemberBinding="{Binding Path=Name}" />
+                      <GridViewColumn x:Name="ColorColumn" HeaderTemplate="{StaticResource TextHeaderTemplate}" Header="Color" Width="90" DisplayMemberBinding="{Binding Path=Color}" />
+                      <GridViewColumn x:Name="OriginCostColumn" HeaderTemplate="{StaticResource TextHeaderTemplate}" Header="Origin Cost" Width="80" CellTemplate="{StaticResource OriginCostTemplate}" />
+                      <GridViewColumn x:Name="SupplierDiscountColumn" HeaderTemplate="{StaticResource TextHeaderTemplate}" Header="Supplier Discount" Width="90" CellTemplate="{StaticResource SupplierDiscountTemplate}" />
+                      <GridViewColumn x:Name="PurchasePriceColumn" HeaderTemplate="{StaticResource TextHeaderTemplate}" Header="Purchase Price" Width="80" CellTemplate="{StaticResource PurchasePriceTemplate}" />
+                      <GridViewColumn x:Name="CostIncrementColumn" HeaderTemplate="{StaticResource TextHeaderTemplate}" Header="Cost Increment" Width="90" CellTemplate="{StaticResource RemnantIncrementTemplate}" />
+                      <GridViewColumn x:Name="EffectiveCostColumn" HeaderTemplate="{StaticResource TextHeaderTemplate}" Header="Effective Cost" Width="80" CellTemplate="{StaticResource EffectiveCostTemplate}" />
+                      <GridViewColumn x:Name="CoefficientColumn" HeaderTemplate="{StaticResource TextHeaderTemplate}" Header="Coefficient" Width="90" CellTemplate="{StaticResource FactorTemplate}" />
+                      <GridViewColumn x:Name="SaleColumn" HeaderTemplate="{StaticResource TextHeaderTemplate}" Header="Sale" CellTemplate="{StaticResource SaleTemplate}" Width="80" />
+                    </GridView>
+                  </ListView.View>
+                </ListView>
+              </ScrollViewer>
+              <CheckBox Name="checkboxShowAllGroups" Grid.Row="2" Margin="20,10,0,10" Width="Auto" Content="Show All Groups" Foreground="{StaticResource TextBoxForegroundBrush}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="15" IsChecked="{Binding Path=PricesPolicy.IsEveryGroupVisible}" />
+              <CheckBox Name="checkboxFixSale" Grid.Row="2" Width="Auto" Content="Fix Sale Amount" Foreground="{StaticResource TextBoxForegroundBrush}" Height="15" HorizontalAlignment="Right" Margin="0,10,8,10" VerticalAlignment="Bottom" IsChecked="{Binding Path=PricesPolicy.IsSaleAmountFixed}" />
+              <StackPanel Grid.Row="3" TextBlock.FontWeight="Normal" HorizontalAlignment="Left" Margin="20,0,20,30" VerticalAlignment="Bottom" Height="Auto" Grid.ColumnSpan="2" Orientation="Horizontal">
+                <StackPanel Width="Auto" Height="Auto" Margin="0,0,10,0">
+                  <StackPanel HorizontalAlignment="Left" Margin="0,0,0,10" VerticalAlignment="Top" Width="Auto" Height="Auto" Orientation="Horizontal">
+                    <TextBlock Name="staticTotalEffectiveCost" Width="110" Height="Auto" FontSize="14" Foreground="{StaticResource OrangeSolidBrush}" Text="Total Effective Cost:" TextWrapping="Wrap" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBlock Name="textblockTotalEffectiveCost" Width="100" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="14" Foreground="#FF090909" TextAlignment="Right" TextWrapping="Wrap" Height="Auto" Padding="2,2,2,2" VerticalAlignment="Center" Text="{Binding Path=PricesPolicy.TotalEffectiveCost, Converter={StaticResource PriceConverter}, UpdateSourceTrigger=PropertyChanged}" />
+                  </StackPanel>
+                  <StackPanel HorizontalAlignment="Left" Margin="0,0,0,10" VerticalAlignment="Top" Width="Auto" Height="Auto" Orientation="Horizontal">
+                    <TextBlock Name="staticTotalSale" Width="110" Height="Auto" FontSize="14" Foreground="{StaticResource OrangeSolidBrush}" Text="Total Sale:" TextWrapping="Wrap" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBlock Name="textblockTotalSale" Width="100" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="14" Foreground="#FF090909" TextAlignment="Right" TextWrapping="NoWrap" Height="Auto" Padding="2,2,2,2" VerticalAlignment="Center" Text="{Binding Path=PricesPolicy.TotalSale, Converter={StaticResource PriceConverter}, UpdateSourceTrigger=PropertyChanged}" />
+                  </StackPanel>
+                  <StackPanel HorizontalAlignment="Left" Margin="0,0,0,10" VerticalAlignment="Top" Width="Auto" Height="Auto" Orientation="Horizontal">
+                    <TextBlock Name="staticSaleDiscount" Width="110" Height="Auto" FontSize="14" Foreground="{StaticResource OrangeSolidBrush}" Text="Discount:" TextWrapping="Wrap" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBox Name="textboxSaleDiscount" BorderThickness="1" Width="100" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="14" Foreground="#FF090909" TextAlignment="Right" TextWrapping="NoWrap" Height="24" Padding="2,2,2,2" VerticalAlignment="Center" Text="{Binding Path=PricesPolicy.SaleDiscount, Converter={StaticResource resNumberConverter}, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Foreground="#FF090909" Text="%" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Center" />
+                  </StackPanel>
+                  <StackPanel HorizontalAlignment="Left" Margin="0,0,0,1" VerticalAlignment="Top" Width="Auto" Height="Auto" Orientation="Horizontal">
+                    <TextBlock Name="staticTotalEffectiveSale" Width="110" Height="Auto" FontSize="14" Foreground="{StaticResource OrangeSolidBrush}" Text="Effective Sale:" TextWrapping="Wrap" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBox Name="textboxTotalEffectiveSale" BorderThickness="1" Width="100" Height="24" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="14" Foreground="#FF090909" TextAlignment="Right" TextWrapping="NoWrap" Padding="2,2,2,2" VerticalAlignment="Center" Text="{Binding Path=PricesPolicy.TotalEffectiveSale, Converter={StaticResource PriceConverter}, UpdateSourceTrigger=PropertyChanged}" />
+                  </StackPanel>
+                  <Button Name="buttonApply" HorizontalAlignment="Right" Margin="0,0,12,0" Width="100" Height="24" Content="Apply" Foreground="#FF000000" />
+                </StackPanel>
+                <ListView Name="listviewTariffExceptions2" ItemContainerStyle="{StaticResource resRightAlignListViewItemStyle}" Width="260" HorizontalContentAlignment="Left" BorderBrush="{StaticResource SolidBorderBrush}" FontWeight="Normal" Height="Auto" Margin="0,0,10,0">
+                  <ListView.View>
+                    <GridView AllowsColumnReorder="False">
+                      <GridViewColumn x:Name="ConceptColumn" HeaderTemplate="{StaticResource TextHeaderTemplate}" Header="Concept" Width="120" DisplayMemberBinding="{Binding Path=Name}" />
+                      <GridViewColumn x:Name="PercentageColumn" HeaderTemplate="{StaticResource TextHeaderTemplate}" Header="%" Width="50" CellTemplateSelector="{StaticResource templateSelectorPercentage}" />
+                      <GridViewColumn x:Name="AmountColumn" HeaderTemplate="{StaticResource TextHeaderTemplate}" Header="Amount" Width="80" CellTemplate="{StaticResource AmountPriceTemplate}" />
+                    </GridView>
+                  </ListView.View>
+                </ListView>
+                <StackPanel Width="Auto" Height="Auto" Margin="10,0,10,0">
+                  <StackPanel Width="Auto" Height="Auto" Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Name="staticIndustrialBenefit" Width="130" Height="Auto" FontSize="14" Foreground="{StaticResource OrangeSolidBrush}" Text="Industrial Benefit:" TextWrapping="Wrap" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBlock Name="textblockIndustrialBenefit" Margin="5,0,0,0" Width="100" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="14" Foreground="#FF090909" TextAlignment="Right" TextWrapping="Wrap" Height="Auto" Padding="2,2,2,2" VerticalAlignment="Center" Text="{Binding Path=PricesPolicy.IndustrialBenefit, Converter={StaticResource PriceConverter}}" />
+                  </StackPanel>
+                  <StackPanel Width="Auto" Height="Auto" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,10">
+                    <TextBlock Name="staticBenefitMargin" Width="130" Height="Auto" FontSize="14" Foreground="{StaticResource OrangeSolidBrush}" Text="Benefit Margin:" TextWrapping="Wrap" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBox Name="textboxBenefitMargin" Margin="5,0,0,0" BorderThickness="1" Width="100" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="14" Foreground="#FF090909" TextAlignment="Right" TextWrapping="NoWrap" Height="24" Padding="2,2,2,2" VerticalAlignment="Center" Text="{Binding Path=PricesPolicy.BenefitMargin, Converter={StaticResource resNumberConverter}, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Foreground="#FF090909" Text="%" HorizontalAlignment="Left" FontSize="14" VerticalAlignment="Center" />
+                  </StackPanel>
+                  <StackPanel Name="stackPanelPriceComments" Width="250" Height="Auto" Visibility="Visible">
+                    <TextBlock Name="staticPriceComments" Width="Auto" Height="Auto" FontSize="14" Foreground="{StaticResource OrangeSolidBrush}" Text="Comments:" TextWrapping="Wrap" FontWeight="Bold" />
+                    <Border BorderThickness="1" BorderBrush="{StaticResource LightBorderBrush}" Width="250" Height="75">
+                      <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Hidden" HorizontalContentAlignment="Left">
+                        <TextBox Name="textboxPriceComments" BorderThickness="0" HorizontalAlignment="Left" Background="{StaticResource TextBoxBackgroundBrush}" FontSize="12" TextWrapping="Wrap" VerticalContentAlignment="Top" Height="Auto" MaxLines="2" Foreground="{StaticResource TextBoxForegroundBrush}" Width="230" MaxWidth="250" AcceptsReturn="True" BorderBrush="{x:Null}" Text="{Binding Path=PricingComments}" />
+                      </ScrollViewer>
+                    </Border>
+                  </StackPanel>
+                </StackPanel>
+              </StackPanel>
+            </Grid>
+          </TabItem>
+          <TabItem Name="tabitemContacts" Width="Auto" Header="Contacts" IsEnabled="True">
+            <Grid Name="gridTabItemContacts">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.888*" />
+                <ColumnDefinition Width="120" />
+              </Grid.ColumnDefinitions>
+              <StackPanel Width="72" Height="Auto" HorizontalAlignment="Center" Margin="15,45,15,0" VerticalAlignment="Top" Grid.Column="1" Opacity="0.75">
+                <Image Width="Auto" Height="Auto" Source="{StaticResource IconContacts}" />
+                <Image Width="Auto" Height="Auto" Source="{StaticResource IconContacts}" RenderTransformOrigin="0.5,0.5" OpacityMask="{StaticResource ReflectionOpacityMaskBrush}">
+                  <UIElement.RenderTransform>
+                    <TransformGroup>
+                      <ScaleTransform ScaleX="1" ScaleY="-1" />
+                    </TransformGroup>
+                  </UIElement.RenderTransform>
+                </Image>
+              </StackPanel>
+              <TextBlock Name="staticContacts" Height="Auto" FontSize="18" Foreground="{StaticResource OrangeSolidBrush}" Text="Contacts" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="20,15,0,0" VerticalAlignment="Top" />
+              <controls:RadGridView xmlns:controls="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView" controls:RadGridView.Name="gridviewContacts" Control.HorizontalContentAlignment="Left" FrameworkElement.Margin="20,45,0,40" Control.BorderBrush="{StaticResource SolidBorderBrush}" Control.FontWeight="Normal" xmlns:gridview="clr-namespace:Telerik.Windows.Controls.GridView;assembly=Telerik.Windows.Controls.GridView" gridview:GridViewDataControl.RowHeight="30" gridview:GridViewDataControl.RowIndicatorVisibility="Collapsed" gridview:GridViewDataControl.EnableRowVirtualization="True" gridview:GridViewDataControl.AutoGenerateColumns="False" p17:DataControl.SelectedItem="{Binding Path=SelectedContact, Mode=TwoWay}" xmlns:p17="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Data">
+                <gridview:GridViewDataControl.Columns>
+                  <controls:GridViewDataColumn controls:GridViewDataColumn.Name="ContactCodeColumn" controls:GridViewBoundColumnBase.Header="Code" controls:GridViewColumn.Width="100" controls:GridViewColumn.IsReadOnly="True" controls:GridViewBoundColumnBase.DataMemberBinding="{Binding Path=ContactCode}">
+                    <!--Unknown connection ID: 185-->
+                  </controls:GridViewDataColumn>
+                  <controls:GridViewDataColumn controls:GridViewBoundColumnBase.Header="Company Name" controls:GridViewColumn.Width="100" controls:GridViewColumn.IsReadOnly="True" controls:GridViewBoundColumnBase.DataMemberBinding="{Binding Path=CompanyName}" />
+                  <controls:GridViewComboBoxColumn controls:GridViewComboBoxColumn.Name="ContactFullNameColumn" controls:GridViewColumn.UniqueName="DocumentId" controls:GridViewComboBoxColumn.SelectedValueMemberPath="DocumentId" controls:GridViewComboBoxColumn.DisplayMemberPath="FullName" controls:GridViewBoundColumnBase.Header="Contact Person" controls:GridViewColumn.Width="200" controls:GridViewBoundColumnBase.DataMemberBinding="{Binding Path=DocumentId}">
+                    <!--Unknown connection ID: 186-->
+                  </controls:GridViewComboBoxColumn>
+                  <controls:GridViewDataColumn controls:GridViewBoundColumnBase.Header="Telephone" controls:GridViewColumn.Width="100" controls:GridViewColumn.IsReadOnly="True" controls:GridViewBoundColumnBase.DataMemberBinding="{Binding Path=Telephone}" />
+                  <controls:GridViewDataColumn controls:GridViewBoundColumnBase.Header="Fax" controls:GridViewColumn.Width="100" controls:GridViewColumn.IsReadOnly="True" controls:GridViewBoundColumnBase.DataMemberBinding="{Binding Path=Fax}" />
+                  <controls:GridViewDataColumn controls:GridViewBoundColumnBase.Header="E-mail" controls:GridViewColumn.Width="100" controls:GridViewColumn.IsReadOnly="True" controls:GridViewBoundColumnBase.DataMemberBinding="{Binding Path=Email}" />
+                  <controls:GridViewDataColumn controls:GridViewBoundColumnBase.Header="Address" controls:GridViewColumn.Width="100" controls:GridViewColumn.IsReadOnly="True" controls:GridViewBoundColumnBase.DataMemberBinding="{Binding Path=Address}" />
+                  <controls:GridViewDataColumn controls:GridViewBoundColumnBase.Header="Postal Code" controls:GridViewColumn.Width="100" controls:GridViewColumn.IsReadOnly="True" controls:GridViewBoundColumnBase.DataMemberBinding="{Binding Path=PostalCode}" />
+                  <controls:GridViewDataColumn controls:GridViewBoundColumnBase.Header="City" controls:GridViewColumn.Width="100" controls:GridViewColumn.IsReadOnly="True" controls:GridViewBoundColumnBase.DataMemberBinding="{Binding Path=City}" />
+                  <controls:GridViewDataColumn controls:GridViewBoundColumnBase.Header="Province" controls:GridViewColumn.Width="100" controls:GridViewColumn.IsReadOnly="True" controls:GridViewBoundColumnBase.DataMemberBinding="{Binding Path=Province}" />
+                  <controls:GridViewDataColumn controls:GridViewBoundColumnBase.Header="Country" controls:GridViewColumn.Width="100" controls:GridViewColumn.IsReadOnly="True" controls:GridViewBoundColumnBase.DataMemberBinding="{Binding Path=Country}" />
+                </gridview:GridViewDataControl.Columns>
+                <!--Unknown connection ID: 184-->
+              </controls:RadGridView>
+              <StackPanel Name="stackpanelButtonsContacts" Width="Auto" Height="Auto" Orientation="Vertical" Margin="15,0,15,40" VerticalAlignment="Bottom" Grid.Column="1" HorizontalAlignment="Center">
+                <Button Name="buttonAddContact" Width="40" Height="Auto" HorizontalAlignment="Center" Margin="0,0,0,3" VerticalAlignment="Bottom">
+                  <Image Width="Auto" Height="Auto" Source="{StaticResource IconAddContact}" />
+                </Button>
+                <TextBlock Name="staticAddContact" Text="Add Contact" Height="Auto" FontSize="11" Foreground="#FF000000" TextWrapping="Wrap" Width="Auto" TextAlignment="Center" FontWeight="Normal" Padding="0,0,0,3" Margin="0,0,0,5" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                <Button Name="buttonRemoveContact" Width="40" Height="Auto" HorizontalAlignment="Center" Margin="0,0,0,3" VerticalAlignment="Bottom">
+                  <Image Width="Auto" Height="Auto" Source="{StaticResource IconDeleteContact}" />
+                </Button>
+                <TextBlock Name="staticRemoveContact" Text="Remove Contact" Height="Auto" FontSize="11" Foreground="#FF000000" TextWrapping="Wrap" Width="Auto" TextAlignment="Center" FontWeight="Normal" Padding="0,0,0,3" Margin="0,0,0,5" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+              </StackPanel>
+            </Grid>
+          </TabItem>
+          <TabItem Name="tabitemDocumentsTelerik" Width="Auto" Header="Documents" IsEnabled="True">
+            <Grid Name="gridtTabItemDocumentsTeleril">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.842*" />
+                <ColumnDefinition Width="120" />
+              </Grid.ColumnDefinitions>
+              <StackPanel Width="72" Height="Auto" HorizontalAlignment="Center" Margin="0,45,0,0" VerticalAlignment="Top" Grid.Column="1" Opacity="0.75">
+                <Image Width="Auto" Height="Auto" Source="{StaticResource IconDocuments}" />
+                <Image Width="Auto" Height="Auto" Source="{StaticResource IconDocuments}" RenderTransformOrigin="0.5,0.5" OpacityMask="{StaticResource ReflectionOpacityMaskBrush}">
+                  <UIElement.RenderTransform>
+                    <TransformGroup>
+                      <ScaleTransform ScaleX="1" ScaleY="-1" />
+                    </TransformGroup>
+                  </UIElement.RenderTransform>
+                </Image>
+              </StackPanel>
+              <Grid>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Name="staticDocumentsTelerik" Width="Auto" Height="Auto" FontSize="18" Foreground="{StaticResource OrangeSolidBrush}" Text="Documents" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="20" VerticalAlignment="Top" />
+                <RadGridView p17:RadGridView.Name="gridviewDocuments" Grid.Row="1" p18:GridViewDataControl.RowHeight="30" p18:GridViewDataControl.IsReadOnly="True" p18:GridViewDataControl.RowIndicatorVisibility="Collapsed" p18:GridViewDataControl.EnableRowVirtualization="True" p18:GridViewDataControl.AutoGenerateColumns="False" FrameworkElement.Margin="5" xmlns:p18="clr-namespace:Telerik.Windows.Controls.GridView;assembly=Telerik.Windows.Controls.GridView" xmlns:p17="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView" xmlns="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView">
+                  <p18:GridViewDataControl.Columns>
+                    <p17:GridViewDataColumn p17:GridViewBoundColumnBase.Header="Name" p17:GridViewColumn.Width="300" p17:GridViewBoundColumnBase.DataMemberBinding="{Binding DocumentName}">
+                      <p17:GridViewColumn.CellTemplate>
+                        <DataTemplate xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+                          <StackPanel Orientation="Horizontal">
+                            <Image Width="24" Height="24" Margin="0,0,3,0" Source="{Binding DocumentSubType, Converter={StaticResource documentSubTypeToImageConverter}}" />
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,3,0" Text="{Binding Path=DocumentName}" />
+                          </StackPanel>
+                        </DataTemplate>
+                      </p17:GridViewColumn.CellTemplate>
+                    </p17:GridViewDataColumn>
+                    <p17:GridViewDataColumn p17:GridViewBoundColumnBase.Header="Department" p17:GridViewColumn.Width="150" p17:GridViewBoundColumnBase.DataMemberBinding="{Binding DocumentType, Converter={StaticResource documentTypeToStringConverter}}" />
+                    <p17:GridViewDataColumn p17:GridViewBoundColumnBase.Header="Type" p17:GridViewColumn.Width="150" p17:GridViewBoundColumnBase.DataMemberBinding="{Binding DocumentSubType, Converter={StaticResource documentSubTypeToStringConverter}}" />
+                    <p17:GridViewDataColumn p17:GridViewBoundColumnBase.Header="Customer" p17:GridViewColumn.Width="200" p17:GridViewBoundColumnBase.DataMemberBinding="{Binding CustomerName}" />
+                    <p17:GridViewDataColumn p17:GridViewBoundColumnBase.Header="Provider" p17:GridViewColumn.Width="150" p17:GridViewBoundColumnBase.DataMemberBinding="{Binding SupplierName}" />
+                  </p18:GridViewDataControl.Columns>
+                  <!--Unknown connection ID: 195-->
+                </RadGridView>
+              </Grid>
+              <StackPanel Name="stackpanelButtonsDocumentsTelerik" Width="Auto" Height="Auto" Orientation="Vertical" Margin="15,0,15,40" VerticalAlignment="Bottom" Grid.Column="1" HorizontalAlignment="Center">
+                <Button Name="buttonViewDocumentTelerik" Width="40" Height="Auto" HorizontalAlignment="Center" Margin="0,0,0,3" VerticalAlignment="Bottom">
+                  <Image Width="Auto" Height="Auto" Source="{StaticResource IconViewDocument}" />
+                </Button>
+                <TextBlock Name="staticViewDocumentTelerik" Text="View Document" Height="Auto" FontSize="11" Foreground="#FF000000" TextWrapping="Wrap" Width="Auto" TextAlignment="Center" FontWeight="Normal" Padding="0,0,0,3" Margin="0,0,0,5" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                <Button Name="buttonValuateDocumentTelerik" Width="40" Height="Auto" HorizontalAlignment="Center" Margin="0,0,0,3" VerticalAlignment="Bottom">
+                  <Image Width="Auto" Height="Auto" Source="{StaticResource IconTariffs}" />
+                </Button>
+                <TextBlock Name="staticValuateDocumentTelerik" Text="Valuate Document" Height="Auto" FontSize="11" Foreground="#FF000000" TextWrapping="Wrap" Width="Auto" TextAlignment="Center" FontWeight="Normal" Padding="0,0,0,3" Margin="0,0,0,5" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+              </StackPanel>
+            </Grid>
+          </TabItem>
+          <TabItem Name="tabitemSalesDocuments" Width="Auto" Header="SalesDocuments" IsEnabled="True">
+            <Grid Name="gridtTabItemSalesDocuments">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.842*" />
+                <ColumnDefinition Width="120" />
+              </Grid.ColumnDefinitions>
+              <StackPanel Width="72" Height="Auto" HorizontalAlignment="Center" Margin="0,45,0,0" VerticalAlignment="Top" Grid.Column="1" Opacity="0.75">
+                <Image Width="Auto" Height="Auto" Source="{StaticResource IconSales}" />
+                <Image Width="Auto" Height="Auto" Source="{StaticResource IconSales}" RenderTransformOrigin="0.5,0.5" OpacityMask="{StaticResource ReflectionOpacityMaskBrush}">
+                  <UIElement.RenderTransform>
+                    <TransformGroup>
+                      <ScaleTransform ScaleX="1" ScaleY="-1" />
+                    </TransformGroup>
+                  </UIElement.RenderTransform>
+                </Image>
+              </StackPanel>
+              <Grid>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Name="staticSalesDocuments" Width="Auto" Height="Auto" FontSize="18" Foreground="{StaticResource OrangeSolidBrush}" Text="Sales" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="20" VerticalAlignment="Top" />
+                <RadGridView p17:RadGridView.Name="gridviewSalesDocuments" Grid.Row="1" p18:GridViewDataControl.RowHeight="30" p18:GridViewDataControl.IsReadOnly="True" p18:GridViewDataControl.RowIndicatorVisibility="Collapsed" p18:GridViewDataControl.EnableRowVirtualization="True" p18:GridViewDataControl.AutoGenerateColumns="False" FrameworkElement.Margin="5" xmlns:p18="clr-namespace:Telerik.Windows.Controls.GridView;assembly=Telerik.Windows.Controls.GridView" xmlns:p17="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView" xmlns="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView">
+                  <p18:GridViewDataControl.Columns>
+                    <p17:GridViewDataColumn p17:GridViewBoundColumnBase.Header="Name" p17:GridViewColumn.Width="300" p17:GridViewBoundColumnBase.DataMemberBinding="{Binding DocumentName}">
+                      <p17:GridViewColumn.CellTemplate>
+                        <DataTemplate xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+                          <StackPanel Orientation="Horizontal">
+                            <Image Width="24" Height="24" Margin="0,0,3,0" Source="{Binding DocumentSubType, Converter={StaticResource documentSubTypeToImageConverter}}" />
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,3,0" Text="{Binding Path=DocumentName}" />
+                          </StackPanel>
+                        </DataTemplate>
+                      </p17:GridViewColumn.CellTemplate>
+                    </p17:GridViewDataColumn>
+                    <p17:GridViewDataColumn p17:GridViewBoundColumnBase.Header="Type" p17:GridViewColumn.Width="150" p17:GridViewBoundColumnBase.DataMemberBinding="{Binding DocumentSubType, Converter={StaticResource documentSubTypeToStringConverter}}" />
+                    <p17:GridViewDataColumn p17:GridViewBoundColumnBase.Header="Customer" p17:GridViewColumn.Width="300" p17:GridViewBoundColumnBase.DataMemberBinding="{Binding CustomerName}" />
+                  </p18:GridViewDataControl.Columns>
+                  <!--Unknown connection ID: 204-->
+                </RadGridView>
+              </Grid>
+              <StackPanel Name="stackpanelButtonsSalesDocuments" Width="Auto" Height="Auto" Orientation="Vertical" Margin="15,0,15,40" VerticalAlignment="Bottom" Grid.Column="1" HorizontalAlignment="Center">
+                <Button Name="buttonViewSalesDocument" Width="40" Height="Auto" HorizontalAlignment="Center" Margin="0,0,0,3" VerticalAlignment="Bottom">
+                  <Image Width="Auto" Height="Auto" Source="{StaticResource IconViewDocument}" />
+                </Button>
+                <TextBlock Name="staticViewSalesDocument" Text="View Document" Height="Auto" FontSize="11" Foreground="#FF000000" TextWrapping="Wrap" Width="Auto" TextAlignment="Center" FontWeight="Normal" Padding="0,0,0,3" Margin="0,0,0,5" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                <Button Name="buttonValuateSalesDocument" Width="40" Height="Auto" HorizontalAlignment="Center" Margin="0,0,0,3" VerticalAlignment="Bottom">
+                  <Image Width="Auto" Height="Auto" Source="{StaticResource IconTariffs}" />
+                </Button>
+                <TextBlock Name="staticValuateSalesDocument" Text="Valuate Document" Height="Auto" FontSize="11" Foreground="#FF000000" TextWrapping="Wrap" Width="Auto" TextAlignment="Center" FontWeight="Normal" Padding="0,0,0,3" Margin="0,0,0,5" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+              </StackPanel>
+            </Grid>
+          </TabItem>
+          <TabItem Name="tabitemPurchasesDocuments" Width="Auto" Header="PurchasesDocuments" IsEnabled="True">
+            <Grid Name="gridtTabItemPurchasesDocuments">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.842*" />
+                <ColumnDefinition Width="120" />
+              </Grid.ColumnDefinitions>
+              <StackPanel Width="72" Height="Auto" HorizontalAlignment="Center" Margin="0,45,0,0" VerticalAlignment="Top" Grid.Column="1" Opacity="0.75">
+                <Image Width="Auto" Height="Auto" Source="{StaticResource IconPurchases}" />
+                <Image Width="Auto" Height="Auto" Source="{StaticResource IconPurchases}" RenderTransformOrigin="0.5,0.5" OpacityMask="{StaticResource ReflectionOpacityMaskBrush}">
+                  <UIElement.RenderTransform>
+                    <TransformGroup>
+                      <ScaleTransform ScaleX="1" ScaleY="-1" />
+                    </TransformGroup>
+                  </UIElement.RenderTransform>
+                </Image>
+              </StackPanel>
+              <Grid>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Name="staticPurchasesDocuments" Width="Auto" Height="Auto" FontSize="18" Foreground="{StaticResource OrangeSolidBrush}" Text="Purchases" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="20" VerticalAlignment="Top" />
+                <RadGridView p17:RadGridView.Name="gridviewPurchasesDocuments" Grid.Row="1" p18:GridViewDataControl.RowHeight="30" p18:GridViewDataControl.IsReadOnly="True" p18:GridViewDataControl.RowIndicatorVisibility="Collapsed" p18:GridViewDataControl.EnableRowVirtualization="True" p18:GridViewDataControl.AutoGenerateColumns="False" FrameworkElement.Margin="5" xmlns:p18="clr-namespace:Telerik.Windows.Controls.GridView;assembly=Telerik.Windows.Controls.GridView" xmlns:p17="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView" xmlns="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView">
+                  <p18:GridViewDataControl.Columns>
+                    <p17:GridViewDataColumn p17:GridViewBoundColumnBase.Header="Name" p17:GridViewColumn.Width="300" p17:GridViewBoundColumnBase.DataMemberBinding="{Binding DocumentName}">
+                      <p17:GridViewColumn.CellTemplate>
+                        <DataTemplate xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+                          <StackPanel Orientation="Horizontal">
+                            <Image Width="24" Height="24" Margin="0,0,3,0" Source="{Binding DocumentSubType, Converter={StaticResource documentSubTypeToImageConverter}}" />
+                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,3,0" Text="{Binding Path=DocumentName}" />
+                          </StackPanel>
+                        </DataTemplate>
+                      </p17:GridViewColumn.CellTemplate>
+                    </p17:GridViewDataColumn>
+                    <p17:GridViewDataColumn p17:GridViewBoundColumnBase.Header="Type" p17:GridViewColumn.Width="150" p17:GridViewBoundColumnBase.DataMemberBinding="{Binding DocumentSubType, Converter={StaticResource documentSubTypeToStringConverter}}" />
+                    <p17:GridViewDataColumn p17:GridViewBoundColumnBase.Header="Provider" p17:GridViewColumn.Width="300" p17:GridViewBoundColumnBase.DataMemberBinding="{Binding SupplierName}" />
+                  </p18:GridViewDataControl.Columns>
+                  <!--Unknown connection ID: 213-->
+                </RadGridView>
+              </Grid>
+              <StackPanel Name="stackpanelButtonsPurchasesDocuments" Width="Auto" Height="Auto" Orientation="Vertical" Margin="15,0,15,40" VerticalAlignment="Bottom" Grid.Column="1" HorizontalAlignment="Center">
+                <Button Name="buttonViewPurchasesDocument" Width="40" Height="Auto" HorizontalAlignment="Center" Margin="0,0,0,3" VerticalAlignment="Bottom">
+                  <Image Width="Auto" Height="Auto" Source="{StaticResource IconViewDocument}" />
+                </Button>
+                <TextBlock Name="staticViewPurchasesDocument" Text="View Document" Height="Auto" FontSize="11" Foreground="#FF000000" TextWrapping="Wrap" Width="Auto" TextAlignment="Center" FontWeight="Normal" Padding="0,0,0,3" Margin="0,0,0,5" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+              </StackPanel>
+            </Grid>
+          </TabItem>
+          <TabItem Name="tabitemAttachments" Header="Attachments">
+            <attachments:AttachmentsView x:Name="attachmentsView" />
+          </TabItem>
+        </TabControl>
+      </Grid>
+      <Grid Name="gridProgressBarPanel" Opacity="1" Visibility="Visible" Width="200" Height="Auto" ZIndex="1000" HorizontalAlignment="Right" Margin="0,0,20,482" VerticalAlignment="Bottom">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="0.546*" />
+          <RowDefinition Height="0.454*" />
+        </Grid.RowDefinitions>
+        <ProgressBar Name="progressBarMain" Margin="1,0,1,0" Grid.Row="1" Value="50" Width="Auto" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        <TextBlock Name="textblockProgressMessage" Height="Auto" FontSize="12" Foreground="{StaticResource OrangeSolidBrush}" Text="Progress Message..." TextWrapping="Wrap" FontWeight="Bold" Margin="5,0,5,2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" />
+      </Grid>
+    </Grid>
+  </Grid>
+</UserControl>

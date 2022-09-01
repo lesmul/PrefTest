@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <AssemblyName>Preference.Logikal</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <UseWindowsForms>True</UseWindowsForms>
+    <TargetFramework>net461</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>Preview</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Preference.Logikal.Resources.O.xslt" />
+    <EmbeddedResource Include="Preference.Logikal.Resources.O.xslt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Interop.PrefCAD" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Data" />
+    <Reference Include="Telerik.Windows.Zip" />
+    <Reference Include="PrefNETLibraries" />
+    <Reference Include="Interop.PrefSales">
+      <HintPath>..\..\..\..\..\temp\Nowy folder (3)\Interop.PrefSales.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="Preference.PrefItems.Custom" />
+    <Reference Include="PrefLicControl" />
+    <Reference Include="System.Core" />
+    <Reference Include="Preference.Diagnostics" />
+    <Reference Include="PrefZipNET" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+</Project>

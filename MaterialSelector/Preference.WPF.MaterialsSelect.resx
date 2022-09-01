@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+<resheader name="resmimetype"><value>text/microsoft-resx</value></resheader><resheader name="version"><value>1.3</value></resheader><resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><data name="Surface"><value>Surface</value></data>
+  <data name="ProfilePieces"><value>Profile pieces</value></data>
+  <data name="Squares"><value>Squares</value></data>
+  <data name="IsModeRecursive"><value>Mode recursive</value></data>
+  <data name="HardwareSash"><value>Hardware Sash</value></data>
+  <data name="Family"><value>Family</value></data>
+  <data name="HardwareFrame"><value>Hardware Frame</value></data>
+  <data name="Cancel"><value>Cancel</value></data>
+  <data name="Clones"><value>Cloned</value></data>
+  <data name="General"><value>General</value></data>
+  <data name="Height"><value>Height</value></data>
+  <data name="Reference"><value>Reference</value></data>
+  <data name="QuantityTotal"><value>Quantity Total</value></data>
+  <data name="FrameHardware"><value>Frame Hardware</value></data>
+  <data name="Window"><value>Window</value></data>
+  <data name="Roller"><value>Roller</value></data>
+  <data name="System"><value>System</value></data>
+  <data name="GlobalAttachments"><value>Global Attachments</value></data>
+  <data name="ShowComponents"><value>Show components</value></data>
+  <data name="Delimiter"><value>Delimiter</value></data>
+  <data name="ProfilePiece"><value>Profile Piece {0}</value></data>
+  <data name="IncludeAllItems"><value>Include All</value></data>
+  <data name="Confirm"><value>Confirm</value></data>
+  <data name="Contour"><value>Contour</value></data>
+  <data name="SashHardware"><value>Sash Hardware</value></data>
+  <data name="EscandalloGlobal"><value>Escandallo Global</value></data>
+  <data name="ExcludeAllMaterials"><value>Exclude all materials</value></data>
+  <data name="ConfirmResetWindowLayout"><value>Are you sure you want to restore the default window layout for the environment?</value></data>
+  <data name="ProductType"><value>Type</value></data>
+  <data name="Ok"><value>Ok</value></data>
+  <data name="Element"><value>Element</value></data>
+  <data name="Rod"><value>Rod</value></data>
+  <data name="Frame"><value>Frame</value></data>
+  <data name="Glass"><value>Glass</value></data>
+  <data name="Model"><value>Model</value></data>
+  <data name="Meter"><value>Meter</value></data>
+  <data name="Color"><value>Color</value></data>
+  <data name="Items"><value>Items</value></data>
+  <data name="Width"><value>Width</value></data>
+  <data name="Piece"><value>Piece</value></data>
+  <data name="WrongFilter"><value>The filter has been invalidated because it is not compatible with the current model structure.</value></data>
+  <data name="GlazingLedge"><value>Glazing ledge</value></data>
+  <data name="ShowAllMaterials"><value>Show all materials</value></data>
+  <data name="AluClip"><value>AluClip</value></data>
+  <data name="MaterialsTitleSquare"><value>{1}: {0} materials</value></data>
+  <data name="IncludeAllMaterials"><value>Include all materials</value></data>
+  <data name="Material"><value>Material</value></data>
+  <data name="OuterBar"><value>Outer Bar</value></data>
+  <data name="MaterialsTitleAll"><value>{0} of {1} materials</value></data>
+  <data name="GlazingStop"><value>Glazing stop</value></data>
+  <data name="MaterialSelectorWindowTitle"><value>Select materials</value></data>
+  <data name="Loading"><value>Loading...</value></data>
+  <data name="ExcludeAllItems"><value>Exclude All</value></data>
+  <data name="Description"><value>Description</value></data>
+  <data name="Include"><value>Include</value></data>
+  <data name="Submodel"><value>Submodel</value></data>
+  <data name="ResetWindowLayout"><value>_Reset Window Layout</value></data>
+  <data name="QuantityIncluded"><value>Quantity Included</value></data>
+  <data name="Item"><value>Item</value></data>
+  <data name="Name"><value>Name</value></data>
+  <data name="Hole"><value>Hole</value></data>
+  <data name="View"><value>View</value></data>
+  <data name="Type"><value>Type</value></data>
+  <data name="Sash"><value>Sash</value></data>
+  <data name="Materials"><value>Materials</value></data>
+  </root>

@@ -1,0 +1,83 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <AssemblyName>Preference.WPF.MaterialsSelector</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <UseWPF>True</UseWPF>
+    <TargetFramework>net461</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>Preview</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="resources\3361_16.png" />
+    <None Remove="resources\3362_16.png" />
+    <None Remove="resources\4013_16.bmp" />
+    <None Remove="resources\4081_16.bmp" />
+    <None Remove="resources\4055_16.bmp" />
+    <None Remove="resources\state2_16.png" />
+    <None Remove="resources\4071_16.bmp" />
+    <None Remove="resources\4003_16.png" />
+    <None Remove="resources\4061_16.bmp" />
+    <None Remove="resources\4073_16.bmp" />
+    <None Remove="resources\3331_16.png" />
+    <None Remove="resources\4063_16.png" />
+    <None Remove="resources\4133_16.png" />
+    <None Remove="resources\4075_16.bmp" />
+    <None Remove="resources\4065_16.bmp" />
+    <None Remove="resources\4099_16.bmp" />
+    <None Remove="resources\4077_16.bmp" />
+    <None Remove="resources\4067_16.bmp" />
+    <None Remove="resources\4097_16.bmp" />
+    <None Remove="resources\4069_16.bmp" />
+    <None Remove="resources\4095_16.bmp" />
+    <None Remove="resources\state1_16.png" />
+    <None Remove="temaspendientes.txt" />
+    <None Remove="resources\4057_16.bmp" />
+    <None Remove="resources\state0_16.png" />
+    <EmbeddedResource Include="resources\3361_16.png" />
+    <EmbeddedResource Include="resources\3362_16.png" />
+    <EmbeddedResource Include="resources\4013_16.bmp" />
+    <EmbeddedResource Include="resources\4081_16.bmp" />
+    <EmbeddedResource Include="resources\4055_16.bmp" />
+    <EmbeddedResource Include="resources\state2_16.png" />
+    <EmbeddedResource Include="resources\4071_16.bmp" />
+    <EmbeddedResource Include="resources\4003_16.png" />
+    <EmbeddedResource Include="resources\4061_16.bmp" />
+    <EmbeddedResource Include="resources\4073_16.bmp" />
+    <EmbeddedResource Include="resources\3331_16.png" />
+    <EmbeddedResource Include="resources\4063_16.png" />
+    <EmbeddedResource Include="resources\4133_16.png" />
+    <EmbeddedResource Include="resources\4075_16.bmp" />
+    <EmbeddedResource Include="resources\4065_16.bmp" />
+    <EmbeddedResource Include="resources\4099_16.bmp" />
+    <EmbeddedResource Include="resources\4077_16.bmp" />
+    <EmbeddedResource Include="resources\4067_16.bmp" />
+    <EmbeddedResource Include="resources\4097_16.bmp" />
+    <EmbeddedResource Include="resources\4069_16.bmp" />
+    <EmbeddedResource Include="resources\4095_16.bmp" />
+    <EmbeddedResource Include="resources\state1_16.png" />
+    <EmbeddedResource Include="temaspendientes.txt" />
+    <EmbeddedResource Include="resources\4057_16.bmp" />
+    <EmbeddedResource Include="resources\state0_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Telerik.Windows.Controls" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PrefNETLibraries" />
+    <Reference Include="Telerik.Windows.Controls.Docking" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls.Navigation" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="Telerik.Windows.Controls.GridView" />
+    <Reference Include="Telerik.Windows.Data" />
+    <Reference Include="Preference.PrefItems.Filtering" />
+    <Reference Include="Preference.Data.SqlClient" />
+    <Reference Include="System.Data" />
+    <Reference Include="Preference.Diagnostics" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+</Project>

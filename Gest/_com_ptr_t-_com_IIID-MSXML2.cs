@@ -1,0 +1,267 @@
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIXMLDOMDocument2_002C_0026_GUID_2933bf95_7b36_11d2_b20e_00c04f983e60_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AISchemaIdentityConstraint_002C_0026_GUID_50ea08bd_dd1b_4664_9a50_c2f40f4bd79a_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AISchemaElement_002C_0026_GUID_50ea08b7_dd1b_4664_9a50_c2f40f4bd79a_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AISchemaComplexType_002C_0026_GUID_50ea08b9_dd1b_4664_9a50_c2f40f4bd79a_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AISchemaType_002C_0026_GUID_50ea08b8_dd1b_4664_9a50_c2f40f4bd79a_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AISchemaModelGroup_002C_0026_GUID_50ea08bb_dd1b_4664_9a50_c2f40f4bd79a_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AISchemaAny_002C_0026_GUID_50ea08bc_dd1b_4664_9a50_c2f40f4bd79a_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AISchemaStringCollection_002C_0026_GUID_50ea08b1_dd1b_4664_9a50_c2f40f4bd79a_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AISchemaItemCollection_002C_0026_GUID_50ea08b2_dd1b_4664_9a50_c2f40f4bd79a_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AISchemaItem_002C_0026_GUID_50ea08b3_dd1b_4664_9a50_c2f40f4bd79a_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIVBSAXAttributes_002C_0026_GUID_10dc0586_132b_4cac_8bb3_db00ac8b7ee0_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AISchema_002C_0026_GUID_50ea08b4_dd1b_4664_9a50_c2f40f4bd79a_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIXSLTemplate_002C_0026_GUID_2933bf93_7b36_11d2_b20e_00c04f983e60_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIXSLProcessor_002C_0026_GUID_2933bf92_7b36_11d2_b20e_00c04f983e60_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIXMLDOMParseError2_002C_0026_GUID_3efaa428_272f_11d2_836f_0000f87a7782_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIXMLDOMParseErrorCollection_002C_0026_GUID_3efaa429_272f_11d2_836f_0000f87a7782_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIMXNamespacePrefixes_002C_0026_GUID_c90352f4_643c_4fbc_bb23_e996eb2d51fd_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIXMLDOMSelection_002C_0026_GUID_aa634fc7_5888_44a7_a257_3a47150d3a0e_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIXMLDOMSchemaCollection_002C_0026_GUID_373984c8_b845_449b_91e7_45ac83036ade_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIXMLDOMParseError_002C_0026_GUID_3efaa426_272f_11d2_836f_0000f87a7782_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIXMLDOMEntityReference_002C_0026_GUID_2933bf8e_7b36_11d2_b20e_00c04f983e60_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIXMLDOMProcessingInstruction_002C_0026_GUID_2933bf89_7b36_11d2_b20e_00c04f983e60_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIXMLDOMCDATASection_002C_0026_GUID_2933bf8a_7b36_11d2_b20e_00c04f983e60_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIXMLDOMComment_002C_0026_GUID_2933bf88_7b36_11d2_b20e_00c04f983e60_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIXMLDOMDocumentFragment_002C_0026_GUID_3efaa413_272f_11d2_836f_0000f87a7782_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIXMLDOMElement_002C_0026_GUID_2933bf86_7b36_11d2_b20e_00c04f983e60_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIXMLDOMImplementation_002C_0026_GUID_2933bf8f_7b36_11d2_b20e_00c04f983e60_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIXMLDOMDocumentType_002C_0026_GUID_2933bf8b_7b36_11d2_b20e_00c04f983e60_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIXMLDOMText_002C_0026_GUID_2933bf87_7b36_11d2_b20e_00c04f983e60_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIXMLDOMAttribute_002C_0026_GUID_2933bf85_7b36_11d2_b20e_00c04f983e60_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIXMLDOMDocument_002C_0026_GUID_2933bf81_7b36_11d2_b20e_00c04f983e60_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIXMLDOMNamedNodeMap_002C_0026_GUID_2933bf83_7b36_11d2_b20e_00c04f983e60_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIXMLDOMNodeList_002C_0026_GUID_2933bf82_7b36_11d2_b20e_00c04f983e60_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIXMLDOMNode_002C_0026_GUID_2933bf80_7b36_11d2_b20e_00c04f983e60_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIVBSAXXMLReader_002C_0026_GUID_8c033caa_6cd6_4f73_b728_4531af74945f_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIVBSAXErrorHandler_002C_0026_GUID_d963d3fe_173c_4862_9095_b92f66995f52_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIVBSAXDTDHandler_002C_0026_GUID_24fb3297_302d_4620_ba39_3a732d850558_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIVBSAXContentHandler_002C_0026_GUID_2ed7290a_4dd5_4b46_bb26_4e4155e77faa_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AIVBSAXEntityResolver_002C_0026_GUID_0c05d096_f45b_4aca_ad1a_aa0bc25518dc_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AISAXXMLReader_002C_0026_GUID_a4f96ed0_f829_476e_81c0_cdc7bd2a0802_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AISAXErrorHandler_002C_0026_GUID_a60511c4_ccf5_479e_98a3_dc8dc545b7d0_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AISAXDTDHandler_002C_0026_GUID_e15c1baf_afb3_4d60_8c36_19a8c45defed_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AISAXContentHandler_002C_0026_GUID_1545cdfa_9e4e_4497_a8a4_2bf7d0112c44_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
+[StructLayout(LayoutKind.Sequential, Size = 8)]
+[NativeCppClass]
+internal struct _com_ptr_t_003C_com_IIID_003CMSXML2_003A_003AISAXEntityResolver_002C_0026_GUID_99bca7bd_e8c4_4d5f_a0cf_6d907901ff07_003E_0020_003E
+{
+	private long _003Calignment_0020member_003E;
+}
